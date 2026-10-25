@@ -79,8 +79,13 @@ export function createRaccoon(): THREE.Group {
   neck.rotation.x = Math.PI / 2;
   const scarf = part(box(), palette.yellow, body, [-.11, .795, .27], [.115, .29, .045]);
   scarf.rotation.z = -.18;
-  part(box(), palette.cream, body, [.10, .79, .267], [.105, .14, .025]);
-  part(box(), palette.jade, body, [.10, .8, .286], [.05, .04, .012], false);
+  const badge = new THREE.Group();
+  badge.name = 'Equipped visitor badge';
+  body.add(badge);
+  part(box(), palette.cream, badge, [.10, .79, .267], [.105, .14, .025]);
+  part(box(), palette.jade, badge, [.10, .8, .286], [.05, .04, .012], false);
+  badge.visible = false;
+  root.userData.badge = badge;
 
   // Tail is a sequence of rigid rounded segments, deliberately separate from the legs.
   const tail = new THREE.Group();

@@ -1,4 +1,5 @@
 import { HEISTS } from './content';
+import { findPath } from './navigation';
 export type Point = {x:number;z:number};
 export type Obstacle = Point & {w:number;d:number;h:number;kind:'planter'|'wall'|'door'|'fountain'};
 export type Item = Point & {id:string;kind:'badge'|'map'|'bag'|'token'|'key'|'bell'|'box'|'trolley';label:string;detail:string;holder:'ground'|'player'|'helper';correct?:boolean;history?:string};
@@ -28,9 +29,10 @@ export function createGame(level=0,seed=1):State {
  }
  if(level===4)items.push({id:'box-a',kind:'box',label:'Festival box',detail:parity?'Delivery log: The helper placed this box beside the fountain.':'Delivery log: The sweeper placed this box beside the wall.',history:parity?'placed-beside-fountain':'placed-by-sweeper',correct:parity,x:parity?5:2,z:parity?-6:-7.5,holder:'ground'}, {id:'box-b',kind:'box',label:'Festival box',detail:!parity?'Delivery log: The helper placed this box beside the fountain.':'Delivery log: The sweeper placed this box beside the wall.',history:!parity?'placed-beside-fountain':'placed-by-sweeper',correct:!parity,x:!parity?7:2,z:!parity?-6:-7.5,holder:'ground'}, {id:'trolley',kind:'trolley',label:'Trolley',detail:"You don't have to use the trolley. The helper can carry a box with or without it.",x:-5,z:6,holder:'ground'});
  const obstacles:Obstacle[]=[{x:-4.8,z:2,w:4.2,d:2.2,h:1.65,kind:'planter'},{x:4,z:2.3,w:4.2,d:2,h:1.65,kind:'planter'}, {x:-5,z:-3.8,w:2.8,d:3.4,h:2.1,kind:'planter'},{x:9,z:5.5,w:1.8,d:3,h:1.65,kind:'planter'},
- {x:.5,z:-3,w:1,d:.35,h:2.8,kind:'wall'},{x:7.5,z:-3,w:5,d:.35,h:2.8,kind:'wall'},{x:0,z:-6,w:.3,d:6,h:2.8,kind:'wall'},{x:10,z:-6,w:.3,d:6,h:2.8,kind:'wall'},{x:5,z:-9,w:10,d:.3,h:2.8,kind:'wall'},{x:6,z:-6.9,w:1.5,d:1.5,h:.8,kind:'fountain'}];
+ {x:.5,z:-3,w:1,d:.35,h:2.8,kind:'wall'},{x:7.5,z:-3,w:5,d:.35,h:2.8,kind:'wall'},{x:0,z:-6,w:.3,d:6,h:2.8,kind:'wall'},{x:10,z:-6,w:.3,d:6,h:2.8,kind:'wall'},{x:5,z:-9,w:10,d:.3,h:2.8,kind:'wall'},{x:6,z:-6.9,w:1.2,d:1.2,h:.8,kind:'fountain'}];
  if(level===3)obstacles.push({x:3,z:-3,w:3.8,d:.35,h:2.4,kind:'door'});
  const robots:Robot[]=[{id:'guard',kind:'guard',x:1,z:5,angle:Math.PI,mode:'patrol',timer:0,waypoint:0,cargo:null}, {id:'gardener',kind:'watering',x:level===4?8:-1.4,z:level===4?-5:-1,angle:0,mode:'patrol',timer:0,waypoint:0,cargo:null}, {id:'sweeper',kind:'sweeping',x:-8,z:-1,angle:Math.PI/2,mode:'patrol',timer:0,waypoint:0,cargo:null}];
+ if(level===3){const bell=items.find(i=>i.kind==='bell'&&i.correct)!;robots[1].x=bell.x;robots[1].z=bell.z+1.1;}
  if(level===4)robots.push({id:'arch-inspector',kind:'guard',x:5.5,z:-1.9,angle:-1.99,mode:'patrol',timer:0,waypoint:0,cargo:null});
  return {level,seed,mode:'intro',time:0,player:{...SPAWN,angle:0,speed:0,sneaking:false},items,robots,obstacles,badge:false,bag:level===4,map:false,trolley:false,cargo:null,escort:null,doorOpen:level!==3,suspicion:0,violations:[],everViolated:false,catches:0,retries:0,supportUsed:false,readRules:false,inspected:[],noise:null,noiseUntil:0,squeakCooldown:0,helperTransported:false,transportedCargo:null,mistakes:0,wrongDeliveries:[],message:'',messageUntil:0,events:[],walkDistance:0,lastSqueak:-99,results:[]};
 }
@@ -76,7 +78,13 @@ export function squeak(s:State){if(s.mode!=='play'||s.squeakCooldown>0)return;s.
 export function canComplete(s:State){const cargo=s.items.find(i=>i.id===s.cargo)||s.items.find(i=>i.holder==='helper');if(!cargo||!cargo.correct||dist(s.player,SPAWN)>1.7)return false;if(cargo.holder==='helper'){const h=s.robots.find(r=>r.cargo===cargo.id);if(!h||dist(h,SPAWN)>3.5)return false;}return s.level!==4||(s.helperTransported&&s.transportedCargo===cargo.id);}
 export function languageEvidence(s:State){return s.readRules&&!s.supportUsed&&!s.everViolated&&s.retries===0&&s.mistakes===0&&(s.level<2||s.inspected.includes('gardener'))&&(s.level!==3||s.inspected.includes(s.cargo??'')&&s.inspected.includes('key-side'))&&(s.level!==4||s.inspected.includes(s.items.find(i=>i.correct)?.id??'')&&s.helperTransported);}
 export function recover(s:State){s.mode='play';s.player={...SPAWN,angle:0,speed:0,sneaking:false};s.suspicion=0;s.retries++;s.cargo=null;s.escort=null;s.helperTransported=false;s.transportedCargo=null;const fresh=createGame(s.level,s.seed);for(const i of s.items){if(['token','bell','box','key','bag'].includes(i.kind)&&i.holder!=='ground'){i.holder='ground';const original=fresh.items.find(o=>o.id===i.id);i.x=original?.x??-8;i.z=original?.z??6;}}for(const r of s.robots){r.cargo=null;r.mode='patrol';r.timer=0;}record(s,'recover');say(s,'השומר החזיר אתכם לכניסה. החפצים שהושארו כאן נשארים; אפשר לנסות שוב.');}
-function approach(s:State,r:Robot,target:Point,speed:number,dt:number){const d=dist(r,target);if(d<.08)return;const dx=(target.x-r.x)/d,dz=(target.z-r.z)/d;r.angle=Math.atan2(dx,dz);move(s,r,dx*speed*dt,dz*speed*dt,.3);}
+const routes=new WeakMap<Robot,{until:number;end:Point;points:Point[]}>();
+function approach(s:State,r:Robot,target:Point,speed:number,dt:number){
+ if(dist(r,target)<.08)return;
+ let route=routes.get(r);if(!route||s.time>route.until||dist(route.end,target)>1){route={until:s.time+.8,end:{...target},points:findPath(s,r,target)};routes.set(r,route);}
+ while(route.points.length&&dist(r,route.points[0])<.2)route.points.shift();const next=route.points[0]??target;const d=dist(r,next);if(d<.01)return;
+ const dx=(next.x-r.x)/d,dz=(next.z-r.z)/d;r.angle=Math.atan2(dx,dz);move(s,r,dx*speed*dt,dz*speed*dt,.3);
+}
 export function step(s:State,input:Input,dt:number){if(s.mode!=='play')return;dt=Math.min(.05,dt);s.time+=dt;s.squeakCooldown=Math.max(0,s.squeakCooldown-dt);
  const len=Math.hypot(input.x,input.z);s.player.sneaking=!!input.sneak;const speed=s.cargo?2.4:input.sneak?1.7:input.sprint?5:3.15;s.player.speed=len?speed:0;
  if(len){const dx=input.x/len,dz=input.z/len;s.player.angle=Math.atan2(dx,dz);const prev={x:s.player.x,z:s.player.z};move(s,s.player,dx*speed*dt,dz*speed*dt);s.walkDistance+=dist(prev,s.player);}
@@ -91,11 +99,12 @@ export function step(s:State,input:Input,dt:number){if(s.mode!=='play')return;dt
     if(inStore(r)!==inStore(s.player)){target={x:3,z:inStore(r)?-2:-4};if(Math.abs(r.x-3)<.75)target={x:3,z:s.player.z};}
     if(dist(r,s.player)>1.15||target!==s.player)approach(s,r,target,s.cargo?2.6:3.35,dt);
     if(s.level===4&&before&&!inStore(r)&&r.cargo){s.helperTransported=true;s.transportedCargo=r.cargo;record(s,'helper-crossed-arch',r.cargo,true);}
-   }else{r.timer+=dt;const route=r.kind==='watering'?(s.level===4?[{x:8,z:-5},{x:5,z:-5}]:[{x:-1.6,z:-.9},{x:-1.6,z:-3.6}]):[{x:-9,z:1},{x:-8,z:-5}];const t=route[r.waypoint%route.length];if(dist(r,t)<.2){if(r.timer>3){r.waypoint++;r.timer=0;}}else approach(s,r,t,.6,dt);}
+   }else{r.timer+=dt;if(s.level===3&&r.kind==='watering'&&r.timer<6){r.angle=Math.PI;continue;}const route=r.kind==='watering'?(s.level>=3?[{x:8,z:-5},{x:3,z:-5}]:[{x:-1.6,z:-.9},{x:-1.6,z:-3.6}]):[{x:-9,z:1},{x:-8,z:-5}];const t=route[r.waypoint%route.length];if(dist(r,t)<.2){if(r.timer>3){r.waypoint++;r.timer=0;}}else approach(s,r,t,.6,dt);}
    continue;
   }
   if(r.mode==='distracted'){r.timer-=dt;if(s.noise){approach(s,r,s.noise,1.8,dt);r.angle=Math.atan2(s.noise.x-r.x,s.noise.z-r.z);}if(r.timer<=0)r.mode='return';continue;}
   if(r.mode==='chase'){const sees=visibleTo(s,r);if(sees)r.timer=3;else r.timer-=dt;approach(s,r,s.player,4.1,dt);if(dist(r,s.player)<.7){s.catches++;s.mode='caught';record(s,'caught',s.violations[0],false);say(s,mistakeText[s.violations[0]]||'השומר תפס אתכם. אפשר לתכנן מסלול חדש.');return;}if(r.timer<=0){r.mode='return';s.suspicion=.1;}continue;}
+  if(r.mode==='suspicious'){r.angle=Math.atan2(s.player.x-r.x,s.player.z-r.z);continue;}
   const route=[{x:1,z:5},{x:8,z:.2},{x:3,z:-1.8},{x:-2,z:-.1}];const t=route[r.waypoint%route.length];approach(s,r,t,1.1,dt);if(dist(r,t)<.25){r.waypoint++;r.mode='patrol';}
  }
  s.violations=getViolations(s);if(s.violations.length)s.everViolated=true;
@@ -109,5 +118,5 @@ export function step(s:State,input:Input,dt:number){if(s.mode!=='play')return;dt
  }else if(g.mode!=='chase'){s.suspicion=Math.max(0,s.suspicion-dt*.5);if(g.mode==='suspicious'&&s.suspicion===0)g.mode='patrol';}
  if(s.noiseUntil<s.time)s.noise=null;
  if(canComplete(s)){s.mode='win';const lawful=!s.everViolated&&getViolations(s).length===0;const result={level:s.level,assisted:s.supportUsed,retries:s.retries,lawful,languageEvidence:languageEvidence(s),time:+s.time.toFixed(1)};s.results.push(result);record(s,'heist-complete',undefined,true);}
- if(dist(s.player,SPAWN)<1.7&&s.cargo&&!s.items.find(i=>i.id===s.cargo)?.correct&&s.time>s.messageUntil){say(s,'החפץ הגיע ליציאה, אבל אינו מתאים לתיאור במשימה. אפשר להחזיר אותו ולבדוק את היומן.');if(!s.wrongDeliveries.includes(s.cargo)){s.wrongDeliveries.push(s.cargo);s.mistakes++;record(s,'wrong-delivery',s.cargo,false);}}
+ if(dist(s.player,SPAWN)<1.7&&s.cargo&&!s.items.find(i=>i.id===s.cargo)?.correct&&!s.wrongDeliveries.includes(s.cargo)){say(s,'החפץ הגיע ליציאה, אבל אינו מתאים לתיאור במשימה. אפשר להחזיר אותו ולבדוק את היומן.');if(!s.wrongDeliveries.includes(s.cargo)){s.wrongDeliveries.push(s.cargo);s.mistakes++;record(s,'wrong-delivery',s.cargo,false);}}
 }

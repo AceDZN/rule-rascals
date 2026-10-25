@@ -113,6 +113,23 @@ test('lawful carrier does not make the wrong transfer box the correct object',()
  assert.equal(canComplete(s),false);
 });
 
+test('transfer target identity varies and its history remains the deciding fact',()=>{
+ const a=createGame(4,1),b=createGame(4,2);
+ assert.notEqual(a.items.find(i=>i.correct)?.id,b.items.find(i=>i.correct)?.id);
+ for(const s of [a,b]){
+  assert.equal(s.items.filter(i=>i.kind==='box'&&i.correct).length,1);
+  assert.match(s.items.find(i=>i.correct)!.detail,/helper placed this box beside the fountain/);
+ }
+});
+
+test('transporting another cargo cannot authorize the target box delivery',()=>{
+ const s=playing(4);s.badge=true;s.bag=false;
+ const correct=s.items.find(i=>i.kind==='box'&&i.correct)!,wrong=s.items.find(i=>i.kind==='box'&&!i.correct)!;
+ take(s,correct.id);at(s,SPAWN);s.helperTransported=true;s.transportedCargo=wrong.id;
+ assert.equal(canComplete(s),false);
+ s.transportedCargo=correct.id;assert.equal(canComplete(s),true);
+});
+
 test('visitor box-carrying violates the exclusive arch role despite badge or escort',()=>{
  const s=playing(4); s.badge=true; s.bag=false; take(s,'box-a'); at(s,{x:3,z:-3});
  const h=s.robots.find(r=>r.kind==='watering')!; h.x=3; h.z=-4; s.escort=h.id;
@@ -171,6 +188,14 @@ test('ordinary English rule reading is unaided; support or retry removes first-u
  assert.equal(s.supportUsed,false); assert.equal(languageEvidence(s),true);
  s.supportUsed=true; assert.equal(languageEvidence(s),false); s.supportUsed=false;
  s.retries=1; assert.equal(languageEvidence(s),false);
+});
+
+test('wrong delivery is a mistaken decision, without falsely recording requested assistance',()=>{
+ const s=playing(3);s.badge=true;guardAway(s);
+ take(s,s.items.find(i=>i.kind==='bell'&&!i.correct)!.id);at(s,SPAWN);
+ step(s,{x:0,z:0},1/60);
+ assert.equal(s.mode,'play');assert.equal(s.supportUsed,false);assert.equal(s.mistakes,1);
+ assert.ok(s.events.some(e=>e.action==='wrong-delivery'&&e.success===false));
 });
 
 test('unseen badge violation cannot earn lawful language evidence merely by reading the notice',()=>{

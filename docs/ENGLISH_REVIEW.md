@@ -58,4 +58,31 @@ Initial audit findings sent to lead:
 5. Helper transport evidence was a single boolean rather than tied to the transported cargo. Moving a different box must not satisfy the target's transport requirement.
 6. The trolley initially changed only a boolean and did not visibly affect transport. Optional success branches alone do not prove a physical trolley interaction.
 
-First test attempt was blocked by missing local `tsx` (`sh: tsx: command not found`); dependency installation belongs to the lead. Independent browser play has not yet started. Findings are pending fixes/retest, not signed off.
+The lead fixed the six simulation/UI findings. The final semantic suite currently passes **28/28** with `npm test`, including regressions for unseen compliance breaches, violation-specific observation, target parity, cargo-specific transport, immediate mistaken-delivery logging and conditional bell carrying. Wrong delivery records a mistake without falsely recording requested assistance. The H planning shortcut now opens a paused rules/hint sheet. The arch inspector is an actual world robot with visibility enforcement. The trolley follows the helper, with cargo placed on the trolley in the rendering source.
+
+Unit tests establish fixture semantics, not full browser solvability. The reviewer opened and inspected `docs/evidence/garden-first.png`: the bright garden, raised solid cover, raccoon proxy, robots and English notice are visible; controls are legible. Guard attention and the small exit label are less obvious than the generated target. The raccoon is a procedural prototype; this screenshot does not meet the outstanding Tripo GLB/rig requirement.
+
+Independent browser setup required the skill-bundled Playwright runtime and a paused animation frame loop on the overloaded host. The test browser uses ordinary pointer/keyboard controls plus `advanceTime` and read-only `projectWorld`/`render_game_to_text` hooks. No state or win injection is used. Play results are recorded below.
+
+The lead added an opening gardener/cloth action lasting six simulation seconds in heist 4, with the gardener starting at the polished bell. English Garden/Delivery logs remain inspectable for recoverable history. This choreography is confirmed in source; this reviewer did not independently observe its motion in the browser.
+
+## Independent browser results
+
+Test method: the skill-bundled Playwright runtime launched a separate headless Chromium context. Pointer navigation, keyboard actions, touch taps and touch-start/end input drove the game. `advanceTime` stepped the simulation; read-only projection and text-state hooks supplied coordinates and observations. The final canonical route uses `?deterministic=1` to stop continuous rendering on the overloaded host. No position setter, inventory mutation, level skip or win injection was used for these browser results.
+
+| Scenario | Observed result | Reviewed screenshot |
+| --- | --- | --- |
+| Heist 1 complete loop | Equip badge with E, navigate around cover to token, take with E, carry to exit. Result: lawful, unaided evidence, no retries. | `work/reviewer-evidence/01-token-approach.png` plus heist-2 result history |
+| Heist 2 no-map branch | Badge worn, map skipped, silver token recovered and returned. `map=false`, lawful=true, languageEvidence=true, assisted=false, retries=0. | `work/reviewer-evidence/02-no-map-win.png` |
+| Observed violation and recovery | Unbadged raccoon approaches patrol. Badge violation recorded at t=6.40; caught at t=7.12. Retry returns to entrance in play mode, retries=1. Badge can then be equipped. | `work/reviewer-evidence/04-caught.png` |
+| Paused planning hint | H opens the rules/hint sheet and marks assistance. Advancing five seconds preserves simulation time 7.15 → 7.15. | `work/reviewer-evidence/05-paused-hint.png` |
+| Mobile viewport | 390×844 touch context. Document is exactly 390×844. HUD, notice, objective, context actions, pocket, pad and sneak toggle all lie within the viewport. | `work/reviewer-evidence/03-mobile-play.png` |
+| Mobile touch control | Touch action equips badge; holding a touch on the movement pad moves player (-9,8) → (-6.25,6.47). Sneak toggles on/off. Touch pause freezes time 1.07 → 1.07 for a five-second advance; resume works. | `work/reviewer-evidence/06-mobile-pause.png` |
+
+All six listed screenshots were opened and visually inspected. English notice/objective and Hebrew controls are readable in the tested states. No clipped essential controls or unintended document scrolling appeared. The captured desktop page emitted no page errors.
+
+The listed `work/` files are local review evidence and are ignored by Git. The lead may copy selected captures into `docs/evidence/` for publication; the public repository's `PLAYTEST.md` is the final consolidated record.
+
+## Review limits
+
+This reviewer independently completed the first two heists and the listed failure/recovery/support/mobile paths. The lead owns full five-heist progression, transfer and optional-trolley browser evidence; the unit suite covers both equipment branches. The latest heist-4 guard-watching condition was independently unit tested, while its final full browser path is the lead's verification responsibility. These checks establish implemented behavior in the tested scenarios, not fun, classroom usability or learning gains. Real Tripo model acquisition and a full-body raccoon rig remain an external asset requirement separate from semantic correctness.

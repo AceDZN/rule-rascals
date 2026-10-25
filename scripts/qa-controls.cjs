@@ -1,0 +1,13 @@
+const fs=require('node:fs');const assert=require('node:assert/strict');
+const{chromium}=require(process.env.RULE_RASCALS_BROWSER_LIB||'playwright');
+(async()=>{const b=await chromium.launch({headless:true,args:['--use-angle=metal','--enable-gpu','--ignore-gpu-blocklist']});
+ const p=await b.newPage({viewport:{width:1280,height:800}}),errors=[];p.on('pageerror',e=>errors.push(e.message));
+ await p.goto((process.env.RULE_RASCALS_URL||'http://localhost:5203')+'/?deterministic=1',{waitUntil:'domcontentloaded',timeout:90000});await p.waitForFunction(()=>typeof window.advanceTime==='function',{},{timeout:90000});
+ const state=async()=>JSON.parse(await p.evaluate(()=>window.render_game_to_text()));const step=async(ms=0)=>p.evaluate(ms=>window.advanceTime(ms),ms);
+ await p.click('#start-btn',{force:true});await p.click('#resume-btn',{force:true});await step();await p.keyboard.press('Escape');assert.equal((await state()).mode,'paused');
+ await p.click('#motion-btn',{force:true});assert.match(await p.locator('#motion-btn').innerText(),/פעילה/);await p.click('#resume-btn',{force:true});await step(500);assert.equal((await state()).mode,'play');
+ await p.click('#mute-btn',{force:true});assert.equal(await p.locator('#mute-btn').getAttribute('aria-label'),'הפעלת צלילים');await p.click('#mute-btn',{force:true});
+ await p.keyboard.press('f');const full=await p.evaluate(()=>!!document.fullscreenElement);if(full)await p.keyboard.press('f');
+ await p.keyboard.press('Escape');await p.click('#restart-btn',{force:true});assert.equal((await state()).mode,'intro');assert.equal((await state()).retries,1);
+ fs.mkdirSync('work/control-evidence',{recursive:true});await p.screenshot({path:'work/control-evidence/restarted.png',timeout:90000});console.log(JSON.stringify({pause:true,reducedMotionToggle:true,muteToggle:true,restart:true,fullscreen:full,errors}));assert.deepEqual(errors,[]);await b.close();
+})().catch(e=>{console.error(e);process.exit(1)});

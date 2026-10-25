@@ -87,6 +87,24 @@ export function createRaccoon(): THREE.Group {
   badge.visible = false;
   root.userData.badge = badge;
 
+  const largeBag = new THREE.Group();
+  largeBag.name = 'Worn large visitor backpack';
+  body.add(largeBag);
+  // Keep the pack above the tail root so its ringed silhouette stays visible.
+  part(box(), 0x8b6244, largeBag, [0, .83, -.34], [.60, .52, .27]);
+  part(box(), 0xa47a52, largeBag, [0, 1.035, -.36], [.63, .16, .30]);
+  part(box(), 0xa47a52, largeBag, [0, .71, -.495], [.43, .20, .07]);
+  const bagHandle = part(new THREE.TorusGeometry(.12, .027, 6, 12, Math.PI),
+    0x62482f, largeBag, [0, 1.105, -.32], [1, .65, 1]);
+  bagHandle.rotation.y = Math.PI;
+  for (const side of [-1, 1]) {
+    part(box(), 0x62482f, largeBag, [side * .225, .81, .235], [.065, .44, .035]);
+    part(box(), 0x62482f, largeBag, [side * .225, 1.015, -.025], [.065, .06, .55]);
+    part(box(), palette.brass, largeBag, [side * .19, .89, -.507], [.065, .08, .025]);
+  }
+  largeBag.visible = false;
+  root.userData.largeBag = largeBag;
+
   // Tail is a sequence of rigid rounded segments, deliberately separate from the legs.
   const tail = new THREE.Group();
   tail.position.set(0, .52, -.21);

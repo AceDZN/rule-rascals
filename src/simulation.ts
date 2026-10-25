@@ -10,7 +10,7 @@ export type State = {
  level:number;seed:number;mode:'intro'|'play'|'reading'|'paused'|'caught'|'win'|'complete';time:number;player:Point&{angle:number;speed:number;sneaking:boolean};
  items:Item[];robots:Robot[];obstacles:Obstacle[];badge:boolean;bag:boolean;map:boolean;trolley:boolean;cargo:string|null;escort:string|null;doorOpen:boolean;
  suspicion:number;violations:string[];everViolated:boolean;catches:number;retries:number;supportUsed:boolean;readRules:boolean;inspected:string[];noise:Point|null;noiseUntil:number;squeakCooldown:number;
- helperTransported:boolean;transportedCargo:string|null;mistakes:number;wrongDeliveries:string[];message:string;messageUntil:number;events:GameEvent[];walkDistance:number;lastSqueak:number;results:{level:number;assisted:boolean;retries:number;lawful:boolean;languageEvidence:boolean;time:number}[];
+ trail:Point[];helperTransported:boolean;transportedCargo:string|null;mistakes:number;wrongDeliveries:string[];message:string;messageUntil:number;events:GameEvent[];walkDistance:number;lastSqueak:number;results:{level:number;assisted:boolean;retries:number;lawful:boolean;languageEvidence:boolean;time:number}[];
 };
 export const dist=(a:Point,b:Point)=>Math.hypot(a.x-b.x,a.z-b.z);
 export const inStore=(p:Point)=>p.z < -3 && p.x>0 && p.x<10;
@@ -34,7 +34,7 @@ export function createGame(level=0,seed=1):State {
  const robots:Robot[]=[{id:'guard',kind:'guard',x:1,z:5,angle:Math.PI,mode:'patrol',timer:0,waypoint:0,cargo:null}, {id:'gardener',kind:'watering',x:level===4?8:-1.4,z:level===4?-5:-1,angle:0,mode:'patrol',timer:0,waypoint:0,cargo:null}, {id:'sweeper',kind:'sweeping',x:-8,z:-1,angle:Math.PI/2,mode:'patrol',timer:0,waypoint:0,cargo:null}];
  if(level===3){const bell=items.find(i=>i.kind==='bell'&&i.correct)!;robots[1].x=bell.x;robots[1].z=bell.z+1.1;}
  if(level===4)robots.push({id:'arch-inspector',kind:'guard',x:5.5,z:-1.9,angle:-1.99,mode:'patrol',timer:0,waypoint:0,cargo:null});
- return {level,seed,mode:'intro',time:0,player:{...SPAWN,angle:0,speed:0,sneaking:false},items,robots,obstacles,badge:false,bag:level===4,map:false,trolley:false,cargo:null,escort:null,doorOpen:level!==3,suspicion:0,violations:[],everViolated:false,catches:0,retries:0,supportUsed:false,readRules:false,inspected:[],noise:null,noiseUntil:0,squeakCooldown:0,helperTransported:false,transportedCargo:null,mistakes:0,wrongDeliveries:[],message:'',messageUntil:0,events:[],walkDistance:0,lastSqueak:-99,results:[]};
+ return {level,seed,mode:'intro',time:0,player:{...SPAWN,angle:0,speed:0,sneaking:false},items,robots,obstacles,badge:false,bag:level===4,map:false,trolley:false,cargo:null,escort:null,doorOpen:level!==3,suspicion:0,violations:[],everViolated:false,catches:0,retries:0,supportUsed:false,readRules:false,inspected:[],noise:null,noiseUntil:0,squeakCooldown:0,trail:[{...SPAWN}],helperTransported:false,transportedCargo:null,mistakes:0,wrongDeliveries:[],message:'',messageUntil:0,events:[],walkDistance:0,lastSqueak:-99,results:[]};
 }
 export function activeObstacles(s:State){return s.obstacles.filter(o=>o.kind!=='door'||!s.doorOpen);}
 export function blocked(s:State,p:Point,r=.3){return Math.abs(p.x)>11.4||Math.abs(p.z)>9.4||activeObstacles(s).some(o=>Math.abs(p.x-o.x)<o.w/2+r&&Math.abs(p.z-o.z)<o.d/2+r);}
@@ -45,12 +45,13 @@ export function getViolations(s:State):string[]{const v:string[]=[];
  if(!s.badge&&dist(s.player,SPAWN)>2.8)v.push('badge');
  if(s.level===1&&s.items.some(i=>i.kind==='bag'&&i.holder==='ground'&&isDoorway(i)))v.push('doorway-bag');
  if(s.level===2&&inStore(s.player)&&!hasEscort(s))v.push('without-helper');
+ if(s.level===3&&s.items.find(i=>i.id===s.cargo)?.kind==='bell'&&s.robots.some(r=>r.kind==='guard'&&r.mode!=='distracted'&&visibleTo(s,r)))v.push('watched-bell');
  if(s.level===4&&inStore(s.player)&&s.bag)v.push('large-bag');
  if(s.level===4&&isDoorway(s.player)&&s.cargo&&s.items.find(i=>i.id===s.cargo)?.kind==='box')v.push('helpers-only');
  return v;
 }
 export function visibleTo(s:State,r:Robot,p:Point=s.player){const d=dist(r,p);if(d>(s.player.sneaking?5.2:7.4))return false;const angle=Math.atan2(p.x-r.x,p.z-r.z);const da=Math.atan2(Math.sin(angle-r.angle),Math.cos(angle-r.angle));return (Math.abs(da)<.72||d<1.25)&&lineClear(s,r,p);}
-const mistakeText:Record<string,string>={badge:'התג נשאר בכיס? “must wear” אומר שחייבים לענוד אותו.', 'doorway-bag':'התיק חוסם את הפתח. “mustn’t leave bags in the doorway” אוסר להשאיר אותו שם.', 'without-helper':'“without a helper” הוא התנאי: צריך את העוזר שמשקה, קרוב אליכם במחסן.', 'large-bag':'התיק הגדול נשאר בחוץ לפי “must leave large bags outside”.', 'helpers-only':'“Only helpers” — תג מבקר אינו הופך אתכם לעוזרים. בקשו מהעוזר להעביר את הארגז.'};
+const mistakeText:Record<string,string>={badge:'התג נשאר בכיס? “must wear” אומר שחייבים לענוד אותו.', 'doorway-bag':'התיק חוסם את הפתח. “mustn’t leave bags in the doorway” אוסר להשאיר אותו שם.', 'without-helper':'“without a helper” הוא התנאי: צריך את העוזר שמשקה, קרוב אליכם במחסן.', 'watched-bell':'השומר ראה את הפעמון. “while a guard is watching” מגביל את הנשיאה כשהוא מסתכל. הסתתרו או הסיחו את דעתו.', 'large-bag':'התיק הגדול נשאר בחוץ לפי “must leave large bags outside”.', 'helpers-only':'“Only helpers” — תג מבקר אינו הופך אתכם לעוזרים. בקשו מהעוזר להעביר את הארגז.'};
 export function nearest(s:State):{id:string;label:string;distance:number}|null{
  const candidates=[...s.items.filter(i=>i.holder==='ground').map(i=>({id:i.id,label:i.label,distance:dist(i,s.player)})),...s.robots.filter(r=>r.kind!=='guard').map(r=>({id:r.id,label:r.kind==='watering'?'Robot with watering can':'Robot with broom',distance:dist(r,s.player)})),{id:'notice',label:'Posted rules',distance:dist({x:-9.5,z:4.8},s.player)}, ...(s.level===3?[{id:'side-door',label:'Side door',distance:dist({x:3,z:-2},s.player)}]:[])];
  candidates.sort((a,b)=>a.distance-b.distance);return candidates[0]?.distance<1.9?candidates[0]:null;
@@ -76,8 +77,8 @@ export function drop(s:State){if(s.mode!=='play')return;
 }
 export function squeak(s:State){if(s.mode!=='play'||s.squeakCooldown>0)return;s.noise={x:s.player.x+Math.sin(s.player.angle)*2.2,z:s.player.z+Math.cos(s.player.angle)*2.2};s.noiseUntil=s.time+5;s.squeakCooldown=7;s.lastSqueak=s.time;record(s,'squeak');for(const r of s.robots.filter(r=>r.kind==='guard'))if(dist(r,s.player)<11){r.mode='distracted';r.timer=5;}say(s,'צִיף! השומר בודק את מקור הצליל.');}
 export function canComplete(s:State){const cargo=s.items.find(i=>i.id===s.cargo)||s.items.find(i=>i.holder==='helper');if(!cargo||!cargo.correct||dist(s.player,SPAWN)>1.7)return false;if(cargo.holder==='helper'){const h=s.robots.find(r=>r.cargo===cargo.id);if(!h||dist(h,SPAWN)>3.5)return false;}return s.level!==4||(s.helperTransported&&s.transportedCargo===cargo.id);}
-export function languageEvidence(s:State){return s.readRules&&!s.supportUsed&&!s.everViolated&&s.retries===0&&s.mistakes===0&&(s.level<2||s.inspected.includes('gardener'))&&(s.level!==3||s.inspected.includes(s.cargo??'')&&s.inspected.includes('key-side'))&&(s.level!==4||s.inspected.includes(s.items.find(i=>i.correct)?.id??'')&&s.helperTransported);}
-export function recover(s:State){s.mode='play';s.player={...SPAWN,angle:0,speed:0,sneaking:false};s.suspicion=0;s.retries++;s.cargo=null;s.escort=null;s.helperTransported=false;s.transportedCargo=null;const fresh=createGame(s.level,s.seed);for(const i of s.items){if(['token','bell','box','key','bag'].includes(i.kind)&&i.holder!=='ground'){i.holder='ground';const original=fresh.items.find(o=>o.id===i.id);i.x=original?.x??-8;i.z=original?.z??6;}}for(const r of s.robots){r.cargo=null;r.mode='patrol';r.timer=0;}record(s,'recover');say(s,'השומר החזיר אתכם לכניסה. החפצים שהושארו כאן נשארים; אפשר לנסות שוב.');}
+export function languageEvidence(s:State){return s.readRules&&!s.supportUsed&&!s.everViolated&&s.retries===0&&s.mistakes===0&&((s.level!==2&&s.level!==4)||s.inspected.includes('gardener'))&&(s.level!==3||s.inspected.includes(s.cargo??'')&&s.inspected.includes('key-side'))&&(s.level!==4||s.inspected.includes(s.items.find(i=>i.correct)?.id??'')&&s.helperTransported);}
+export function recover(s:State){if(s.level===4&&s.bag){s.bag=false;let bag=s.items.find(i=>i.id==='bag');if(!bag){bag={id:'bag',kind:'bag',label:'Large bag',detail:'A large visitor bag.',...SPAWN,holder:'ground'};s.items.push(bag);}bag.holder='ground';bag.x=SPAWN.x;bag.z=SPAWN.z;}s.mode='play';s.player={...SPAWN,angle:0,speed:0,sneaking:false};s.suspicion=0;s.retries++;s.cargo=null;s.escort=null;s.helperTransported=false;s.transportedCargo=null;const fresh=createGame(s.level,s.seed);for(const i of s.items){if(['token','bell','box','key','bag'].includes(i.kind)&&i.holder!=='ground'){i.holder='ground';const original=fresh.items.find(o=>o.id===i.id);i.x=original?.x??-8;i.z=original?.z??6;}}for(const r of s.robots){r.cargo=null;r.mode='patrol';r.timer=0;}record(s,'recover');say(s,'השומר החזיר אתכם לכניסה. החפצים שהושארו כאן נשארים; אפשר לנסות שוב.');}
 const routes=new WeakMap<Robot,{until:number;end:Point;points:Point[]}>();
 function approach(s:State,r:Robot,target:Point,speed:number,dt:number){
  if(dist(r,target)<.08)return;
@@ -88,9 +89,10 @@ function approach(s:State,r:Robot,target:Point,speed:number,dt:number){
 export function step(s:State,input:Input,dt:number){if(s.mode!=='play')return;dt=Math.min(.05,dt);s.time+=dt;s.squeakCooldown=Math.max(0,s.squeakCooldown-dt);
  const len=Math.hypot(input.x,input.z);s.player.sneaking=!!input.sneak;const speed=s.cargo?2.4:input.sneak?1.7:input.sprint?5:3.15;s.player.speed=len?speed:0;
  if(len){const dx=input.x/len,dz=input.z/len;s.player.angle=Math.atan2(dx,dz);const prev={x:s.player.x,z:s.player.z};move(s,s.player,dx*speed*dt,dz*speed*dt);s.walkDistance+=dist(prev,s.player);}
+ if(dist(s.player,s.trail.at(-1)!)>1){s.trail.push({x:s.player.x,z:s.player.z});if(s.trail.length>400)s.trail.shift();}
  for(const i of s.items){if(i.holder==='player'){i.x=s.player.x;i.z=s.player.z;}if(i.holder==='helper'){const h=s.robots.find(r=>r.cargo===i.id);if(h){i.x=h.x;i.z=h.z;}}}
  for(const r of s.robots){
-  if(r.id==='arch-inspector')continue;
+  if(r.id==='arch-inspector'){if(r.mode==='distracted'){r.timer-=dt;if(r.timer<=0)r.mode='patrol';}continue;}
   if(r.kind!=='guard'){
    if(r.mode==='follow'){
     const before=inStore(r);
@@ -110,10 +112,10 @@ export function step(s:State,input:Input,dt:number){if(s.mode!=='play')return;dt
  s.violations=getViolations(s);if(s.violations.length)s.everViolated=true;
  const g=s.robots.find(r=>r.kind==='guard')!;
  // The fixed arch inspector observes this physical crossing, separately from the roaming guard.
- if(s.level===4&&s.violations.includes('helpers-only')&&visibleTo(s,s.robots.find(r=>r.id==='arch-inspector')!)){const item=s.items.find(i=>i.id===s.cargo)!;item.holder='ground';item.x=s.player.x;item.z=s.player.z< -3?-4.2:-1.8;s.cargo=null;s.everViolated=true;say(s,mistakeText['helpers-only']);record(s,'arch-returned-box',item.id,false);g.mode='chase';g.timer=3;}
+ if(s.level===4&&s.violations.includes('helpers-only')&&s.robots.find(r=>r.id==='arch-inspector')!.mode!=='distracted'&&visibleTo(s,s.robots.find(r=>r.id==='arch-inspector')!)){const item=s.items.find(i=>i.id===s.cargo)!;item.holder='ground';item.x=s.player.x;item.z=s.player.z< -3?-4.2:-1.8;s.cargo=null;s.everViolated=true;say(s,mistakeText['helpers-only']);record(s,'arch-returned-box',item.id,false);g.mode='chase';g.timer=3;}
  const bag=s.items.find(i=>i.kind==='bag'&&i.holder==='ground'&&isDoorway(i));
- const seen=s.violations.some(v=>v==='doorway-bag'?!!bag&&visibleTo(s,g,bag):visibleTo(s,g));
- if(seen&&g.mode!=='distracted'&&g.mode!=='chase'){
+ const seen=s.robots.filter(r=>r.kind==='guard'&&r.mode!=='distracted').some(observer=>s.violations.some(v=>v==='doorway-bag'?!!bag&&visibleTo(s,observer,bag):visibleTo(s,observer)));
+ if(seen&&g.mode!=='chase'){
   s.suspicion=Math.min(1,s.suspicion+dt*1.35);g.mode='suspicious';if(s.suspicion>=1){g.mode='chase';g.timer=3;s.everViolated=true;say(s,mistakeText[s.violations[0]]);record(s,'violation',s.violations[0],false);}
  }else if(g.mode!=='chase'){s.suspicion=Math.max(0,s.suspicion-dt*.5);if(g.mode==='suspicious'&&s.suspicion===0)g.mode='patrol';}
  if(s.noiseUntil<s.time)s.noise=null;

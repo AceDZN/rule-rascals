@@ -28,7 +28,7 @@ Vercel-ready static build: import this repository, use Vite, build `npm run buil
 - WASD or arrows: move relative to the camera. Shift: run. C: sneak.
 - Click a clear path: navigate around solid obstacles. Touch: drag the movement pad.
 - E / action button: equip, take, unlock or request help from the nearby character.
-- Q: inspect the nearby object or robot. G: drop cargo, leave the large bag, or ask the helper to put down its box.
+- Q: inspect the nearby object or robot. M: open an acquired map of visited routes. G: drop cargo, leave the large bag, or ask the helper to put down its box.
 - Space: toss the squeaky distraction. It has a finite cooldown.
 - R: posted rules and reading support. Escape: pause/resume. F: fullscreen.
 - Sound, reduced motion and restart are available in the controls/pause menu.
@@ -45,7 +45,7 @@ The five jobs practice must / mustn't / can / don't have to, conditional entry, 
 
 A minimal event log stays in this browser's `localStorage` under `rule-rascals-local-events`. It contains game actions, support and retry flags, and results; no student identity and no remote analytics. Clear site storage to remove it. There is no runtime AI, backend, account or API key.
 
-`window.render_game_to_text()` describes current observable world state. `window.advanceTime(ms)` advances the same simulation deterministically and respects reading/pause. These are QA hooks, not win-state setters.
+`window.render_game_to_text()` describes current observable world state. `window.advanceTime(ms)` advances the same simulation deterministically and respects reading/pause. These are QA hooks, not win-state setters. `?deterministic=1` renders only when stepped for repeatable browser QA.
 
 ## Build evidence and art status
 

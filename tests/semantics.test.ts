@@ -14,6 +14,7 @@ test('English fixtures preserve exclusive role, optional equipment and condition
  assert.ok(HEISTS[4].rules.includes('Only helpers can carry boxes through the arch.'));
  assert.ok(HEISTS[4].rules.includes('Visitors must leave large bags outside the arch.'));
  assert.ok(HEISTS[4].rules.includes("You don't have to use the trolley."));
+ assert.ok(HEISTS[3].rules.includes("Visitors mustn't carry a bell while a guard is watching them."));
  assert.equal(HEISTS[4].hint,'','transfer withholds solution hint');
 });
 
@@ -104,6 +105,28 @@ test('bell delivery depends on polishing history, with both spatial variants',()
   assert.equal(canComplete(s),true);
  }
  assert.notEqual(createGame(3,1).items.find(i=>i.correct)?.id,createGame(3,2).items.find(i=>i.correct)?.id);
+});
+
+test('the bell-carry prohibition includes stationary holding in an attentive guard view',()=>{
+ const s=playing(3);s.badge=true;take(s,s.items.find(i=>i.kind==='bell'&&i.correct)!.id);
+ at(s,{x:1,z:5});const g=s.robots.find(r=>r.kind==='guard')!;g.x=1;g.z=3.5;g.angle=0;
+ s.player.speed=0;assert.equal(visibleTo(s,g),true);
+ assert.ok(getViolations(s).includes('watched-bell'));
+});
+
+test('bell carrying is permitted behind cover or when the guard is distracted',()=>{
+ const s=playing(3);s.badge=true;take(s,s.items.find(i=>i.kind==='bell'&&i.correct)!.id);
+ at(s,{x:1,z:5});const g=s.robots.find(r=>r.kind==='guard')!;g.x=1;g.z=3.5;g.angle=0;g.mode='distracted';
+ assert.ok(!getViolations(s).includes('watched-bell'));
+ g.mode='patrol';g.x=-4.8;g.z=.8;at(s,{x:-4.8,z:3.2});
+ assert.equal(lineClear(s,g,s.player),false);assert.ok(!getViolations(s).includes('watched-bell'));
+});
+
+test('bell-heist language evidence uses key and bell history without requiring helper inspection',()=>{
+ const s=playing(3);s.badge=true;inspect(s,'notice');const key=s.items.find(i=>i.id==='key-side')!;
+ at(s,key);inspect(s,key.id);const bell=s.items.find(i=>i.kind==='bell'&&i.correct)!;
+ at(s,bell);inspect(s,bell.id);take(s,bell.id);
+ assert.ok(!s.inspected.includes('gardener'));assert.equal(languageEvidence(s),true);
 });
 
 test('lawful carrier does not make the wrong transfer box the correct object',()=>{

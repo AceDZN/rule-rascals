@@ -1,0 +1,17 @@
+{
+  "name": "rule-rascals",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 5203 --strictPort",
+    "preview": "vite preview --host 0.0.0.0 --port 4203 --strictPort",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test tests/*.test.ts"
+  },
+  "dependencies": {
+    "@fontsource/heebo": "5.3.0",
+    "three": "0.186.1"
+  }
+}

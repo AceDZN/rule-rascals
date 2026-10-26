@@ -75,11 +75,26 @@ Feet/wheels are at Y=0 within floating-point tolerance. All models have unit-len
 
 The carry name is **63 characters and ends in U+0020 (a space)**. The quotes in the table delimit the name; they are not part of it. Binary JSON preserves the exact string. Runtime joint names are sanitized by Three.js: use `mixamorigSpine2` / `mixamorigRightHand`, not raw GLB names containing a colon.
 
-The actual four-clip file was played in an isolated Three.js browser and visually inspected. Run, walk and carry each changed 22 bone transforms in the sampled intervals; the earlier idle check changed 51. Captures show actual skin deformation and alternating steps. The generated carry motion is usable as a **low waist/lower-chest carry**, with bent forearms forward; it does not precisely achieve the prompt's high, steady two-hand chest pose. No hand IK or perfect object-contact claim is made.
+The actual four-clip file was played in an isolated Three.js browser and visually inspected. Run, walk and carry each changed 22 bone transforms in the sampled intervals; the earlier idle check changed 51. Captures show actual skin deformation and alternating steps. The generated motion supplies a **low waist/lower-chest carry arm pose**, with bent forearms forward, but its leg movement becomes nearly static in the latter half. It does not provide reliable sustained walking or precisely achieve the prompt’s high steady two-hand grip. Following the reported floating/skating bug, runtime carrying now uses the layered source animations described below. No hand IK or perfect object-contact claim is made.
 
 Tripo's stay-in-place export retained different constant initial horizontal hips positions between clips. `src/model-assets.ts` clones clips in memory and aligns only each observed `mixamorigHips.position` track's initial X/Z to that bone's actual bind X/Z. Y and all relative motion are preserved; original GLB bytes remain unchanged. The run correction was X −0.024063 / Z +0.423438 source units (about 0.72 m of initial forward offset at game scale).
 
 An actual **idle → walk → run → carry** adapter test passed: initial hips X/Z match bind within 1e-6, actor/collider origin stays fixed, and the final browser run records zero page errors. Full elapsed simulation time is advanced in substeps rather than truncated. A translated/rotated actor test also placed a visible cube through the scene's exact hand-socket setup: the grip and actual right-hand bone world positions agree within 3e-15. The latest real token-carry gameplay capture was independently reopened and confirms the earlier detached appearance is resolved.
+
+## Pickup locomotion correction
+
+A later continuous-play bug exposed a gap in the initial clip-name/XZ checks: the raw custom carry’s latter-half foot travel is only about 0.032 m. At a moving world speed it can look frozen or skating, especially after stopping then resuming. The ordinary gait rates also did not match travel speed. Actual deformed foot sampling found no positive airborne sole gap; lowering the hips would have worsened the source’s existing paw penetration.
+
+The adapter now creates two explicit **in-memory composites**, leaving every original GLB unchanged:
+
+- `carry-walk`: acquired cyclic walk hips/legs combined with the acquired custom carry spine/arms. Its latter-half foot travel is about 0.46 m, so the gait continues through repeated movement and stop/resume.
+- `carry-idle`: acquired idle hips/legs with a sampled acquired carry upper-body pose. Stopping selects a supported stance rather than freezing an arbitrary lifted step.
+
+The lead’s actor module chooses these states from actual displacement speed. Its refined playback rates use walk/derived-walk speed ÷ 0.72 and run speed ÷ 2.5; ordinary 3.15 m/s travel uses the run source as a 1.26× jog, sprint 5 m/s uses 2× run, and moving carry 2.4 m/s uses 3.333× derived walk. The actual game pause still advances zero simulation time. Geometry/colliders remain authoritative separately.
+
+A continuous real-RAF actor fixture exercised badge equip → travel → stop → cargo pickup → carry travel → stop → resume → sprint → pause, at full world speeds. The carry gait retained about 0.45–0.48 m foot excursion after resuming; settled carry-idle thigh variation was 0.007 rad, and paused pose change was exactly zero. Contact-filtered moving-carry support-foot velocity was approximately −0.003 to −0.012 m/s after rate matching. These are descriptive local measurements, not a claim of perfect foot locking. The recording/foot data prompted refinement of the initial run divisor from 1.92 to 2.5; the final jog/sprint check is recorded separately.
+
+`docs/asset-evidence/raccoon-continuous-gait.webm`, the indexed extracted frame sequence and the compact gait summaries preserve the actual fixture run (raw samples remain in ignored `work/gait-measurements/`). It is an isolated actual-actor regression, not a level-completion video. The initial recording uses the first run-rate estimate; carry/stop/resume behavior is final. `raccoon-locomotion-fix.md` records the diagnosis and final-rate follow-up. Zero page errors occurred. Source foot/toe vertices remain at or below the floor throughout; up to approximately 0.16 m of source paw penetration at some fast blends remains visible and no foot IK is implemented.
 
 ## Evidence and current limits
 

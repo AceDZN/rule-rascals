@@ -2,9 +2,19 @@
 
 26 October 2026, local desktop. The original procedural baseline is preserved in progress.md and older captures. This is the resumed pass with actual local Tripo assets. Browser actions use ordinary pointer, keyboard and touch input plus the public deterministic time hook; no level, inventory or win state is injected.
 
+## Player-reported physics and locomotion fixes
+
+The user reproduced walking through the entry desk, signs sliced by conservatory ribs and a floating-looking raccoon after pickup. Earlier click-route/clip-name checks missed those issues. This follow-up adds actual held-key contact tests and sustained carry/stop/resume motion inspection.
+
+Scenery rendering and collisions now share authored dimensions. Desk, arch posts, pots, tree bases, shelf, fountain lip and bell pedestals are solid; the actor disc stays inside platform bounds. Ground bags, boxes and trolleys have dynamic footprints, removed on pickup. Drop placement stays on free reachable floor beside the carrier. Click navigation approaches furniture rather than entering it, validates full path segments and follows corners closely. A blocked actor reports zero actual movement speed. Slightly shifted token/bell/box positions keep them clear of the real fountain footprint without changing their identities/history.
+
+Signs draw above the framing and remain readable while architecture fades. The custom carry export stopped stepping late in its loop; actual walk legs now combine with its carry upper body, with a separate supported idle carry stance. Animation rate follows actual displacement. No arbitrary vertical model offset was applied. Continuous frame/video evidence and measured foot support are documented in docs/asset-evidence/raccoon-locomotion-fix.md. Chasing guards pursue the last observed position when cover blocks sight.
+
+Fresh final five-job runs pass both with and without trolley, all with lawful=true, languageEvidence=true and zero page errors. The bell route uses real cover and a second finite distraction after waiting for the toy cooldown. The independent direct-input browser completes lawful H1 plus the H2 ground-bag pickup/drop loop. Its desktop collision/label/carry scope is distinct from earlier touch/settings checks. Curated follow-up captures use the `fixed-` prefix.
+
 ## Current automated checks
 
-- `npm test`: **41 / 41** semantic cases pass. The original 31 remain, plus ten independent H1 cases for stationary watched-token carrying, actual distraction/expiry, physical cover, non-carrying ground objects, lawful no-toy eligibility, action versus language evidence, unchanged H2 optional-map choices and frozen reading pressure.
+- `npm test`: **71 / 71** semantic and physics cases pass. The earlier 41 semantic assertions remain (two fixtures now use free floor), plus 15 scenery, 13 bulky-prop/drop and two chase-memory regressions. Earlier coverage includes ten independent H1 cases for stationary watched-token carrying, actual distraction/expiry, physical cover, non-carrying ground objects, lawful no-toy eligibility, action versus language evidence, unchanged H2 optional-map choices and frozen reading pressure.
 - `npm run typecheck` and `npm run build`: pass. Vite reports its normal large-chunk advisory for Three.js; the build succeeds.
 - Static production preview runs on 4203 and development on 5203, both strictPort. No production deployment was performed.
 - Binary and actual rendered inspection verifies three original local GLBs,65 Mixamo joints and four real clips. Root translation normalization, idle→walk→run→carry transitions and hand sockets were checked in an isolated Three.js browser. See ASSETS.md and docs/asset-evidence.
@@ -39,6 +49,7 @@ npm run dev
 npm run preview
 node --import tsx scripts/qa-browser.cjs
 node --import tsx scripts/qa-browser.cjs --trolley
+node scripts/qa-physical.cjs
 node scripts/qa-controls.cjs
 node scripts/qa-performance.cjs
 ```
@@ -51,10 +62,10 @@ The installed skill client initially stalled with its SwiftShader configuration 
 
 Native Metal headless Chromium, 1280×800, DPR 1, all three models loaded, normal continuous RAF, five-second sample:
 
-- 599 frames in 5001.3 ms: **119.77 fps**. Game's smoothed hook reported 114 fps.
-- **4,130,409 encoded resource bytes** plus the small HTML document, including **3,870,084 model bytes**. Each model is below 3 MB; initial resources are below 20 MB.
-- Production JS approximately 701 kB raw / 185 kB build gzip estimate; CSS approximately 19 kB raw.
-- Zero page errors. These are local desktop measurements, not a low-end phone benchmark or sustained minimum. The final responsive text-position correction followed this art/runtime sample.
+- 601 frames in 5002.5 ms: **120.14 fps**. Game's smoothed hook reported 117 fps.
+- **4,132,305 encoded resource bytes** plus the small HTML document, including **3,870,084 model bytes**. Each model is below 3 MB; initial resources are below 20 MB.
+- Production JS approximately 706 kB raw / 187 kB build gzip estimate; CSS approximately 19 kB raw.
+- Zero page errors. These are local desktop measurements, not a low-end phone benchmark or sustained minimum. This sample uses the final collision/locomotion build with normal guard patrols running.
 
 ## Practical limits
 

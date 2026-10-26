@@ -1,0 +1,77 @@
+{
+  "metrics": {
+    "badge-walk": {
+      "activeClips": [
+        "run"
+      ],
+      "rate": 1.640625,
+      "leftThighAngularExcursion": 1.247701218310324,
+      "supportFootWorldVelocityMedian": -0.9938179972875913,
+      "supportSamples": 36,
+      "leftFootRelativeZExcursion": 0.5366165868000987,
+      "rightFootRelativeZExcursion": 0.5290085838135195
+    },
+    "carry-walk": {
+      "activeClips": [
+        "carry-walk"
+      ],
+      "rate": 3.3333333333333335,
+      "leftThighAngularExcursion": 0.4288849127053611,
+      "supportFootWorldVelocityMedian": -0.003496358742484048,
+      "supportSamples": 100,
+      "leftFootRelativeZExcursion": 0.458217651680231,
+      "rightFootRelativeZExcursion": 0.47936855064965833
+    },
+    "carry-stop": {
+      "activeClips": [
+        "carry-idle"
+      ],
+      "rate": 1,
+      "leftThighAngularExcursion": 0.32027333409208075,
+      "supportFootWorldVelocityMedian": -1.1330247512998906,
+      "supportSamples": 3,
+      "leftFootRelativeZExcursion": 0.19748142412348813,
+      "rightFootRelativeZExcursion": 0.15927473676276982
+    },
+    "carry-resume": {
+      "activeClips": [
+        "carry-walk"
+      ],
+      "rate": 3.3333333333333335,
+      "leftThighAngularExcursion": 0.41787511706346075,
+      "supportFootWorldVelocityMedian": -0.011925685287733431,
+      "supportSamples": 74,
+      "leftFootRelativeZExcursion": 0.45352618306549175,
+      "rightFootRelativeZExcursion": 0.47798014149410406
+    },
+    "run-after-drop": {
+      "activeClips": [
+        "run"
+      ],
+      "rate": 2.604166666666667,
+      "leftThighAngularExcursion": 1.2760787070971202,
+      "supportFootWorldVelocityMedian": -1.5035096180460938,
+      "supportSamples": 13,
+      "leftFootRelativeZExcursion": 0.53709906394662,
+      "rightFootRelativeZExcursion": 0.5216696560916922
+    },
+    "paused": {
+      "activeClips": [
+        "idle"
+      ],
+      "rate": 1,
+      "leftThighAngularExcursion": 0.0,
+      "supportFootWorldVelocityMedian": null,
+      "supportSamples": 0,
+      "leftFootRelativeZExcursion": 0.0,
+      "rightFootRelativeZExcursion": 0.0
+    }
+  },
+  "errors": [],
+  "video": "docs/asset-evidence/raccoon-continuous-gait.webm",
+  "note": "Local actual-actor fixture driven by continuous RAF at full world speeds; not a level-completion recording.",
+  "videoBytes": 444480,
+  "stanceVelocityMethod": "Finite differences only while the same lower foot remains low, vertical bone speed <0.4 m/s, and relative Z velocity is backward; descriptive estimate, not foot IK.",
+  "finalRateCheck": "raccoon-final-jog-sprint-summary.json",
+  "videoNote": "Loading and paused tail trimmed; continuous badge/carry sequence retained. Jog/sprint in this first recording used the initial rate estimate; final refined rates verified in separate in-RAF frames."
+}

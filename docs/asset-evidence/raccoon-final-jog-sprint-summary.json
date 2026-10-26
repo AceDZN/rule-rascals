@@ -1,0 +1,164 @@
+{
+  "snapshots": [
+    {
+      "name": "jog-a",
+      "elapsed": 1.4,
+      "time": 1.4000000000000012,
+      "stage": "jog",
+      "speed": 3.15,
+      "rate": 1.26,
+      "clip": "run",
+      "minY": -0.07197769364666928,
+      "rootZ": 2.52063,
+      "leftFoot": [
+        0.09410826871940696,
+        0.05093333250517146,
+        2.481434729005864
+      ],
+      "rightFoot": [
+        -0.13933170974443357,
+        0.22092184579450524,
+        2.559153812218105
+      ],
+      "leftThigh": [
+        0.9389798231415597,
+        0.2615523341453687,
+        0.22268401223567047,
+        0.017864845688181342
+      ],
+      "file": "docs/asset-evidence/gait-final-jog-a.png"
+    },
+    {
+      "name": "jog-b",
+      "elapsed": 1.6000999999999999,
+      "time": 1.6001000000000016,
+      "stage": "jog",
+      "speed": 3.15,
+      "rate": 1.26,
+      "clip": "run",
+      "minY": -0.0850012056637949,
+      "rootZ": 3.150944999999999,
+      "leftFoot": [
+        0.14041438787730542,
+        0.20182464659019178,
+        3.0759677429950267
+      ],
+      "rightFoot": [
+        -0.1056599189476004,
+        0.05041643780639912,
+        3.1617987181081766
+      ],
+      "leftThigh": [
+        -0.9288421138238974,
+        -0.308600088959866,
+        -0.18451295359239486,
+        0.08929346574720867
+      ],
+      "file": "docs/asset-evidence/gait-final-jog-b.png"
+    },
+    {
+      "name": "sprint-a",
+      "elapsed": 3.3084000000000002,
+      "time": 3.3084000000000016,
+      "stage": "sprint",
+      "speed": 5,
+      "rate": 2,
+      "clip": "run",
+      "minY": -0.09771498801891429,
+      "rootZ": 8.35748499999999,
+      "leftFoot": [
+        0.11023106867414292,
+        0.08136008853578075,
+        8.638312577434434
+      ],
+      "rightFoot": [
+        -0.10206035819730609,
+        0.18217140518955993,
+        8.126355969900745
+      ],
+      "leftThigh": [
+        -0.8068028174999564,
+        -0.5605113982733493,
+        -0.18428400104808645,
+        0.030589244485446754
+      ],
+      "file": "docs/asset-evidence/gait-final-sprint-a.png"
+    },
+    {
+      "name": "sprint-b",
+      "elapsed": 3.5084,
+      "time": 3.508400000000002,
+      "stage": "sprint",
+      "speed": 5,
+      "rate": 2,
+      "clip": "run",
+      "minY": -0.06600745974790236,
+      "rootZ": 9.357484999999993,
+      "leftFoot": [
+        0.11374861883996927,
+        0.22291413040981325,
+        9.175469773129034
+      ],
+      "rightFoot": [
+        -0.10868704379756672,
+        0.043252984172505615,
+        9.523538764694116
+      ],
+      "leftThigh": [
+        -0.9751207145591113,
+        -0.1308737712623618,
+        -0.1761060114967299,
+        0.03159618040922534
+      ],
+      "file": "docs/asset-evidence/gait-final-sprint-b.png"
+    },
+    {
+      "name": "stopped",
+      "elapsed": 4.9,
+      "time": 4.900000000000009,
+      "stage": "stop-after-run",
+      "speed": 0,
+      "rate": 1,
+      "clip": "idle",
+      "minY": -0.05151268629783065,
+      "rootZ": 14.273484999999988,
+      "leftFoot": [
+        0.11438273054442896,
+        0.05377805072099906,
+        14.423992438008375
+      ],
+      "rightFoot": [
+        -0.12436472388933163,
+        0.07211440253958268,
+        14.41561477359977
+      ],
+      "leftThigh": [
+        0.9764845099486487,
+        0.0002655570823103505,
+        0.2104569807129228,
+        0.0467524392837849
+      ],
+      "file": "docs/asset-evidence/gait-final-stopped.png"
+    }
+  ],
+  "status": {
+    "source": "Tripo local GLB",
+    "loaded": true,
+    "error": "",
+    "rigged": true,
+    "joints": 65,
+    "activeClip": "idle",
+    "playbackRate": 1,
+    "clips": [
+      "run",
+      "walk",
+      "idle",
+      "Walk slowly in place in a seamless loop while carrying a small ",
+      "carry-walk",
+      "carry-idle"
+    ]
+  },
+  "errors": [],
+  "rawSamplesRetainedLocally": "work/gait-measurements/raccoon-final-jog-sprint-check.json",
+  "sampleCount": 659
+}

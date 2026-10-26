@@ -2,7 +2,7 @@
 
 An original 3D garden heist for Hebrew-speaking grade-8 English learners. A raccoon equips a visitor badge, uses cover and distractions, identifies a helper, unlocks a store, recovers the correct bell and completes a changed box-delivery job.
 
-**Play locally:** [development](http://localhost:5203/) or [production preview](http://localhost:4203/), while the local servers are running. The five-job slice now uses three original local Tripo GLBs: a raccoon with a 65-joint Mixamo skin and real idle/walk/run/carry clips, a watering helper and a guard. The wheeled robots move as rigid props. See [ASSETS.md](ASSETS.md) for measured files, prompts, credit use and rights. No production deployment has been made.
+**Play locally:** [development](http://localhost:5203/) or [production preview](http://localhost:4203/), while the local servers are running. The five-job slice now uses three original local Tripo GLBs: a raccoon with a 65-joint Mixamo skin and real idle/walk/run/carry source clips and two runtime carry composites, a watering helper and a guard. The wheeled robots move as rigid props. See [ASSETS.md](ASSETS.md) for measured files, prompts, credit use and rights. No production deployment has been made.
 
 ## Run
 
@@ -39,7 +39,7 @@ The first token and the later bell must be carried out of attentive guard view. 
 
 ## Rules and evidence
 
-Pure TypeScript content and simulation live in `src/content.ts` and `src/simulation.ts`. Rendering uses Three.js with real 3D depth, shadows, authored colliders, line-of-sight occlusion and a guard patrol/suspicion/chase/return state machine. A fixed visible inspector observes the transfer arch. Original procedural scenery is batched by material. Foreground trees and conservatory structure fade when they obstruct the player; their authored collisions and sight rules stay intact. Local GLTFLoader/AnimationMixer playback and bone sockets drive the raccoon, equipment and held cargo.
+Pure TypeScript content and simulation live in `src/content.ts` and `src/simulation.ts`. Rendering uses Three.js with real 3D depth, shadows, authored colliders, line-of-sight occlusion and a guard patrol/suspicion/chase/return state machine. A fixed visible inspector observes the transfer arch. Original procedural scenery is batched by material. Foreground trees and conservatory structure fade when they obstruct the player; their authored collisions and sight rules stay intact. Shared scenery footprints and dynamic bulky-prop collision keep movement and click navigation outside solid objects. Drops use free floor beside the carrier. Local GLTFLoader/AnimationMixer playback and bone sockets drive the raccoon, equipment and held cargo.
 
 The five jobs practice must / mustn't / can / don't have to, conditional entry, and defining relative clauses. [CURRICULUM.md](CURRICULUM.md) maps original scenario sentences to the saved Workbook sources. Completion and language evidence are separate; supported or repeated attempts are not first unaided decisions. This game has not established learning gains or productive grammar mastery.
 
@@ -56,6 +56,6 @@ A minimal event log stays in this browser's `localStorage` under `rule-rascals-l
 - [ASSETS.md](ASSETS.md): actual Tripo provenance, rig/clip inspection, rights and file measurements.
 - [docs/ENGLISH_REVIEW.md](docs/ENGLISH_REVIEW.md): independent semantic/gameplay review.
 
-Current semantic suite: **41 passing tests**. Actual input-driven browser runs complete all five jobs, both trolley choices, recovery and touch checks; see the verification record for practical limits.
+Current semantic and physics suite: **71 passing tests**. Actual input-driven browser runs complete all five jobs, both trolley choices, recovery and touch checks; see the verification record for practical limits.
 
 Three.js is MIT; bundled Heebo is OFL. License texts are included under `public/licenses/`. Original game characters, scenario text and procedural geometry are authored for this project; no existing game art is copied.

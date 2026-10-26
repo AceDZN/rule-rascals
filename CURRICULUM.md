@@ -40,4 +40,4 @@ Action completion and language evidence are separate. A stealth bypass can earn 
 
 ## Verification status
 
-Mapping and semantic constraints reviewed against both saved snapshots. The current suite passes 41 cases: the preserved 31 baseline checks plus ten watched-token regressions. Implementation/browser verification is recorded in `docs/ENGLISH_REVIEW.md` and `PLAYTEST.md`; a semantic pass alone does not verify acquired models or classroom outcomes.
+Mapping and semantic constraints reviewed against both saved snapshots. The suite retains the 41 rule/recovery checks and adds scenery collision, bulky-prop/drop and chase-memory regressions; current counts/results are recorded in `docs/ENGLISH_REVIEW.md` and `PLAYTEST.md`. Physical fixtures preserve the exact English: an offset bag drop from outside cannot leave it inside the arch, an inside ground bag remains a violation, and a guard must observe the actual bag to enforce that violation. A semantic pass alone does not verify acquired models or classroom outcomes.

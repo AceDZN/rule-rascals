@@ -162,7 +162,8 @@ test('visitor box-carrying violates the exclusive arch role despite badge or esc
 test('large bag must stay outside the arch; dropping it outside repairs entry eligibility',()=>{
  const s=playing(4); s.badge=true; at(s,{x:3,z:-5});
  assert.ok(getViolations(s).includes('large-bag'));
- at(s,{x:-9,z:6}); drop(s); at(s,{x:3,z:-5});
+ // Use free entrance floor; (-9,6) is now correctly inside the solid counter.
+ at(s,SPAWN); drop(s); assert.equal(s.bag,false); at(s,{x:3,z:-5});
  assert.ok(!getViolations(s).includes('large-bag'));
 });
 

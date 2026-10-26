@@ -2,7 +2,9 @@
 
 Reviewer role: curriculum semantics, solvability and language bypass. Scope is the five-heist Rule Rascals slice. Source snapshots: `docs/curriculum/grade-8_chapter-5_rules-permission-and-obligation.md` and `docs/curriculum/grade-8_chapter-11_relative-clauses-reference.md`.
 
-**Current status — asset-integrated build:** all 41 semantic tests pass, including ten new watched-token regressions with the original 31 cases preserved. The independent browser waited for all three real local GLBs to load and verified the raccoon's 65-joint rig, idle/walk/run/custom-carry clip switching, H1 lawful success, watched-carry chase, squeak/cover recovery, catch/retry, paused hint, restart and actual mobile touch controls. The final portrait/short-landscape HUD and alert spacing was rechecked after fixes. No page errors occurred in these reviewed runs. No asset-acquisition blocker remains; `ASSETS.md` owns provenance/export details.
+**Current status — physical follow-up:** all 71 regression tests pass. The user's desk, scenery, sign and carry complaints were valid. The shared-layout fixes now pass direct held-key desktop checks at three accessible desk faces, a planter, a conservatory wall and a loose ground bag. A fresh normal-input H1 run completed lawfully; H2 bag pickup/drop/pickup and three carry strides followed by supported carry-idle passed. Conservatory signs remain readable outside and inside the faded architecture. This supersedes the earlier implication of complete physical signoff. Detailed regression scope and reproducible commands are recorded at the end.
+
+**Earlier asset-integrated checkpoint:** 41 rule/recovery checks passed before the physical follow-up. That independent browser verified three loaded local GLBs, the raccoon's 65-joint rig, H1 success and watched-carry chase, squeak/cover recovery, catch/retry, paused hint, restart and actual touch controls. Portrait and short-landscape HUD/alert spacing was rechecked then. Those remain evidence for the stated earlier scope; mobile and the entire recovery sequence were not replayed in the latest desktop collision run. No asset-acquisition blocker remains; `ASSETS.md` owns provenance/export details.
 
 Independent post-model scope is **H1, recovery, controls, touch and sampled clip views**. The lead owns the complete five-heist and transfer browser runs, including both trolley branches; this reviewer inspected selected lead captures but does not claim to have independently replayed that full post-model sequence. No classroom test establishes fun, accessibility across all devices, six-to-ten-minute duration or learning gains.
 
@@ -145,7 +147,7 @@ Independently opened the acquired raccoon's base-front and idle-at-1.2-seconds i
 
 For independent post-integration browser checks, the requested read-only metadata was actual model loaded/error state and the exact active clip. Tests must wait for the acquired model rather than capture a procedural fallback while asynchronous loading is unfinished. No game-state setter is needed. That metadata is now implemented and was used in the final checks below.
 
-## Final post-model independent verification
+## Post-model independent verification — before the physical follow-up
 
 Used a fresh isolated Chromium page with native Metal flags, ordinary keyboard/pointer/touch input, read-only projection/text hooks and deterministic time stepping. Before interaction, polling at 100 ms waited for raccoon and both mechanical asset statuses to be loaded. Runtime metadata reported three Tripo GLBs, no model errors, a 65-joint skinned raccoon and the actual exported idle/walk/run/custom carrying clip names. The guard and watering robot are correctly reported as rigid props, without a skin-rig claim.
 
@@ -174,3 +176,46 @@ Candidate final evidence is under ignored `work/reviewer-evidence/`:
 All listed final candidate images were opened and visually inspected. JSON observation reports are saved beside them as `integrated-h1-state.json`, `integrated-recovery-state.json` and `integrated-mobile-state.json`. The independent browser was closed after review. The lead selects/copies curated evidence into `docs/evidence/` and consolidates the full run in `PLAYTEST.md`.
 
 No remaining semantic blocker was found in the tested scope. Optional map/trolley choices, helper identity/proximity, relative-clause history and separate action/language evidence remain intact in the 41-case suite. Final claims should stay at demonstrated behavior and actual acquired asset playback; automated success is not a measured learning or fun result.
+
+## Reopened collision, label and carry review
+
+The earlier navigation-heavy checks did not expose the missing desk collider. Holding movement keys into visible solids must be covered independently of A* click navigation. At the reopened baseline, simulation listed four planters, the store walls/door and an undersized fountain AABB, while the rendered entry desk, arch posts, decorative pots, tree bases, shelf and bell pedestals lacked matching footprints. The user also reported sign/rib depth interference and floating carry poses. These are real implementation gaps, not an educational-content issue.
+
+The lead created shared render/collision fixtures in `src/world-layout.ts`; the art helper composed supported walk/idle lower-body motion with the acquired carrying upper body. This reviewer owns regression cases and direct-input browser verification, with no source/art edits or new asset requests.
+
+| Regression area | Required check |
+| --- | --- |
+| Entry desk | Hold normal walk and sprint against front/back/left/right. The player stays outside the counter footprint plus actor radius; badge interaction remains reachable from free floor. |
+| Planters and walls | Cardinal/diagonal contact stops penetration while tangent motion can slide. Long requested displacement cannot tunnel through a thin wall or closed gate. |
+| Actor clearance | Navigation and movement use compatible player-radius clearance; accepted route segments do not pass through a solid corner. Boundary limits keep the actor on the platform. |
+| Conservatory gate | Open doorway centre remains traversable. Both rendered arch posts remain solid; unlocking removes only the door's blocking footprint. |
+| Other authored solids | Fountain outer lip, pots/tree bases, shelf and level-specific bell pedestals block their visible solid footprint. Overhead/decorative foliage is not automatically treated as a floor obstacle. |
+| Reach and solvability | A prop on a desk/pedestal is approached from free floor within interaction reach. Test drivers must not require the actor to stand at a blocked prop centre. The five jobs and helper escort remain solvable. |
+| Carry and contact | Sample actual carrying locomotion, stopping, turning and pushing into a solid across multiple animation phases. Check feet/cargo alignment and actual displacement rather than only active-clip metadata. |
+| Labels | Inspect conservatory/arch labels through relevant camera positions, with and without architectural fading. Ribs must not slice task-bearing text. |
+
+The independent sweep also reproduced a remaining bulky-prop gap: before its fix, the player stood at (-6.0417, 6.5208) inside the H2 ground bag at (-6, 6.5). The actual pre-fix capture is `work/reviewer-evidence/physical-10-ground-bag-overlap.png`. Bags, boxes and trolleys now have dynamic ground footprints, removed on pickup. Drop positions must be on free floor, outside actor bodies and on the same reachable side of a solid wall. A blocked drop keeps the item held. Small tokens, keys, maps and badges remain collectible without invisible floor walls.
+
+Offset drops also needed a language safeguard: an outside visitor must not place the H5 bag inside the arch merely by facing north. The drop now stays outside. A bag already left inside still breaches the rule, and observation checks its actual location. Seeing a compliant player does not reveal a hidden bag. Recovery leaves one solid, reachable bag beside a free spawn instead of inside the raccoon. The old semantic drop fixture at (-9,6) was moved to free entrance floor because that coordinate is now correctly inside the counter; the intended rule assertion is unchanged.
+
+The final suite includes the previous 41 checks, 15 scenery collision cases, 13 bulky-prop/drop cases and two chase-memory cases. Tests use public simulation/navigation/layout APIs, not source-text matching. Coverage includes all four desk faces, long-displacement tunnelling, sliding, rounded-corner clearance, inset platform bounds, open/closed gates, fountain lip, pots/tree bases, shelf, bell pedestals, interaction reach, dynamic pickup/drop, and observed versus hidden bag violations. A chasing guard now pursues the last seen position under cover; two regressions ensure hidden player coordinates cannot steer that pursuit and actual sight reacquisition updates a copied position snapshot.
+
+The durable browser regression is `scripts/qa-physical.cjs`. It uses ordinary pointer input to position the actor, then actual held keyboard inputs for contact, sampling actor-disc clearance against static and dynamic footprints every 50 ms. Each release must report zero actual speed. It waits for all three GLBs, uses only read-only state/projection hooks plus ordinary deterministic time stepping, and closes its own isolated browser. No position setter, level skip, inventory mutation or win injection is used.
+
+```sh
+npm test
+RULE_RASCALS_BROWSER_LIB=/Users/acedzn/.codex/skills/develop-web-game/node_modules/playwright node scripts/qa-physical.cjs
+```
+
+| Final desktop check | Observed result |
+| --- | --- |
+| Desk direct input | W held 800 ms stopped at z=7.1282, outside the front's expanded z=7.12 boundary. A on the right stopped at x=-7.22994, outside x=-7.23. Sprint/S from the back stopped at z=5.2535, before z=5.28. Free tangent sliding remains possible. The narrow tree-side gutter was not used as a browser route; the unit test covers that fourth desk face. |
+| Planter/wall contact | Sprint/W stopped at planter z=3.5549 (expanded face 3.52) and wall z=-2.4057 (expanded face -2.43). Every sampled actor position remained clear. |
+| Ground bag | Held W approached the bag and stopped at (-5.9133,7.1734), outside its footprint. Pickup removed the footprint; G put the bag on nearby free floor; E picked it up again. |
+| H1 progression | Badge, distraction, token pickup, cover waypoints and exit completed with lawful=true, languageEvidence=true and no retry. This is an independent H1 result after the physical changes. |
+| Sign readability | Outside and inside conservatory captures show the full opaque label without frame/rib slicing. Architecture still fades. |
+| Carry locomotion | Three views 160 ms apart show distinct supported steps at actual speed 2.4 with `carry-walk`; release selects `carry-idle` at speed zero. Additional turn/desk-contact samples show the bag following its hand socket. No floating lower-body freeze or constant offset jump appeared in these samples. Hand/object contact remains approximate, not a rigid-body grasp simulation. |
+
+The final browser run passed with zero page errors. Its report is `work/physical-evidence/results.json`. Candidate captures are `01-desk-front.png`, `07-conservatory-label-inside.png`, `09-ground-bag-contact.png`, `10-free-floor-drop.png`, `11-carry-stride-1.png` and `12-carry-idle.png` in that directory; each was opened and visually inspected. Earlier contact/carry turn samples remain under `work/reviewer-evidence/physical-*`.
+
+This physical follow-up independently drove H1 and the H2 bag loop. Boxes/trolleys have the stated unit coverage; the lead owns the fresh complete five-job/escort/transfer replay and its result in `PLAYTEST.md`. This reviewer does not claim an independently driven H5 run. The latest collision run was desktop; the earlier real touch test remains separately dated/scoped. No new classroom, learning-gain or broad animation-quality claim follows from these checks.

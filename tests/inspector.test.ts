@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {createGame,step,visibleTo,squeak,recover} from '../src/simulation';
+import {createGame,step,visibleTo,squeak,recover,blocked,dist,SPAWN,interact} from '../src/simulation';
 test('the fixed inspector reports an observed large bag even when the roaming guard cannot see it',()=>{
  const s=createGame(4,1);s.mode='play';s.badge=true;s.player.x=3;s.player.z=-4;
  const guard=s.robots.find(r=>r.id==='guard')!,inspector=s.robots.find(r=>r.id==='arch-inspector')!;
@@ -17,8 +17,13 @@ test('the fixed inspector distraction expires instead of lasting forever',()=>{
  for(let i=0;i<360;i++)step(s,{x:0,z:0},1/60);
  assert.equal(inspector.mode,'patrol');
 });
-test('bag capture recovery leaves exactly one bag at the safe entrance',()=>{
+test('bag capture recovery leaves one solid reachable bag beside a free entrance',()=>{
  const s=createGame(4,1);s.mode='caught';recover(s);
  assert.equal(s.bag,false);const bags=s.items.filter(i=>i.kind==='bag');assert.equal(bags.length,1);assert.equal(bags[0].holder,'ground');
- assert.deepEqual({x:bags[0].x,z:bags[0].z},{x:s.player.x,z:s.player.z});
+ assert.deepEqual({x:s.player.x,z:s.player.z},SPAWN);
+ assert.equal(blocked(s,s.player),false,'retry must not spawn the raccoon inside the bag');
+ assert.ok(dist(bags[0],s.player)<2.1,'bag remains reachable from the entrance');
+ assert.equal(blocked(s,bags[0]),true,'the released bag has a physical footprint');
+ assert.equal(interact(s,bags[0].id),true);assert.equal(s.bag,true);
+ assert.equal(s.items.filter(i=>i.kind==='bag').length,1);
 });

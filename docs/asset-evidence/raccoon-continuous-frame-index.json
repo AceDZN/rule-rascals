@@ -1,0 +1,42 @@
+{
+  "video": "raccoon-continuous-gait.webm",
+  "trim": "Initial loading and paused tail removed; continuous action sequence retained. Original full recording kept in ignored work/.",
+  "frames": [
+    {
+      "file": "gait-continuous-idle-before-badge.png",
+      "videoSeconds": 0.7,
+      "observedStage": "idle-before-badge"
+    },
+    {
+      "file": "gait-continuous-badge-walk.png",
+      "videoSeconds": 1,
+      "observedStage": "badge-walk"
+    },
+    {
+      "file": "gait-continuous-pickup-still.png",
+      "videoSeconds": 4,
+      "observedStage": "token-held-still"
+    },
+    {
+      "file": "gait-continuous-carry-walk.png",
+      "videoSeconds": 5.3,
+      "observedStage": "carry-walk"
+    },
+    {
+      "file": "gait-continuous-carry-stop.png",
+      "videoSeconds": 8.5,
+      "observedStage": "carry-stop"
+    },
+    {
+      "file": "gait-continuous-carry-resume.png",
+      "videoSeconds": 10,
+      "observedStage": "carry-resume"
+    },
+    {
+      "file": "gait-continuous-paused.png",
+      "videoSeconds": 13.5,
+      "observedStage": "paused"
+    }
+  ],
+  "note": "Stage labels were visually verified after extracting these frames from the recorded video. The final jog/sprint rate check uses separate exact in-RAF PNGs and JSON."
+}

@@ -14,7 +14,7 @@ export function createPlayerActor() {
   let badge: THREE.Group | undefined;
   let backpack: THREE.Group | undefined;
   let hand: THREE.Group | undefined;
-  const status = { source: 'procedural fallback', loaded: false, error: '', rigged: false, joints: 0, activeClip: '', clips: [] as string[] };
+  const status = { source: 'procedural fallback', loaded: false, error: '', rigged: false, joints: 0, activeClip: '', playbackRate: 1, clips: [] as string[] };
   const ready = loadLocalModel({ url: `${import.meta.env.BASE_URL}models/raccoon.glb`, height: 1.7 }).then(asset => {
     model = asset;
     root.add(asset.root);
@@ -49,9 +49,12 @@ export function createPlayerActor() {
         fallback.userData.badge.visible = hasBadge; fallback.userData.largeBag.visible = hasBag;
         return;
       }
-      const preferred = carrying ? 'Walk slowly in place in a seamless loop while carrying a small ' : speed > 3.2 ? 'run' : speed > .1 ? 'walk' : 'idle';
+      const preferred = carrying ? (speed > .1 ? 'carry-walk' : 'carry-idle') : speed > 2.6 ? 'run' : speed > .1 ? 'walk' : 'idle';
       const clip = status.clips.includes(preferred) ? preferred : 'idle';
-      if (model.playClip(clip, .16, carrying && speed < .1 ? 0 : sneaking && speed > .1 ? .65 : 1)) activeClip = clip;
+      // Match support-foot travel to actual world displacement rather than sliding at 1x.
+      const rate = clip === 'run' ? speed / 2.5 : clip === 'walk' || clip === 'carry-walk' ? speed / .72 : 1;
+      if (model.playClip(clip, .16, Math.max(.1, rate))) activeClip = clip;
+      status.playbackRate = rate;
       status.activeClip = activeClip;
       if (!reduced || speed > .1 || carrying) model.update(delta);
       if (badge) badge.visible = hasBadge;

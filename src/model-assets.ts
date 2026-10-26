@@ -21,6 +21,7 @@ export interface LocalModelMetadata {
   originalSize: [number, number, number];
   normalizationScale: number;
   rootCentering: { clip: string; bone: string; offsetX: number; offsetZ: number }[];
+  derivedClips: { name: string; lowerBody: string; upperBody: string; upperMode: 'motion' | 'held-pose' }[];
 }
 export interface LocalModel {
   /** Canonical metres: ground at Y=0 and caller's actor transform goes here. */
@@ -99,6 +100,35 @@ export async function loadLocalModel(options: LocalModelOptions): Promise<LocalM
     rootCentering.push({ clip: clip.name, bone: motionRoot.name, offsetX, offsetZ });
     return clip;
   });
+  const derivedClips: LocalModelMetadata['derivedClips'] = [];
+  const carry = clips.find(clip => clip.name === 'Walk slowly in place in a seamless loop while carrying a small ');
+  const spine = bones.get('mixamorigSpine');
+  if (carry && spine) {
+    const upperBones = new Set<string>();
+    spine.traverse(node => { if (node instanceof THREE.Bone) upperBones.add(node.name); });
+    const upperTracks = new Map(carry.tracks.filter(track => upperBones.has(track.name.split('.')[0])).map(track => [track.name, track]));
+    for (const [baseName, name, held] of [['walk', 'carry-walk', false], ['idle', 'carry-idle', true]] as const) {
+      const base = clips.find(clip => clip.name === baseName);
+      if (!base) continue;
+      const tracks = base.tracks.map(track => {
+        const upper = upperTracks.get(track.name);
+        if (!upper) return track.clone();
+        const replacement = upper.clone();
+        if (held) {
+          // Sample the acquired carry's bent-arm pose; the acquired idle keeps
+          // the legs in a supported stance instead of freezing a raised step.
+          const values = Array.from(upper.InterpolantFactoryMethodLinear().evaluate(carry.duration * .25));
+          replacement.times = new Float32Array([0, base.duration]);
+          replacement.values = new Float32Array([...values, ...values]);
+        } else {
+          replacement.times = new Float32Array(Array.from(upper.times, time => time * base.duration / carry.duration));
+        }
+        return replacement;
+      });
+      clips.push(new THREE.AnimationClip(name, base.duration, tracks));
+      derivedClips.push({ name, lowerBody: base.name, upperBody: carry.name, upperMode: held ? 'held-pose' : 'motion' });
+    }
+  }
   const metadata: LocalModelMetadata = {
     sourceUrl: options.url,
     clips: clips.map(clip => ({ name: clip.name, duration: clip.duration, tracks: clip.tracks.length })),
@@ -107,6 +137,7 @@ export async function loadLocalModel(options: LocalModelOptions): Promise<LocalM
     originalSize: size.toArray() as [number, number, number],
     normalizationScale,
     rootCentering,
+    derivedClips,
   };
   root.userData.modelMetadata = metadata;
   const mixer = new THREE.AnimationMixer(model);

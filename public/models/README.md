@@ -13,3 +13,5 @@ Total: **3,870,084 bytes**. Every file is below 3 MB. Each preserves its origina
 The carry clip's exact exported name is `"Walk slowly in place in a seamless loop while carrying a small "` (63 characters, including its final space, excluding the displayed quotes). The generated pose is a low carry rather than a perfect chest-height two-hand grip. Clip copies receive initial horizontal hips-offset alignment in the runtime adapter; GLB files remain unchanged.
 
 The bell and other small props are authored geometry. The three-model generation allowance has been exhausted; no missing bell GLB is requested by the application. Prototype art for the rigid sweeper and load-failure fallback is documented separately.
+
+Pickup gait correction: the runtime adapter derives `carry-walk` from the actual walk legs and custom carry upper-body tracks, and `carry-idle` from actual idle legs and a held source carry pose. The raw custom carry does not sustain a cyclic gait in its latter half. These are in-memory compositions; the four-clip source GLB and its hash remain unchanged. See `docs/asset-evidence/raccoon-locomotion-fix.md` for continuous playback evidence.

@@ -36,12 +36,12 @@ fs.mkdirSync('work/browser-evidence',{recursive:true});
  await next();await take('map');await key('m');await snap('02-visited-route-map');await click('#resume-btn');await take('token');await exit();await snap('02-optional-map-success');
  await next();
  let s=await state(),h=s.robots.find(r=>r.id==='gardener');await go(h.x,h.z);await key('q');await click('#resume-btn');await key('e');
- await go(3,-1.5);await go(3,-4.5);await go(7,-6.8);await key('e');await snap('03-escort-carry');await go(3,-4.5);await go(3,-1.5);await exit();await snap('03-escort-success');
+ await go(3,-1.5);await key('Space');await advance(450);await snap('03-escort-gate-target');await go(3,-4.5);await go(7,-6.8);await key('e');await snap('03-escort-carry');await go(3,-4.5);await go(3,-1.5);await exit();await snap('03-escort-success');
  await next();
  let keyId='';for(const id of ['key-case','key-side']){const text=await inspectItem(id);if(text.includes('side door'))keyId=id;}
  await take(keyId);await go(3,-1.8);await key('e');
  let bellId='';for(const id of ['bell-a','bell-b']){const text=await inspectItem(id);if(text.includes('polished'))bellId=id;}
- await take(bellId);await key('Space');await snap('04-bell-carry');await go(3,-4.5);await go(3,-1.5);await exit();await snap('04-bell-success');
+ await take(bellId);await key('Space');await snap('04-bell-carry');await go(3,-4.5);await go(3,-1.5);await go(-2,-1.2);await snap('04-bell-cover-target');await exit();await snap('04-bell-success');
  await next();await snap('05-large-bag-worn');await key('g');await snap('05-large-bag-left-outside');if(process.argv.includes('--trolley'))await take('trolley');
  await go(3,-1.5);await go(3,-4.5);
  let boxId='';for(const id of ['box-b','box-a']){const text=await inspectItem(id);if(text.includes('helper placed'))boxId=id;}

@@ -1,68 +1,63 @@
 # Verification record
 
-26 October 2026, local desktop. This record separates semantic checks, browser play and unfulfilled asset requirements. Final regressions confirm a visible large bag is reported by the fixed inspector, its distraction expires, and capture recovery leaves a single bag at the safe entrance. No test injects a level win or replaces authoritative state.
+26 October 2026, local desktop. The original procedural baseline is preserved in progress.md and older captures. This is the resumed pass with actual local Tripo assets. Browser actions use ordinary pointer, keyboard and touch input plus the public deterministic time hook; no level, inventory or win state is injected.
 
-## Automated checks
+## Current automated checks
 
-- `npm test`: **31 / 31** semantic cases pass (28 independent-review cases plus three final inspector/recovery regressions). Cases cover obligation/equipment, both optional choices, scope of doorway prohibition, live helper identity/proximity, actual cover, observed subjects, key function, varied object history, role exclusivity, cargo-specific transport evidence, wrong-delivery decisions, unseen-breach scoring, pause, recovery, distraction and the new bell-carry sight condition.
-- `npm run typecheck` and `npm run build`: pass. A normal Vite chunk-size advisory remains for the Three.js bundle; it is not a build error.
-- Vite dev is on 5203; static production preview on 4203. Both use strictPort. The production preview returned the actual bundled game.
+- `npm test`: **41 / 41** semantic cases pass. The original 31 remain, plus ten independent H1 cases for stationary watched-token carrying, actual distraction/expiry, physical cover, non-carrying ground objects, lawful no-toy eligibility, action versus language evidence, unchanged H2 optional-map choices and frozen reading pressure.
+- `npm run typecheck` and `npm run build`: pass. Vite reports its normal large-chunk advisory for Three.js; the build succeeds.
+- Static production preview runs on 4203 and development on 5203, both strictPort. No production deployment was performed.
+- Binary and actual rendered inspection verifies three original local GLBs,65 Mixamo joints and four real clips. Root translation normalization, idle→walk→run→carry transitions and hand sockets were checked in an isolated Three.js browser. See ASSETS.md and docs/asset-evidence.
 
-## Actual browser paths
+## Actual browser paths after integration
 
-Playwright used ordinary pointer/keyboard/touch inputs and the public deterministic time hook. The browser never sets simulation state. For efficient capture during the initially overloaded host, continuous RAF was paused, then `window.advanceTime(ms)` drove the same simulation. A normal, continuously running production page was separately measured below.
+The lead replayed all five jobs repeatedly with all three models loaded, including both trolley choices and a final 1672×941 run matching the generated targets. Every job reached its actual success sheet. The successful runs returned lawful=true and languageEvidence=true separately from action completion, with zero page errors. They are fast automated routes, excluding student reading/planning time.
 
-| Path | Observed result / capture |
+| Path | Observed result |
 | --- | --- |
-| All five jobs sequentially | Badge → token → exit; optional map job; observe/ask watering robot → escorted store token → exit; inspect keys → unlock → inspect histories → carry correct bell with distraction → exit; leave bag outside → identify box → request helper transport through arch → final exit. Full run passed with zero page errors. |
-| Optional map | Lead completed map-taken branch and opened the paused visited-route map; independent reviewer completed map-skipped branch. Both lawful wins. `02-optional-map-success.png`, `02-no-map-success.png`, `02-visited-route-map.png`. |
-| Optional trolley | Full progression completed once without trolley and once with trolley. The same authorized helper transports the correct box in both; the trolley never grants visitor role permission. `05-helper-handoff.png`, `05-transfer-success.png`. The worn backpack and its dropped outside state are also captured in `05-large-bag-worn.png` / `05-large-bag-left-outside.png`. |
-| Escort | Actual watering robot follows through the physical doorway; current player/helper positions satisfy the live condition. Sweeper identity rejected in semantic test. `03-escort-carry.png`, `03-escort-success.png`. |
-| Bell decision and stealth | Key and two bell histories inspected through Q, door unlocked through E, appropriate bell carried; squeak creates a finite distraction. Replayed after the attentive-guard carrying prohibition was added. `04-bell-carry.png`, `04-bell-success.png`. |
-| Observed mistake → catch → recovery | Independent reviewer walked unbadged into patrol view. Badge violation at t=6.40, catch at t=7.12. Retry returned playable spawn with retries=1; badge equip remained usable. `observed-violation-caught.png`. |
-| Paused planning help | H opened reading support and marked assisted. Advancing five seconds preserved t=7.15 exactly. `paused-hint.png`. |
-| Mobile 390×844 | Full HUD and controls fit without document overflow. Actual touch equipped badge; dpad moved (-9,8) to (-6.25,6.47); sneak toggled; pause preserved t=1.07. `mobile-play.png`, `mobile-pause.png`. |
-| Desktop settings / restart | Ordinary controls verified pause/resume, reduced-motion toggle, mute toggle, fullscreen on/off and restart back to intro with retries=1. Zero page errors. `restarted.png`. |
-| Resize / reading | Real desktop and mobile layouts, paused notice/inspection, visited-route map and success sheets visually inspected. Controls use physical `event.code`, so movement is independent of Hebrew keyboard characters. |
+| H1 watched token | Read rules, wear badge, distract before taking token, route around cover, return to exit. Independent lawful completion at 15.6 s, retries 0; exact conditional pin verified in the DOM. |
+| H2 optional map | Lead took map and opened paused visited-route view; independent earlier run skipped it. Both branches remain lawful. The new H1 restriction does not apply to this job. |
+| H3 helper | Observe and request the actual watering helper, approach gate, enter together, carry store token and exit. The sweeper cannot satisfy the helper condition in semantic checks. |
+| H4 key/history/stealth | Inspect both keys and bell histories, unlock through the side-door key, take the polished bell, use finite distraction and cover, exit. Both shuffled bell placements were exercised. Pin changes from key instruction to watched-bell condition after unlocking. |
+| H5 transfer | Visible large backpack is left outside; correct box is identified from placement history; watering helper receives it and transports that cargo through the arch. Full runs passed with and without trolley. Visitor badge alone never grants the helper role. |
+| Chase → distraction → cover | Independent deliberate watched-token breach produced chase at t=8.00. Space changed actual guard state, suppressed cone/meter and displayed a readable '?' plus sound rings. Cover returned play with suspicion0; the earlier breach still prevents first unaided language credit. |
+| Catch → retry | Reviewer approached for an actual catch, then retry returned play, cargo=null and retries 1. Hint reading froze time 25.73→25.73; restart returned intro with retries 2. |
+| Touch 390×844 / 844×390 | All3 models loaded; real taps equipped badge, dragged the pad, toggled sneak and reached the token. Pause froze time 7.50→7.50. No page errors or document overflow. Dynamic rule/mission spacing and a short-landscape toast placement correction keep text separate from controls. |
+| Desktop controls | Pause/resume, reduced motion, mute, restart and fullscreen on/off pass with zero page errors. The checker waits for actual fullscreen transitions. |
+| Installed web-game client | The unchanged installed action/capture/state client ran through scripts/run-skill-native.mjs after meaningful changes. Final gameplay state shows all 3 models,65 joints, badge equip, movement and squeak. Its actual image was opened and inspected. |
 
-Curated screenshots are in `docs/evidence/`; generated design art is separately in `docs/visual-targets/`. `docs/ENGLISH_REVIEW.md` records the independent review. Browser runs' local text/console data are kept under ignored `work/`, not shipped as application data.
+Curated final captures use the `rigged-` prefix in docs/evidence. Earlier procedural and pre-asset captures remain clearly separate. Independent review details and limitations are in docs/ENGLISH_REVIEW.md.
 
-## Skill client
-
-The required installed `develop-web-game/scripts/web_game_playwright_client.js` was invoked repeatedly. Its hard-coded continuous SwiftShader launch initially timed out on this busy desktop. `scripts/run-skill-native.mjs` imports that **unchanged client** and adapts launch flags to native Metal and transport timeouts. `?deterministic=1` renders on the normal `advanceTime` hook, avoiding continuous redraw between actions. The client's rules-sheet and actual gameplay capture/state outputs completed and were visually inspected. The gameplay state shows badge=true, player movement, mode=play and the equip event; no client error file was emitted. `docs/evidence/skill-client-gameplay.png` is its real canvas capture.
+## Repeatable commands
 
 ```sh
-node scripts/run-skill-native.mjs \
-  --url 'http://localhost:5203/?deterministic=1' \
-  --click-selector '#start-btn' \
-  --actions-json '{"steps":[{"buttons":["left_mouse_button"],"frames":1,"mouse_x":640,"mouse_y":549},{"buttons":[],"frames":1},{"buttons":["left_mouse_button"],"frames":1,"mouse_x":1210,"mouse_y":683},{"buttons":["right"],"frames":12}]}' \
-  --iterations 1 --pause-ms 100 --screenshot-dir work/skill-native-gameplay
-```
-
-Supplemental full-flow runner:
-
-```sh
-npx playwright install chromium
-node scripts/qa-browser.cjs
-node scripts/qa-browser.cjs --trolley
+npm test
+npm run typecheck
+npm run build
+npm run dev
+# Separate terminal:
+npm run preview
+node --import tsx scripts/qa-browser.cjs
+node --import tsx scripts/qa-browser.cjs --trolley
 node scripts/qa-controls.cjs
+node scripts/qa-performance.cjs
 ```
 
-If using a preinstalled compatible Playwright library, set `RULE_RASCALS_BROWSER_LIB` to its module directory. `RULE_RASCALS_URL` overrides the dev/preview URL. On this machine the installed skill's Playwright was used because the project's newer Playwright browser revision was absent. No user Chrome profile/session was accessed by these isolated test browsers.
+Install the project's browser with `npx playwright install chromium` where needed. On this desktop, the skill's installed compatible Playwright was used through `RULE_RASCALS_BROWSER_LIB=/Users/acedzn/.codex/skills/develop-web-game/node_modules/playwright`, since the project browser revision was absent. `RULE_RASCALS_URL` selects another local URL. Test browsers are isolated Chromium instances, never the user's signed-in Chrome profile.
+
+The installed skill client initially stalled with its SwiftShader configuration on this host. scripts/run-skill-native.mjs imports that unchanged client with native Metal launch flags and longer transport timeouts. `?deterministic=1` renders from the same advanceTime hook while avoiding continuous GPU redraw between actions. The full-flow runner chooses visible ground waypoints from read-only geometry and sends pointer input; it never mutates the authoritative simulation.
 
 ## Measured production performance
 
-Normal continuous gameplay, native Metal headless Chromium, **1280×800, DPR 1**, five-second sample:
+Native Metal headless Chromium, 1280×800, DPR 1, all three models loaded, normal continuous RAF, five-second sample:
 
-- 602 animation frames in 5008.1 ms: **120.2 fps**; game HUD hook reported 117 fps.
-- Encoded resource bodies: **233,361 bytes** across JS, CSS and requested local fonts, plus the small HTML document. The sampled JS response was 156,468 encoded bytes.
-- Production build: final main JS about 605 kB raw / 158 kB build gzip estimate; CSS about 19 kB raw. Total dist was under 1 MB before later documentation-only files. The generated target and evidence images are repository documentation, not runtime downloads.
-- Zero page errors in full progression and the measured production run.
+- 599 frames in 5001.3 ms: **119.77 fps**. Game's smoothed hook reported 114 fps.
+- **4,130,409 encoded resource bytes** plus the small HTML document, including **3,870,084 model bytes**. Each model is below 3 MB; initial resources are below 20 MB.
+- Production JS approximately 701 kB raw / 185 kB build gzip estimate; CSS approximately 19 kB raw.
+- Zero page errors. These are local desktop measurements, not a low-end phone benchmark or sustained minimum. The final responsive text-position correction followed this art/runtime sample.
 
-The continuous performance sample preceded the last small backpack/control/recovery corrections. These are local desktop measurements, not a low-end phone benchmark, a sustained minimum, or a loading guarantee. `node scripts/qa-performance.cjs` can repeat the preview measurement. It expects preview running first.
+## Practical limits
 
-## Limits and remaining work
+The commissioned raccoon rig and real local model/animation integration are now present. Carrying uses the actual generated full-body motion, with hands at waist/lower chest; it is not a perfect high two-hand constraint. Wheeled robots are rigid props and their wheels/lids do not articulate. The sweeper, bells, boxes, architecture and foliage remain original authored geometry. Target art is more cinematic and detailed than this playable garden diorama; VISUAL_REVIEW.md records that difference.
 
-**The requested Tripo asset/rig acceptance is unfulfilled.** No signed-in Chrome/CUA control is available. No Tripo GLBs, skin joints, walk/run/carry clips or provenance can be truthfully reported. See `ASSETS.md`; original procedural rigid-part characters are a prototype fallback.
-
-No production URL has been deployed; localhost URLs require the running local servers. No classroom test has established fun, six-to-ten-minute duration, accessibility across assistive devices, or learning gains. Automated routes are fast and exclude reading time. System speech synthesis depends on installed English voices; actual spoken output and all browser/OS voice combinations were not audited. Fullscreen/mute/reduced-motion/restart controls passed the desktop smoke; they were not exhaustively tested across devices. The conservatory structure can partly obscure the player, and the art remains much simpler than the generated target. These limits are not marked complete by passing rule tests.
+No classroom study has established fun, learning gains or a six-to-ten-minute session duration. Automated routes exclude reading time. English speaking output depends on installed system voices; no speech assessment is claimed. Touch was checked at 390×844, not across every device or assistive technology. Local URLs require the running servers.

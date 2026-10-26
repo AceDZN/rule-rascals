@@ -1,0 +1,29 @@
+Direct Tripo UI observations reported by the sole lead/Chrome operator; asset helper performed only local file inspection.
+
+Watering helper — model generation 2 of 3
+Task: https://studio.tripo3d.ai/workspace/generate/aee61bab-8a06-42c3-a164-7cdc2581b223
+Displayed cost: 30 credits. Confirmed balance: 6565 -> 6535.
+Exact submitted prompt (377 characters):
+Rule Rascals original friendly garden helper robot, small cream enamel cylindrical body on two sturdy dark wheels, jade-green reservoir and fixed watering spout, simple warm face screen, compact playful silhouette, stylized hand-painted game-ready prop, no articulated limbs, facing forward, no base no scenery no text, suitable for rigid-body movement through a sunlit garden.
+Generation complete; UI reported 19091 faces and 12163 vertices. Normal UI export GLB / 1K textures completed. Actual exported GLB contains 19091 triangles and 12261 attribute vertices. Original stored in ignored work/models-original/watering-helper.glb. Verified unchanged runtime copy public/models/watering-helper.glb: 990732 bytes, SHA-256 ea7c05b9130cad840c078e2ec977f0618bcc9a7fe8f5d56a10e0279bbdcc995d. No skin/animation; rigid wheeled prop by design.
+
+Guard — model generation 3 of 3
+Task: https://studio.tripo3d.ai/workspace/generate/56691c09-1875-47a8-9312-aa28108b3035
+Settings: HD / H3.1 / Geometry & Texture; T-Pose off.
+Displayed cost: 30 credits. Confirmed balance: 6535 -> 6505.
+Exact submitted prompt (405 characters):
+Rule Rascals original garden exhibition guard robot, cream enamel barrel body on two sturdy dark wheels, tomato red cap and red chest panel, dark face screen with two warm round eyes, fixed small whistle on chassis, compact stern but funny silhouette, stylized hand-painted game-ready prop, no arms no articulated limbs, facing forward, no base no scenery no text, suitable for rigid-body patrol movement.
+Observed processing: 62 percent. No downloaded/exported guard verified yet.
+
+Raccoon motion processing
+Walking preset reported finished and Run preset applied. No downloaded walk/run clip metadata verified yet.
+Custom Text Motion: 5 seconds, displayed 20 credits; confirmed balance 6505 -> 6485.
+Exact text:
+Walk slowly in place in a seamless loop while carrying a small box at chest height with both hands. Keep both forearms forward and steady, elbows bent, palms facing up. Short careful alternating footsteps, upright torso, no jumping, no turning, no prop geometry. Start and finish in the same carrying pose.
+UI created motion titled Walking in Place with Box and applied it to the chosen raccoon. Processing/export remains pending; no completed carry clip is claimed.
+
+The three-model generation allowance is exhausted (3 of 3). Required chosen-character rig/animation processing is separate. No further model generations, purchase, upgrade or cancellation of another task is authorized or performed by the asset helper.
+
+Final local export verification checkpoint
+Guard export completed normally as GLB / 1K textures. Original work/models-original/guard.glb and runtime public/models/guard.glb are identical: 957180 bytes, SHA-256 626399cc0731d47f54987d6727a2e08c52ca834c447533d4373d4df195f3038a. Actual runtime contains 18694 triangles and 11585 attribute vertices; no skin or animation by design. Four real views were inspected, front +Z / source height 1 / game target height 1.5. No unresolved preview errors.
+The custom carry motion was subsequently exported in the actual four-clip raccoon file, verified with the chosen 65-joint skin and rendered joint playback. Exact carry name: "Walk slowly in place in a seamless loop while carrying a small " (63 characters, final U+0020). Duration 4.958333 seconds. Its forearms are bent forward in a low waist/lower-chest carry rather than the prompt's exact high steady grip; no perfect IK/contact claim is made.

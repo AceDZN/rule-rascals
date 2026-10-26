@@ -1,0 +1,19 @@
+Observed by lead using native CUA in own named Chrome group “🦝 Rule Rascals”, under shared atomic lock.
+My Assets inspected first. Displayed models included clockwork bird/automaton, steampunk props, grandma farmer, stylized kid and other unrelated objects; no matching raccoon/garden helper was listed.
+Initial displayed credits: 6735.
+Mode: HD Model / text / H3.1 Best Quality / Geometry & Texture; T-Pose enabled; no paid trial switches enabled.
+Displayed cost: 30.
+Submitted exact prompt:
+Rule Rascals original game mascot, single full-body biped raccoon with a yellow neck scarf and small utility belt, friendly cheeky expression, clean separated limbs in a neutral T pose, stylized hand-painted game-ready mesh, sturdy paws and ringed tail clear of legs, clear dark eye mask and rounded ears, facing forward, no badge no tools held no base no scenery no text, suitable for humanoid auto-rig and full-body idle walk run carry animation.
+Task: https://studio.tripo3d.ai/workspace/generate/3bc68067-2954-4d62-b535-93de36cb34ca
+Observed confirmation: Generating... 11%, 60s. Balance after submission: 6705.
+Model generation allowance: 1 of 3 used. No rigging or animation submitted yet. No download yet.
+No other generation was modified/cancelled; no credits purchased, upgrade accepted, or external API called.
+Base GLB normally exported as rule-rascals-raccoon-base.glb (GLB,1k textures), complete local binary verified1092012bytes,0skins/0animations.
+Humanoid / Mixamo Auto Rig submitted at displayed20credits. Observed balance6585→6565. Rig UI then showed Skeleton switch and “Rigged models can be used for animation” link; no downloaded rig yet.
+Native human-navigation protection interrupted two focus attempts; no input was sent to the human's unrelated pages. Root released native lock and claimed own existing Tripo tab through tab-scoped Chrome extension controls. This path reached export and rigging. Animation-page navigation then hit repeated extension timeouts; native UI recovery remains next. No rig/clip export claim until actual files inspected.
+
+Final verified export checkpoint
+Normal GLB / 1K export selected skeleton, stay-in-place and all four animation choices. Original work/models-original/raccoon-four-clips.glb copied unchanged to public/models/raccoon.glb after actual Pro plan and official paid-user output-rights verification. Runtime: 1922172 bytes, SHA-256 dc7d36505d15c069c3ef5b56f9273e891220c6a05a16c84c57775ac640fbba09. One actual skinned mesh, Armature skin with 65 Mixamo joints. Actual clips: run 1.25s; walk 2.333333s; idle 15.333333s; "Walk slowly in place in a seamless loop while carrying a small " 4.958333s (trailing space part of name). Each has 195 channels.
+Local browser preview verified actual skin deformation. Runtime adapter removes only constant initial hips X/Z offsets from cloned clips; original bytes remain unchanged. Idle -> walk -> run -> carry initial centering/actor-origin checks passed, as did a translated/rotated actual bone grip. The lead then reported a fresh complete five-job replay with zero page errors; the asset helper independently reopened the latest token-carry capture and confirmed the token adjacent to the hand.
+Earlier processing/no-download statements above are chronological historical observations, superseded by this checkpoint.

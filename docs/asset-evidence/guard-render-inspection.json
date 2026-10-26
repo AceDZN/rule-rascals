@@ -1,0 +1,82 @@
+{
+  "source": "work/models-original/guard.glb",
+  "bounds": {
+    "min": [
+      -0.4234009385108948,
+      0,
+      -0.3114929497241974
+    ],
+    "max": [
+      0.4234009385108948,
+      1,
+      0.3114929497241974
+    ],
+    "size": [
+      0.8468018770217896,
+      1,
+      0.6229858994483948
+    ]
+  },
+  "normalizationHeight": 1.7,
+  "normalizationScale": 1.7,
+  "materials": [
+    {
+      "name": "tripo_mat_5ae09cb4-bcb8-4bc8-b0b0-68a84ff15975",
+      "type": "MeshStandardMaterial",
+      "side": 0,
+      "roughness": 1,
+      "metalness": 1,
+      "baseColor": [
+        1,
+        1,
+        1
+      ],
+      "textures": [
+        {
+          "slot": "map",
+          "present": true,
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": "srgb"
+        },
+        {
+          "slot": "normalMap",
+          "present": true,
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": ""
+        },
+        {
+          "slot": "roughnessMap",
+          "present": true,
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": ""
+        },
+        {
+          "slot": "metalnessMap",
+          "present": true,
+          "width": 1024,
+          "height": 1024,
+          "colorSpace": ""
+        }
+      ]
+    }
+  ],
+  "geometry": [
+    {
+      "name": "tripo_node_5ae09cb4-bcb8-4bc8-b0b0-68a84ff15975",
+      "vertices": 11585,
+      "normalCount": 11585,
+      "normalLengthRange": [
+        0.9999999083135103,
+        1.0000001374203502
+      ],
+      "negativeWorldScale": false
+    }
+  ],
+  "animations": [],
+  "skins": [],
+  "bones": [],
+  "errors": []
+}

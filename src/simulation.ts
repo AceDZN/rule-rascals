@@ -45,13 +45,14 @@ export function getViolations(s:State):string[]{const v:string[]=[];
  if(!s.badge&&dist(s.player,SPAWN)>2.8)v.push('badge');
  if(s.level===1&&s.items.some(i=>i.kind==='bag'&&i.holder==='ground'&&isDoorway(i)))v.push('doorway-bag');
  if(s.level===2&&inStore(s.player)&&!hasEscort(s))v.push('without-helper');
+ if(s.level===0&&s.items.find(i=>i.id===s.cargo)?.kind==='token'&&s.robots.some(r=>r.kind==='guard'&&r.mode!=='distracted'&&visibleTo(s,r)))v.push('watched-token');
  if(s.level===3&&s.items.find(i=>i.id===s.cargo)?.kind==='bell'&&s.robots.some(r=>r.kind==='guard'&&r.mode!=='distracted'&&visibleTo(s,r)))v.push('watched-bell');
  if(s.level===4&&inStore(s.player)&&s.bag)v.push('large-bag');
  if(s.level===4&&isDoorway(s.player)&&s.cargo&&s.items.find(i=>i.id===s.cargo)?.kind==='box')v.push('helpers-only');
  return v;
 }
 export function visibleTo(s:State,r:Robot,p:Point=s.player){const d=dist(r,p);if(d>(s.player.sneaking?5.2:7.4))return false;const angle=Math.atan2(p.x-r.x,p.z-r.z);const da=Math.atan2(Math.sin(angle-r.angle),Math.cos(angle-r.angle));return (Math.abs(da)<.72||d<1.25)&&lineClear(s,r,p);}
-const mistakeText:Record<string,string>={badge:'התג נשאר בכיס? “must wear” אומר שחייבים לענוד אותו.', 'doorway-bag':'התיק חוסם את הפתח. “mustn’t leave bags in the doorway” אוסר להשאיר אותו שם.', 'without-helper':'“without a helper” הוא התנאי: צריך את העוזר שמשקה, קרוב אליכם במחסן.', 'watched-bell':'השומר ראה את הפעמון. “while a guard is watching” מגביל את הנשיאה כשהוא מסתכל. הסתתרו או הסיחו את דעתו.', 'large-bag':'התיק הגדול נשאר בחוץ לפי “must leave large bags outside”.', 'helpers-only':'“Only helpers” — תג מבקר אינו הופך אתכם לעוזרים. בקשו מהעוזר להעביר את הארגז.'};
+const mistakeText:Record<string,string>={badge:'התג נשאר בכיס? “must wear” אומר שחייבים לענוד אותו.', 'doorway-bag':'התיק חוסם את הפתח. “mustn’t leave bags in the doorway” אוסר להשאיר אותו שם.', 'without-helper':'“without a helper” הוא התנאי: צריך את העוזר שמשקה, קרוב אליכם במחסן.', 'watched-token':'השומר ראה את האסימון. “while a guard is watching” מגביל את הנשיאה גם כשעומדים. חפשו מחסה או הסיחו את דעתו.', 'watched-bell':'השומר ראה את הפעמון. “while a guard is watching” מגביל את הנשיאה כשהוא מסתכל. הסתתרו או הסיחו את דעתו.', 'large-bag':'התיק הגדול נשאר בחוץ לפי “must leave large bags outside”.', 'helpers-only':'“Only helpers” — תג מבקר אינו הופך אתכם לעוזרים. בקשו מהעוזר להעביר את הארגז.'};
 export function nearest(s:State):{id:string;label:string;distance:number}|null{
  const candidates=[...s.items.filter(i=>i.holder==='ground').map(i=>({id:i.id,label:i.label,distance:dist(i,s.player)})),...s.robots.filter(r=>r.kind!=='guard').map(r=>({id:r.id,label:r.kind==='watering'?'Robot with watering can':'Robot with broom',distance:dist(r,s.player)})),{id:'notice',label:'Posted rules',distance:dist({x:-9.5,z:4.8},s.player)}, ...(s.level===3?[{id:'side-door',label:'Side door',distance:dist({x:3,z:-2},s.player)}]:[])];
  candidates.sort((a,b)=>a.distance-b.distance);return candidates[0]?.distance<1.9?candidates[0]:null;

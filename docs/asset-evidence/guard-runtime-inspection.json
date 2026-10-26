@@ -1,0 +1,44 @@
+{
+  "file": "public/models/guard.glb",
+  "bytes": 957180,
+  "sha256": "626399cc0731d47f54987d6727a2e08c52ca834c447533d4373d4df195f3038a",
+  "generator": "Tripo",
+  "meshes": 1,
+  "meshStats": [
+    {
+      "name": "tripo_mesh_5ae09cb4-bcb8-4bc8-b0b0-68a84ff15975",
+      "primitives": [
+        {
+          "vertices": 11585,
+          "indices": 56082,
+          "mode": 4,
+          "triangles": 18694
+        }
+      ]
+    }
+  ],
+  "materials": 1,
+  "images": [
+    {
+      "name": "rule-rascals-guard_normal",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    },
+    {
+      "name": "rule-rascals-guard_basecolor",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    },
+    {
+      "name": "rule-rascals-guard_rm",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    }
+  ],
+  "skinnedMeshNodes": [],
+  "skins": [],
+  "animations": []
+}

@@ -1,0 +1,44 @@
+{
+  "file": "work/models-original/watering-helper.glb",
+  "bytes": 990732,
+  "sha256": "ea7c05b9130cad840c078e2ec977f0618bcc9a7fe8f5d56a10e0279bbdcc995d",
+  "generator": "Tripo",
+  "meshes": 1,
+  "meshStats": [
+    {
+      "name": "tripo_mesh_d0ec93cc-1199-4e00-b80a-2bd89b18783a",
+      "primitives": [
+        {
+          "vertices": 12261,
+          "indices": 57273,
+          "mode": 4,
+          "triangles": 19091
+        }
+      ]
+    }
+  ],
+  "materials": 1,
+  "images": [
+    {
+      "name": "rule-rascals-watering-helper_normal",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    },
+    {
+      "name": "rule-rascals-watering-helper_basecolor",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    },
+    {
+      "name": "rule-rascals-watering-helper_rm",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    }
+  ],
+  "skinnedMeshNodes": [],
+  "skins": [],
+  "animations": []
+}

@@ -1,0 +1,31 @@
+{
+  "file": "work/models-original/raccoon-base.glb",
+  "bytes": 1092012,
+  "sha256": "29100bf2a5da4e273ffd19f88cb3073951149046c01a51300accd933b3064935",
+  "generator": "Tripo",
+  "meshes": 1,
+  "materials": 1,
+  "images": [
+    {
+      "name": "rule-rascals-raccoon-base_normal",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    },
+    {
+      "name": "rule-rascals-raccoon-base_basecolor",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    },
+    {
+      "name": "rule-rascals-raccoon-base_rm",
+      "mimeType": "image/jpeg",
+      "embedded": true,
+      "uri": null
+    }
+  ],
+  "skinnedMeshNodes": [],
+  "skins": [],
+  "animations": []
+}

@@ -1,0 +1,46 @@
+{
+  "status": {
+    "source": "Tripo local GLB",
+    "loaded": true,
+    "error": "",
+    "rigged": true,
+    "joints": 65,
+    "activeClip": "Walk slowly in place in a seamless loop while carrying a small ",
+    "clips": [
+      "run",
+      "walk",
+      "idle",
+      "Walk slowly in place in a seamless loop while carrying a small "
+    ]
+  },
+  "handWorld": [
+    -8.85887686402543,
+    0.8267854010298392,
+    8.459154921762103
+  ],
+  "gripWorld": [
+    -8.858876864025428,
+    0.826785401029839,
+    8.459154921762105
+  ],
+  "gripFromHand": [
+    1.7763568394002505e-15,
+    -2.220446049250313e-16,
+    1.7763568394002505e-15
+  ],
+  "gripLocal": [
+    -1.1102230246251565e-16,
+    1.8318679906315083e-15,
+    2.220446049250313e-16
+  ],
+  "gripScale": [
+    0.5882351401030551,
+    0.5882351212347828,
+    0.588235226975672
+  ],
+  "actorWorld": [
+    -9,
+    0,
+    8
+  ]
+}

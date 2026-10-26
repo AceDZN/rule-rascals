@@ -1,6 +1,8 @@
 # Tripo workflow evidence
 
-Status: blocked by missing required browser-control tool.
+Historical status on 25 October: blocked by missing required browser-control tool.
+
+Resolved UI access on 26 October: the lead now has native CUA and is the sole designated Rule Rascals Chrome operator. It inspected My Assets and submitted the original raccoon task under its own named tab group and the shared atomic lock. See `raccoon-generation-2026-10-26.txt` and current `ASSETS.md`. The statements below preserve the initial helper's earlier observations; they are not the current acquisition status. Exports/rigs remain pending until verified.
 
 The asset owner searched the live tool catalog twice for names/descriptions matching `cua`, `chrome`, `browser`, `computer`, `repl`, `tabs`, `screenshot` and `download`. No `mcp__cua_repl` namespace or function was returned. There is no Tripo connector in the active catalog.
 

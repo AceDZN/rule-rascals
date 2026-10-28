@@ -1,0 +1,716 @@
+{
+  "fixture": "Level 35 exposed with isolated seeded prior completion records; appearance only, no gameplay/learning completion claim.",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "openedScrollTop": 0,
+  "top": {
+    "tasks": 11,
+    "sheetWidth": 350,
+    "scrollWidth": 350,
+    "horizontalOverflow": false
+  },
+  "bottom": {
+    "resumeVisible": true,
+    "taskTexts": [
+      {
+        "text": "Use the wrench at the west service point.",
+        "overflow": false
+      },
+      {
+        "text": "Use the brush at the east service point.",
+        "overflow": false
+      },
+      {
+        "text": "Scan the requested box at east service point.",
+        "overflow": false
+      },
+      {
+        "text": "Then scan the same box at west service point.",
+        "overflow": false
+      },
+      {
+        "text": "Deliver the requested box to dispatch.",
+        "overflow": false
+      },
+      {
+        "text": "Scan the requested bell at west service point.",
+        "overflow": false
+      },
+      {
+        "text": "Then scan the same bell at east service point.",
+        "overflow": false
+      },
+      {
+        "text": "Deliver the requested bell to dispatch.",
+        "overflow": false
+      },
+      {
+        "text": "Scan the requested token at dispatch desk.",
+        "overflow": false
+      },
+      {
+        "text": "Then scan the same token at east service point.",
+        "overflow": false
+      },
+      {
+        "text": "Bring the token to the exit.",
+        "overflow": false
+      }
+    ]
+  },
+  "gameplay": {
+    "state": {
+      "coordinates": "x right/east; z south; y height. Units metres. Camera screen controls rotated to camera.",
+      "mode": "play",
+      "campaign": {
+        "total": 35,
+        "chapter": 7,
+        "completed": 34,
+        "unlockedThrough": 35
+      },
+      "task": {
+        "id": "repair-west",
+        "kind": "repair",
+        "station": "west",
+        "tool": "wrench",
+        "text": "Use the wrench at the west service point."
+      },
+      "taskIndex": 0,
+      "completedTasks": [],
+      "tool": null,
+      "heist": 35,
+      "title": "השוד הגדול",
+      "objective": "Restore both service points, dispatch the requested box and bell, then return the token.",
+      "rules": [
+        "Visitors must wear a badge.",
+        "Visitors mustn't enter the store without the robot who waters the plants.",
+        "Only helpers can carry boxes through the arch.",
+        "Visitors must leave large bags outside the arch.",
+        "Visitors mustn't carry the requested objects while a guard is watching them.",
+        "Visitors mustn't run inside the store.",
+        "You don't have to take a map.",
+        "You don't have to use the trolley.",
+        "First repair the west machine, then clean the east reader.",
+        "Dispatch the box with this record: The helper sealed this box after the inspector checked it but before the gardener moved it. Scan east, then west.",
+        "Next dispatch the bell with this record: The artist made this bell, the gardener repaired it, and the inspector tested it in that order. Scan west, then east.",
+        "Finally return the token with this record: The school lent this token to the museum, which returned it before the festival borrowed it. Scan dispatch, then east."
+      ],
+      "player": {
+        "x": -9,
+        "z": 8,
+        "angle": 0,
+        "speed": 0,
+        "radius": 0.42,
+        "sneaking": false
+      },
+      "badge": false,
+      "largeBag": true,
+      "map": false,
+      "trolley": false,
+      "cargo": null,
+      "escort": null,
+      "doorOpen": false,
+      "helperTransported": false,
+      "robots": [
+        {
+          "id": "guard",
+          "kind": "guard",
+          "x": 1,
+          "z": 5,
+          "angle": 3.141592653589793,
+          "mode": "patrol",
+          "timer": 0,
+          "waypoint": 1,
+          "cargo": null
+        },
+        {
+          "id": "gardener",
+          "kind": "watering",
+          "x": -1.41,
+          "z": -1,
+          "angle": -1.1071487177940909,
+          "mode": "patrol",
+          "timer": 0.016666666666666666,
+          "waypoint": 0,
+          "cargo": null
+        },
+        {
+          "id": "sweeper",
+          "kind": "sweeping",
+          "x": -8,
+          "z": -0.99,
+          "angle": -0.4636476090008061,
+          "mode": "patrol",
+          "timer": 0.016666666666666666,
+          "waypoint": 0,
+          "cargo": null
+        },
+        {
+          "id": "arch-inspector",
+          "kind": "guard",
+          "x": 5.5,
+          "z": -1.9,
+          "angle": -1.99,
+          "mode": "patrol",
+          "timer": 0,
+          "waypoint": 0,
+          "cargo": null
+        }
+      ],
+      "items": [
+        {
+          "id": "badge",
+          "kind": "badge",
+          "label": "Visitor badge",
+          "x": -8,
+          "z": 6.5,
+          "holder": "ground"
+        },
+        {
+          "id": "wrench",
+          "kind": "tool",
+          "label": "Tool case",
+          "x": -6.8,
+          "z": 6.3,
+          "holder": "ground"
+        },
+        {
+          "id": "brush",
+          "kind": "tool",
+          "label": "Tool case",
+          "x": -5.4,
+          "z": 6.3,
+          "holder": "ground"
+        },
+        {
+          "id": "opening-0",
+          "kind": "box",
+          "label": "Festival parcel",
+          "x": 8,
+          "z": -7,
+          "holder": "ground",
+          "request": "opening"
+        },
+        {
+          "id": "opening-1",
+          "kind": "box",
+          "label": "Festival parcel",
+          "x": 2,
+          "z": -7,
+          "holder": "ground",
+          "request": "opening"
+        },
+        {
+          "id": "music-0",
+          "kind": "bell",
+          "label": "Festival bell",
+          "x": 7.8,
+          "z": -5.3,
+          "holder": "ground",
+          "request": "music"
+        },
+        {
+          "id": "music-1",
+          "kind": "bell",
+          "label": "Festival bell",
+          "x": 4.2,
+          "z": -5.4,
+          "holder": "ground",
+          "request": "music"
+        },
+        {
+          "id": "closing-0",
+          "kind": "token",
+          "label": "Festival token",
+          "x": 8.5,
+          "z": -4.5,
+          "holder": "ground",
+          "request": "closing"
+        },
+        {
+          "id": "closing-1",
+          "kind": "token",
+          "label": "Festival token",
+          "x": 2,
+          "z": -4.5,
+          "holder": "ground",
+          "request": "closing"
+        },
+        {
+          "id": "map",
+          "kind": "map",
+          "label": "Pocket map",
+          "x": -10,
+          "z": 6,
+          "holder": "ground"
+        },
+        {
+          "id": "trolley",
+          "kind": "trolley",
+          "label": "Trolley",
+          "x": -5,
+          "z": 6,
+          "holder": "ground"
+        }
+      ],
+      "obstacles": [
+        {
+          "x": -4.8,
+          "z": 2,
+          "w": 4.2,
+          "d": 2.2,
+          "h": 1.65,
+          "kind": "planter"
+        },
+        {
+          "x": 4,
+          "z": 2.3,
+          "w": 4.2,
+          "d": 2,
+          "h": 1.65,
+          "kind": "planter"
+        },
+        {
+          "x": -5,
+          "z": -3.8,
+          "w": 2.8,
+          "d": 3.4,
+          "h": 2.1,
+          "kind": "planter"
+        },
+        {
+          "x": 9,
+          "z": 5.5,
+          "w": 1.8,
+          "d": 3,
+          "h": 1.65,
+          "kind": "planter"
+        },
+        {
+          "x": 0.5,
+          "z": -3,
+          "w": 1,
+          "d": 0.3,
+          "h": 2.4,
+          "kind": "wall"
+        },
+        {
+          "x": 7.5,
+          "z": -3,
+          "w": 5,
+          "d": 0.3,
+          "h": 2.4,
+          "kind": "wall"
+        },
+        {
+          "x": 0,
+          "z": -6,
+          "w": 0.25,
+          "d": 6,
+          "h": 2.8,
+          "kind": "wall"
+        },
+        {
+          "x": 10,
+          "z": -6,
+          "w": 0.25,
+          "d": 6,
+          "h": 2.8,
+          "kind": "wall"
+        },
+        {
+          "x": 5,
+          "z": -9,
+          "w": 10,
+          "d": 0.3,
+          "h": 2.2,
+          "kind": "wall"
+        },
+        {
+          "x": -9,
+          "z": 6.2,
+          "w": 2.7,
+          "d": 1,
+          "h": 1.36,
+          "kind": "desk"
+        },
+        {
+          "x": -9.5,
+          "z": 4.8,
+          "w": 0.1,
+          "d": 0.1,
+          "h": 1.9,
+          "kind": "post"
+        },
+        {
+          "x": 1,
+          "z": -3,
+          "w": 0.48,
+          "d": 0.6,
+          "h": 3.6,
+          "kind": "post"
+        },
+        {
+          "x": 5,
+          "z": -3,
+          "w": 0.48,
+          "d": 0.6,
+          "h": 3.6,
+          "kind": "post"
+        },
+        {
+          "x": 5,
+          "z": -8.6,
+          "w": 8,
+          "d": 0.5,
+          "h": 1.325,
+          "kind": "shelf"
+        },
+        {
+          "x": 6,
+          "z": -6.9,
+          "w": 1.9,
+          "d": 1.9,
+          "h": 0.8,
+          "kind": "fountain",
+          "shape": "circle"
+        },
+        {
+          "x": -7.5,
+          "z": -8.5,
+          "w": 0.84,
+          "d": 0.84,
+          "h": 0.6,
+          "kind": "pot",
+          "shape": "circle"
+        },
+        {
+          "x": -9.5,
+          "z": 3.8,
+          "w": 0.84,
+          "d": 0.84,
+          "h": 0.6,
+          "kind": "pot",
+          "shape": "circle"
+        },
+        {
+          "x": 10.5,
+          "z": -1.5,
+          "w": 0.84,
+          "d": 0.84,
+          "h": 0.6,
+          "kind": "pot",
+          "shape": "circle"
+        },
+        {
+          "x": -0.5,
+          "z": 8,
+          "w": 0.84,
+          "d": 0.84,
+          "h": 0.6,
+          "kind": "pot",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": -9,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": -9,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 3.1,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": -5.2,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": -5.2,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 3.04,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": -1.4000000000000004,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": -1.4000000000000004,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 2.98,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": 2.3999999999999986,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": 2.3999999999999986,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 3.5199999999999996,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": 6.199999999999999,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": -11.6,
+          "z": 6.199999999999999,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 3.4599999999999995,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": -9,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": -9,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 3.1,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": -5.2,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": -5.2,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 3.04,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": -1.4000000000000004,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": -1.4000000000000004,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 2.98,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": 2.3999999999999986,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": 2.3999999999999986,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 3.5199999999999996,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": 6.199999999999999,
+          "w": 1.4,
+          "d": 1.4,
+          "h": 0.5,
+          "kind": "tree-base",
+          "shape": "circle"
+        },
+        {
+          "x": 11.6,
+          "z": 6.199999999999999,
+          "w": 0.56,
+          "d": 0.56,
+          "h": 3.4599999999999995,
+          "kind": "tree-trunk",
+          "shape": "circle"
+        },
+        {
+          "x": 3,
+          "z": -3,
+          "w": 3.8,
+          "d": 0.35,
+          "h": 2.4,
+          "kind": "door"
+        }
+      ],
+      "solidProps": [
+        {
+          "x": 8,
+          "z": -7,
+          "w": 0.82,
+          "d": 0.82,
+          "h": 0.85,
+          "kind": "loose-item"
+        },
+        {
+          "x": 2,
+          "z": -7,
+          "w": 0.82,
+          "d": 0.82,
+          "h": 0.85,
+          "kind": "loose-item"
+        },
+        {
+          "x": -5,
+          "z": 6,
+          "w": 0.9,
+          "d": 1.1,
+          "h": 0.3,
+          "kind": "loose-item"
+        }
+      ],
+      "nearby": {
+        "id": "badge",
+        "label": "Visitor badge",
+        "distance": 1.8027756377319948
+      },
+      "suspicion": 0,
+      "currentViolations": [],
+      "time": 0.02,
+      "assisted": false,
+      "rulesRead": true,
+      "inspected": [],
+      "retries": 0,
+      "results": [],
+      "message": "",
+      "fps": 54,
+      "assets": {
+        "source": "Tripo local GLB",
+        "loaded": true,
+        "error": "",
+        "rigged": true,
+        "joints": 65,
+        "activeClip": "idle",
+        "playbackRate": 1,
+        "clips": [
+          "run",
+          "walk",
+          "idle",
+          "Walk slowly in place in a seamless loop while carrying a small ",
+          "carry-walk",
+          "carry-idle"
+        ],
+        "mechanical": {
+          "guard": {
+            "loaded": true,
+            "error": "",
+            "source": "guard.glb",
+            "rigged": false
+          },
+          "watering": {
+            "loaded": true,
+            "error": "",
+            "source": "watering-helper.glb",
+            "rigged": false
+          }
+        },
+        "tripoGLBs": 3,
+        "tripoRig": true
+      },
+      "events": [
+        {
+          "at": 0,
+          "heist": 35,
+          "action": "read-rules",
+          "assisted": false,
+          "retry": 0
+        }
+      ]
+    },
+    "selector": {
+      "x": 234,
+      "y": 690,
+      "width": 141,
+      "height": 34,
+      "options": [
+        {
+          "value": "badge",
+          "label": "Visitor badge · 1.8 m"
+        }
+      ]
+    },
+    "context": {
+      "x": 155,
+      "right": 375,
+      "y": 690,
+      "bottom": 824
+    },
+    "header": {
+      "titleBottom": 73.6875,
+      "chapterBottom": 73.6875,
+      "ruleTop": 86.856689453125,
+      "gap": 13.169189453125
+    },
+    "horizontalOverflow": false
+  },
+  "errors": []
+}

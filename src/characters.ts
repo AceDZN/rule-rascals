@@ -185,3 +185,10 @@ export function createRobot(kind: 'guard' | 'watering' | 'sweeping'): THREE.Grou
   };
   return root;
 }
+
+/** Release only original per-instance prototype resources; the outline material is shared. */
+export function disposeProceduralActor(root:THREE.Group){
+ const geometries=new Set<THREE.BufferGeometry>(),materials=new Set<THREE.Material>();
+ root.traverse(object=>{if(object instanceof THREE.Mesh){geometries.add(object.geometry);for(const material of Array.isArray(object.material)?object.material:[object.material])if(material!==ink)materials.add(material);}});
+ root.removeFromParent();geometries.forEach(geometry=>geometry.dispose());materials.forEach(material=>material.dispose());root.clear();
+}

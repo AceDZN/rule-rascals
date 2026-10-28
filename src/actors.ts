@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { createRaccoon, createRobot } from './characters';
+import { createRaccoon, createRobot, disposeProceduralActor } from './characters';
 import { loadLocalModel, type LocalModel } from './model-assets';
 
 /** Local assets are visual only; the simulation owns positions and permissions. */
@@ -18,7 +18,7 @@ export function createPlayerActor() {
   const ready = loadLocalModel({ url: `${import.meta.env.BASE_URL}models/raccoon.glb`, height: 1.7 }).then(asset => {
     model = asset;
     root.add(asset.root);
-    root.remove(fallback);
+    disposeProceduralActor(fallback);
     const cream = new THREE.MeshStandardMaterial({ color: 0xf4ebd4, roughness: .8 });
     const jade = new THREE.MeshStandardMaterial({ color: 0x427c65, roughness: .8 });
     badge = asset.createSocket('Visitor badge', [.18, 1.08, .32], 'mixamorigSpine2');
@@ -71,6 +71,9 @@ export function createMechanicalActor(kind: 'guard' | 'watering' | 'sweeping') {
   const root = new THREE.Group();
   const fallback = createRobot(kind);
   root.add(fallback);
+  let retired=false,released=false;
+  const release=()=>{if(!released){released=true;disposeProceduralActor(fallback);}};
+  root.userData.disposeOwned=()=>{retired=true;release();};
   if (kind === 'sweeping') return root;
   const file = kind === 'watering' ? 'watering-helper.glb' : 'guard.glb';
   if (!mechanicalTemplates.has(kind)) {
@@ -78,8 +81,8 @@ export function createMechanicalActor(kind: 'guard' | 'watering' | 'sweeping') {
     mechanicalTemplates.set(kind,loadLocalModel({url:`${import.meta.env.BASE_URL}models/${file}`,height:1.5}));
   }
   mechanicalTemplates.get(kind)!.then(asset=>{
-    root.remove(fallback); root.add(asset.root.clone(true));
     mechanicalAssets[kind].loaded = true;
+    if(retired)return;release();root.add(asset.root.clone(true));
     root.userData.assetSource = 'Tripo local rigid GLB';
   }).catch(error=>{mechanicalAssets[kind].error=String(error);});
   return root;

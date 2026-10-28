@@ -1,0 +1,1519 @@
+{
+  "purpose": "Static XZ decorative placement containment; no gameplay-completion claim.",
+  "walkBounds": {
+    "minX": -11.425,
+    "maxX": 11.425,
+    "minZ": -9.4,
+    "maxZ": 9.65
+  },
+  "report": [
+    {
+      "chapter": 1,
+      "id": "garden",
+      "batches": 6,
+      "placementCount": 7,
+      "placements": [
+        {
+          "name": "garden-fountain-rim",
+          "kind": "fountain",
+          "allowed": {
+            "x": 6,
+            "z": -6.9,
+            "w": 1.9,
+            "d": 1.9
+          },
+          "bounds": {
+            "minX": 5.105000019073486,
+            "maxX": 6.894999980926514,
+            "minZ": -7.794999980926514,
+            "maxZ": -6.005000019073487
+          }
+        },
+        {
+          "name": "garden-cover-0",
+          "kind": "planter",
+          "allowed": {
+            "x": -4.8,
+            "z": 2,
+            "w": 4.2,
+            "d": 2.2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.262122476577758,
+            "maxX": -3.3378775234222413,
+            "minZ": 1.256,
+            "maxZ": 2.63
+          }
+        },
+        {
+          "name": "garden-cover-1",
+          "kind": "planter",
+          "allowed": {
+            "x": 4,
+            "z": 2.3,
+            "w": 4.2,
+            "d": 2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 2.5378775234222415,
+            "maxX": 5.4621224765777585,
+            "minZ": 1.6099999999999999,
+            "maxZ": 2.8999999999999995
+          }
+        },
+        {
+          "name": "garden-cover-2",
+          "kind": "planter",
+          "allowed": {
+            "x": -5,
+            "z": -3.8,
+            "w": 2.8,
+            "d": 3.4,
+            "h": 2.1,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -5.9861224765777585,
+            "maxX": -4.0138775234222415,
+            "minZ": -4.868,
+            "maxZ": -2.99
+          }
+        },
+        {
+          "name": "garden-cover-3",
+          "kind": "planter",
+          "allowed": {
+            "x": 9,
+            "z": 5.5,
+            "w": 1.8,
+            "d": 3,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 8.353877523422241,
+            "maxX": 9.650408960607303,
+            "minZ": 4.539999999999999,
+            "maxZ": 6.25
+          }
+        },
+        {
+          "name": "garden-pergola-backdrop",
+          "kind": "outside-walk-bounds",
+          "bounds": {
+            "minX": -8.68,
+            "maxX": -1.65,
+            "minZ": -12.4,
+            "maxZ": -10.6
+          }
+        },
+        {
+          "name": "garden-shelf-displays",
+          "kind": "shelf",
+          "allowed": {
+            "x": 5,
+            "z": -8.6,
+            "w": 8,
+            "d": 0.5,
+            "h": 1.325
+          },
+          "bounds": {
+            "minX": 1.77,
+            "maxX": 8.23,
+            "minZ": -8.83,
+            "maxZ": -8.37
+          }
+        }
+      ],
+      "violations": []
+    },
+    {
+      "chapter": 2,
+      "id": "glasshouse",
+      "batches": 9,
+      "placementCount": 7,
+      "placements": [
+        {
+          "name": "glasshouse-fountain-rim",
+          "kind": "fountain",
+          "allowed": {
+            "x": 6,
+            "z": -6.9,
+            "w": 1.9,
+            "d": 1.9
+          },
+          "bounds": {
+            "minX": 5.105000019073486,
+            "maxX": 6.894999980926514,
+            "minZ": -7.794999980926514,
+            "maxZ": -6.005000019073487
+          }
+        },
+        {
+          "name": "glasshouse-cover-0",
+          "kind": "planter",
+          "allowed": {
+            "x": -4.8,
+            "z": 2,
+            "w": 4.2,
+            "d": 2.2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.255297981262207,
+            "maxX": -3.344702018737793,
+            "minZ": 1.3099999999999998,
+            "maxZ": 2.69
+          }
+        },
+        {
+          "name": "glasshouse-cover-1",
+          "kind": "planter",
+          "allowed": {
+            "x": 4,
+            "z": 2.3,
+            "w": 4.2,
+            "d": 2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 2.544702018737793,
+            "maxX": 5.455297981262207,
+            "minZ": 1.6699999999999997,
+            "maxZ": 2.9299999999999997
+          }
+        },
+        {
+          "name": "glasshouse-cover-2",
+          "kind": "planter",
+          "allowed": {
+            "x": -5,
+            "z": -3.8,
+            "w": 2.8,
+            "d": 3.4,
+            "h": 2.1,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -5.979297981262207,
+            "maxX": -4.020702018737793,
+            "minZ": -4.8500000000000005,
+            "maxZ": -2.75
+          }
+        },
+        {
+          "name": "glasshouse-cover-3",
+          "kind": "planter",
+          "allowed": {
+            "x": 9,
+            "z": 5.5,
+            "w": 1.8,
+            "d": 3,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 8.360702018737793,
+            "maxX": 9.639297981262207,
+            "minZ": 4.569999999999999,
+            "maxZ": 6.430000000000001
+          }
+        },
+        {
+          "name": "glasshouse-domes",
+          "kind": "outside-walk-bounds",
+          "bounds": {
+            "minX": -8.244999885559082,
+            "maxX": 10.244999885559082,
+            "minZ": -15.244999885559082,
+            "maxZ": -10.755000114440918
+          }
+        },
+        {
+          "name": "glasshouse-shelf-displays",
+          "kind": "shelf",
+          "allowed": {
+            "x": 5,
+            "z": -8.6,
+            "w": 8,
+            "d": 0.5,
+            "h": 1.325
+          },
+          "bounds": {
+            "minX": 1.4300000000000002,
+            "maxX": 8.52,
+            "minZ": -8.77,
+            "maxZ": -8.43
+          }
+        }
+      ],
+      "violations": []
+    },
+    {
+      "chapter": 3,
+      "id": "workshop",
+      "batches": 5,
+      "placementCount": 17,
+      "placements": [
+        {
+          "name": "workshop-boundary--11.6--9",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -9,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -9.7,
+            "maxZ": -8.3
+          }
+        },
+        {
+          "name": "workshop-boundary--11.6--5.2",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -5.2,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -5.9,
+            "maxZ": -4.5
+          }
+        },
+        {
+          "name": "workshop-boundary--11.6--1.4000000000000004",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -1.4000000000000004,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -2.1000000000000005,
+            "maxZ": -0.7000000000000004
+          }
+        },
+        {
+          "name": "workshop-boundary--11.6-2.3999999999999986",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": 2.3999999999999986,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": 1.6999999999999986,
+            "maxZ": 3.0999999999999988
+          }
+        },
+        {
+          "name": "workshop-boundary--11.6-6.199999999999999",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": 6.199999999999999,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": 5.499999999999999,
+            "maxZ": 6.8999999999999995
+          }
+        },
+        {
+          "name": "workshop-boundary-11.6--9",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -9,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -9.7,
+            "maxZ": -8.3
+          }
+        },
+        {
+          "name": "workshop-boundary-11.6--5.2",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -5.2,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -5.9,
+            "maxZ": -4.5
+          }
+        },
+        {
+          "name": "workshop-boundary-11.6--1.4000000000000004",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -1.4000000000000004,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -2.1000000000000005,
+            "maxZ": -0.7000000000000004
+          }
+        },
+        {
+          "name": "workshop-boundary-11.6-2.3999999999999986",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": 2.3999999999999986,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": 1.6999999999999986,
+            "maxZ": 3.0999999999999988
+          }
+        },
+        {
+          "name": "workshop-boundary-11.6-6.199999999999999",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": 6.199999999999999,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": 5.499999999999999,
+            "maxZ": 6.8999999999999995
+          }
+        },
+        {
+          "name": "workshop-fountain-rim",
+          "kind": "fountain",
+          "allowed": {
+            "x": 6,
+            "z": -6.9,
+            "w": 1.9,
+            "d": 1.9
+          },
+          "bounds": {
+            "minX": 5.105000019073486,
+            "maxX": 6.894999980926514,
+            "minZ": -7.794999980926514,
+            "maxZ": -6.005000019073487
+          }
+        },
+        {
+          "name": "workshop-cover-0",
+          "kind": "planter",
+          "allowed": {
+            "x": -4.8,
+            "z": 2,
+            "w": 4.2,
+            "d": 2.2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.564,
+            "maxX": -3.0359999999999996,
+            "minZ": 1.142,
+            "maxZ": 2.858
+          }
+        },
+        {
+          "name": "workshop-cover-1",
+          "kind": "planter",
+          "allowed": {
+            "x": 4,
+            "z": 2.3,
+            "w": 4.2,
+            "d": 2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 2.2359999999999998,
+            "maxX": 5.764,
+            "minZ": 1.5199999999999998,
+            "maxZ": 3.08
+          }
+        },
+        {
+          "name": "workshop-cover-2",
+          "kind": "planter",
+          "allowed": {
+            "x": -5,
+            "z": -3.8,
+            "w": 2.8,
+            "d": 3.4,
+            "h": 2.1,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.176,
+            "maxX": -3.824,
+            "minZ": -5.1259999999999994,
+            "maxZ": -2.4739999999999998
+          }
+        },
+        {
+          "name": "workshop-cover-3",
+          "kind": "planter",
+          "allowed": {
+            "x": 9,
+            "z": 5.5,
+            "w": 1.8,
+            "d": 3,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 8.204999993443488,
+            "maxX": 9.795000006556512,
+            "minZ": 4.33,
+            "maxZ": 6.67
+          }
+        },
+        {
+          "name": "workshop-factory-backdrop",
+          "kind": "outside-walk-bounds",
+          "bounds": {
+            "minX": -11.7,
+            "maxX": 11.7,
+            "minZ": -13.555000007152557,
+            "maxZ": -11.16
+          }
+        },
+        {
+          "name": "workshop-shelf-displays",
+          "kind": "shelf",
+          "allowed": {
+            "x": 5,
+            "z": -8.6,
+            "w": 8,
+            "d": 0.5,
+            "h": 1.325
+          },
+          "bounds": {
+            "minX": 1.5031999999999996,
+            "maxX": 8.496799999999999,
+            "minZ": -8.674999999999999,
+            "maxZ": -8.485
+          }
+        }
+      ],
+      "violations": []
+    },
+    {
+      "chapter": 4,
+      "id": "station",
+      "batches": 8,
+      "placementCount": 17,
+      "placements": [
+        {
+          "name": "station-boundary--11.6--9",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -9,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -9.7,
+            "maxZ": -8.3
+          }
+        },
+        {
+          "name": "station-boundary--11.6--5.2",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -5.2,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -5.9,
+            "maxZ": -4.5
+          }
+        },
+        {
+          "name": "station-boundary--11.6--1.4000000000000004",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -1.4000000000000004,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -2.1000000000000005,
+            "maxZ": -0.7000000000000004
+          }
+        },
+        {
+          "name": "station-boundary--11.6-2.3999999999999986",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": 2.3999999999999986,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": 1.6999999999999986,
+            "maxZ": 3.0999999999999988
+          }
+        },
+        {
+          "name": "station-boundary--11.6-6.199999999999999",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": 6.199999999999999,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": 5.499999999999999,
+            "maxZ": 6.8999999999999995
+          }
+        },
+        {
+          "name": "station-boundary-11.6--9",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -9,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -9.7,
+            "maxZ": -8.3
+          }
+        },
+        {
+          "name": "station-boundary-11.6--5.2",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -5.2,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -5.9,
+            "maxZ": -4.5
+          }
+        },
+        {
+          "name": "station-boundary-11.6--1.4000000000000004",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -1.4000000000000004,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -2.1000000000000005,
+            "maxZ": -0.7000000000000004
+          }
+        },
+        {
+          "name": "station-boundary-11.6-2.3999999999999986",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": 2.3999999999999986,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": 1.6999999999999986,
+            "maxZ": 3.0999999999999988
+          }
+        },
+        {
+          "name": "station-boundary-11.6-6.199999999999999",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": 6.199999999999999,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": 5.499999999999999,
+            "maxZ": 6.8999999999999995
+          }
+        },
+        {
+          "name": "station-fountain-rim",
+          "kind": "fountain",
+          "allowed": {
+            "x": 6,
+            "z": -6.9,
+            "w": 1.9,
+            "d": 1.9
+          },
+          "bounds": {
+            "minX": 5.105000019073486,
+            "maxX": 6.894999980926514,
+            "minZ": -7.794999980926514,
+            "maxZ": -6.005000019073487
+          }
+        },
+        {
+          "name": "station-cover-0",
+          "kind": "planter",
+          "allowed": {
+            "x": -4.8,
+            "z": 2,
+            "w": 4.2,
+            "d": 2.2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.585,
+            "maxX": -3.0149999999999997,
+            "minZ": 1.208,
+            "maxZ": 2.792
+          }
+        },
+        {
+          "name": "station-cover-1",
+          "kind": "planter",
+          "allowed": {
+            "x": 4,
+            "z": 2.3,
+            "w": 4.2,
+            "d": 2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 2.215,
+            "maxX": 5.785,
+            "minZ": 1.5799999999999998,
+            "maxZ": 3.0199999999999996
+          }
+        },
+        {
+          "name": "station-cover-2",
+          "kind": "planter",
+          "allowed": {
+            "x": -5,
+            "z": -3.8,
+            "w": 2.8,
+            "d": 3.4,
+            "h": 2.1,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -5.384999990463257,
+            "maxX": -4.615000009536743,
+            "minZ": -3.86,
+            "maxZ": -3.652
+          }
+        },
+        {
+          "name": "station-cover-3",
+          "kind": "planter",
+          "allowed": {
+            "x": 9,
+            "z": 5.5,
+            "w": 1.8,
+            "d": 3,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 8.235,
+            "maxX": 9.765,
+            "minZ": 4.42,
+            "maxZ": 6.58
+          }
+        },
+        {
+          "name": "station-train-backdrop",
+          "kind": "outside-walk-bounds",
+          "bounds": {
+            "minX": -12.5,
+            "maxX": 12.5,
+            "minZ": -14.15,
+            "maxZ": -11.82
+          }
+        },
+        {
+          "name": "station-shelf-displays",
+          "kind": "shelf",
+          "allowed": {
+            "x": 5,
+            "z": -8.6,
+            "w": 8,
+            "d": 0.5,
+            "h": 1.325
+          },
+          "bounds": {
+            "minX": 1.3499999999999999,
+            "maxX": 8.649999999999999,
+            "minZ": -8.76,
+            "maxZ": -8.42
+          }
+        }
+      ],
+      "violations": []
+    },
+    {
+      "chapter": 5,
+      "id": "museum",
+      "batches": 6,
+      "placementCount": 17,
+      "placements": [
+        {
+          "name": "museum-boundary--11.6--9",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -9,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -9.7,
+            "maxZ": -8.3
+          }
+        },
+        {
+          "name": "museum-boundary--11.6--5.2",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -5.2,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -5.9,
+            "maxZ": -4.5
+          }
+        },
+        {
+          "name": "museum-boundary--11.6--1.4000000000000004",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -1.4000000000000004,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -2.1000000000000005,
+            "maxZ": -0.7000000000000004
+          }
+        },
+        {
+          "name": "museum-boundary--11.6-2.3999999999999986",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": 2.3999999999999986,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": 1.6999999999999986,
+            "maxZ": 3.0999999999999988
+          }
+        },
+        {
+          "name": "museum-boundary--11.6-6.199999999999999",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": 6.199999999999999,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": 5.499999999999999,
+            "maxZ": 6.8999999999999995
+          }
+        },
+        {
+          "name": "museum-boundary-11.6--9",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -9,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -9.7,
+            "maxZ": -8.3
+          }
+        },
+        {
+          "name": "museum-boundary-11.6--5.2",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -5.2,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -5.9,
+            "maxZ": -4.5
+          }
+        },
+        {
+          "name": "museum-boundary-11.6--1.4000000000000004",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -1.4000000000000004,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -2.1000000000000005,
+            "maxZ": -0.7000000000000004
+          }
+        },
+        {
+          "name": "museum-boundary-11.6-2.3999999999999986",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": 2.3999999999999986,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": 1.6999999999999986,
+            "maxZ": 3.0999999999999988
+          }
+        },
+        {
+          "name": "museum-boundary-11.6-6.199999999999999",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": 6.199999999999999,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": 5.499999999999999,
+            "maxZ": 6.8999999999999995
+          }
+        },
+        {
+          "name": "museum-fountain-rim",
+          "kind": "fountain",
+          "allowed": {
+            "x": 6,
+            "z": -6.9,
+            "w": 1.9,
+            "d": 1.9
+          },
+          "bounds": {
+            "minX": 5.105000019073486,
+            "maxX": 6.894999980926514,
+            "minZ": -7.794999980926514,
+            "maxZ": -6.005000019073487
+          }
+        },
+        {
+          "name": "museum-cover-0",
+          "kind": "planter",
+          "allowed": {
+            "x": -4.8,
+            "z": 2,
+            "w": 4.2,
+            "d": 2.2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.018,
+            "maxX": -3.582,
+            "minZ": 1.3399999999999999,
+            "maxZ": 2.66
+          }
+        },
+        {
+          "name": "museum-cover-1",
+          "kind": "planter",
+          "allowed": {
+            "x": 4,
+            "z": 2.3,
+            "w": 4.2,
+            "d": 2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 2.782,
+            "maxX": 5.218,
+            "minZ": 1.6999999999999997,
+            "maxZ": 2.9
+          }
+        },
+        {
+          "name": "museum-cover-2",
+          "kind": "planter",
+          "allowed": {
+            "x": -5,
+            "z": -3.8,
+            "w": 2.8,
+            "d": 3.4,
+            "h": 2.1,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -5.812,
+            "maxX": -4.188,
+            "minZ": -4.82,
+            "maxZ": -2.78
+          }
+        },
+        {
+          "name": "museum-cover-3",
+          "kind": "planter",
+          "allowed": {
+            "x": 9,
+            "z": 5.5,
+            "w": 1.8,
+            "d": 3,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 8.478,
+            "maxX": 9.522,
+            "minZ": 4.6,
+            "maxZ": 6.4
+          }
+        },
+        {
+          "name": "museum-colonnade-backdrop",
+          "kind": "outside-walk-bounds",
+          "bounds": {
+            "minX": -12.5,
+            "maxX": 12.5,
+            "minZ": -12.7,
+            "maxZ": -10.7
+          }
+        },
+        {
+          "name": "museum-shelf-displays",
+          "kind": "shelf",
+          "allowed": {
+            "x": 5,
+            "z": -8.6,
+            "w": 8,
+            "d": 0.5,
+            "h": 1.325
+          },
+          "bounds": {
+            "minX": 1.35,
+            "maxX": 8.65,
+            "minZ": -8.68,
+            "maxZ": -8.465
+          }
+        }
+      ],
+      "violations": []
+    },
+    {
+      "chapter": 6,
+      "id": "rooftop",
+      "batches": 5,
+      "placementCount": 17,
+      "placements": [
+        {
+          "name": "rooftop-boundary--11.6--9",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -9,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -9.7,
+            "maxZ": -8.3
+          }
+        },
+        {
+          "name": "rooftop-boundary--11.6--5.2",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -5.2,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -5.9,
+            "maxZ": -4.5
+          }
+        },
+        {
+          "name": "rooftop-boundary--11.6--1.4000000000000004",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": -1.4000000000000004,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": -2.1000000000000005,
+            "maxZ": -0.7000000000000004
+          }
+        },
+        {
+          "name": "rooftop-boundary--11.6-2.3999999999999986",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": 2.3999999999999986,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": 1.6999999999999986,
+            "maxZ": 3.0999999999999988
+          }
+        },
+        {
+          "name": "rooftop-boundary--11.6-6.199999999999999",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": -11.6,
+            "z": 6.199999999999999,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": -12.282449531555175,
+            "maxX": -10.917550468444825,
+            "minZ": 5.499999999999999,
+            "maxZ": 6.8999999999999995
+          }
+        },
+        {
+          "name": "rooftop-boundary-11.6--9",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -9,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -9.7,
+            "maxZ": -8.3
+          }
+        },
+        {
+          "name": "rooftop-boundary-11.6--5.2",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -5.2,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -5.9,
+            "maxZ": -4.5
+          }
+        },
+        {
+          "name": "rooftop-boundary-11.6--1.4000000000000004",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": -1.4000000000000004,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": -2.1000000000000005,
+            "maxZ": -0.7000000000000004
+          }
+        },
+        {
+          "name": "rooftop-boundary-11.6-2.3999999999999986",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": 2.3999999999999986,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": 1.6999999999999986,
+            "maxZ": 3.0999999999999988
+          }
+        },
+        {
+          "name": "rooftop-boundary-11.6-6.199999999999999",
+          "kind": "boundary-site",
+          "allowed": {
+            "x": 11.6,
+            "z": 6.199999999999999,
+            "w": 1.4,
+            "d": 1.4
+          },
+          "bounds": {
+            "minX": 10.917550468444825,
+            "maxX": 12.282449531555175,
+            "minZ": 5.499999999999999,
+            "maxZ": 6.8999999999999995
+          }
+        },
+        {
+          "name": "rooftop-fountain-rim",
+          "kind": "fountain",
+          "allowed": {
+            "x": 6,
+            "z": -6.9,
+            "w": 1.9,
+            "d": 1.9
+          },
+          "bounds": {
+            "minX": 5.105000019073486,
+            "maxX": 6.894999980926514,
+            "minZ": -7.794999980926514,
+            "maxZ": -6.005000019073487
+          }
+        },
+        {
+          "name": "rooftop-cover-0",
+          "kind": "planter",
+          "allowed": {
+            "x": -4.8,
+            "z": 2,
+            "w": 4.2,
+            "d": 2.2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.438,
+            "maxX": -3.162,
+            "minZ": 1.197,
+            "maxZ": 2.8425000000000002
+          }
+        },
+        {
+          "name": "rooftop-cover-1",
+          "kind": "planter",
+          "allowed": {
+            "x": 4,
+            "z": 2.3,
+            "w": 4.2,
+            "d": 2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 2.362,
+            "maxX": 5.638,
+            "minZ": 1.5699999999999998,
+            "maxZ": 3.0675
+          }
+        },
+        {
+          "name": "rooftop-cover-2",
+          "kind": "planter",
+          "allowed": {
+            "x": -5,
+            "z": -3.8,
+            "w": 2.8,
+            "d": 3.4,
+            "h": 2.1,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.092,
+            "maxX": -3.9080000000000004,
+            "minZ": -5.0409999999999995,
+            "maxZ": -2.5075
+          }
+        },
+        {
+          "name": "rooftop-cover-3",
+          "kind": "planter",
+          "allowed": {
+            "x": 9,
+            "z": 5.5,
+            "w": 1.8,
+            "d": 3,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 8.298,
+            "maxX": 9.702,
+            "minZ": 4.405,
+            "maxZ": 6.6425
+          }
+        },
+        {
+          "name": "rooftop-city-skyline",
+          "kind": "outside-walk-bounds",
+          "bounds": {
+            "minX": -13.4,
+            "maxX": 13.200000000000001,
+            "minZ": -14.1,
+            "maxZ": -11.9
+          }
+        },
+        {
+          "name": "rooftop-shelf-displays",
+          "kind": "shelf",
+          "allowed": {
+            "x": 5,
+            "z": -8.6,
+            "w": 8,
+            "d": 0.5,
+            "h": 1.325
+          },
+          "bounds": {
+            "minX": 1.4499999999999997,
+            "maxX": 8.549999999999999,
+            "minZ": -8.76,
+            "maxZ": -8.405
+          }
+        }
+      ],
+      "violations": []
+    },
+    {
+      "chapter": 7,
+      "id": "festival",
+      "batches": 8,
+      "placementCount": 7,
+      "placements": [
+        {
+          "name": "festival-fountain-rim",
+          "kind": "fountain",
+          "allowed": {
+            "x": 6,
+            "z": -6.9,
+            "w": 1.9,
+            "d": 1.9
+          },
+          "bounds": {
+            "minX": 5.105000019073486,
+            "maxX": 6.894999980926514,
+            "minZ": -7.794999980926514,
+            "maxZ": -6.005000019073487
+          }
+        },
+        {
+          "name": "festival-cover-0",
+          "kind": "planter",
+          "allowed": {
+            "x": -4.8,
+            "z": 2,
+            "w": 4.2,
+            "d": 2.2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.294373197555542,
+            "maxX": -3.305626802444458,
+            "minZ": 1.5450000005960465,
+            "maxZ": 2.025
+          }
+        },
+        {
+          "name": "festival-cover-1",
+          "kind": "planter",
+          "allowed": {
+            "x": 4,
+            "z": 2.3,
+            "w": 4.2,
+            "d": 2,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 2.5056268024444583,
+            "maxX": 5.494373197555542,
+            "minZ": 1.865000000596046,
+            "maxZ": 2.334999999403953
+          }
+        },
+        {
+          "name": "festival-cover-2",
+          "kind": "planter",
+          "allowed": {
+            "x": -5,
+            "z": -3.8,
+            "w": 2.8,
+            "d": 3.4,
+            "h": 2.1,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": -6.004373197555542,
+            "maxX": -3.9956268024444586,
+            "minZ": -4.374999999403953,
+            "maxZ": -3.775
+          }
+        },
+        {
+          "name": "festival-cover-3",
+          "kind": "planter",
+          "allowed": {
+            "x": 9,
+            "z": 5.5,
+            "w": 1.8,
+            "d": 3,
+            "h": 1.65,
+            "kind": "planter"
+          },
+          "bounds": {
+            "minX": 8.345626802444457,
+            "maxX": 9.654373197555543,
+            "minZ": 4.975000005960465,
+            "maxZ": 5.525
+          }
+        },
+        {
+          "name": "festival-stage-backdrop",
+          "kind": "outside-walk-bounds",
+          "bounds": {
+            "minX": -10.5,
+            "maxX": 10.5,
+            "minZ": -15,
+            "maxZ": -11
+          }
+        },
+        {
+          "name": "festival-shelf-displays",
+          "kind": "shelf",
+          "allowed": {
+            "x": 5,
+            "z": -8.6,
+            "w": 8,
+            "d": 0.5,
+            "h": 1.325
+          },
+          "bounds": {
+            "minX": 1.4300000000000002,
+            "maxX": 8.52,
+            "minZ": -8.77,
+            "maxZ": -8.43
+          }
+        }
+      ],
+      "violations": []
+    }
+  ]
+}

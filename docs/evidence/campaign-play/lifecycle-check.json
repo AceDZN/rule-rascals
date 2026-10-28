@@ -1,0 +1,48 @@
+{
+  "scope": "render-only component fixture; not gameplay completion",
+  "rebuilds": 70,
+  "cycleEndpoints": [
+    {
+      "cycle": 1,
+      "level": 35,
+      "geometries": 202,
+      "textures": 18,
+      "programs": 15,
+      "calls": 391,
+      "triangles": 251164,
+      "models": {
+        "skinnedMeshes": 1,
+        "rigidGLBRoots": 3,
+        "nonemptySkinnedAttributes": 1
+      },
+      "loaded": true,
+      "modelError": ""
+    },
+    {
+      "cycle": 2,
+      "level": 35,
+      "geometries": 202,
+      "textures": 18,
+      "programs": 15,
+      "calls": 391,
+      "triangles": 251164,
+      "models": {
+        "skinnedMeshes": 1,
+        "rigidGLBRoots": 3,
+        "nonemptySkinnedAttributes": 1
+      },
+      "loaded": true,
+      "modelError": ""
+    }
+  ],
+  "peak": {
+    "geometries": 202,
+    "textures": 18,
+    "programs": 16
+  },
+  "boundedGeometryCycle": true,
+  "boundedTextureCycle": true,
+  "modelsRemainPresent": true,
+  "errors": [],
+  "consoleErrors": []
+}

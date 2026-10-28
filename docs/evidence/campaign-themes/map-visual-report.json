@@ -1,0 +1,76 @@
+[
+  {
+    "profile": "desktop",
+    "fixture": "Completion records 0–33 seeded only in an isolated visual profile; no gameplay or learning outcome is claimed.",
+    "initial": {
+      "nodes": 35,
+      "chapters": 7,
+      "disabled": 0,
+      "sheet": {
+        "x": 330,
+        "y": 45,
+        "width": 780,
+        "height": 810,
+        "clientWidth": 780,
+        "scrollWidth": 780,
+        "clientHeight": 805,
+        "scrollHeight": 1379
+      },
+      "viewport": {
+        "width": 1440,
+        "height": 900
+      },
+      "horizontalNodeOverflow": [],
+      "hasHorizontalPageOverflow": false
+    },
+    "final": {
+      "lastNode": {
+        "x": 372.015625,
+        "y": 644.09375,
+        "width": 134.390625,
+        "height": 91
+      },
+      "sheetScrollTop": 574,
+      "lastNodeVisible": true,
+      "buttonCount": 35
+    },
+    "errors": []
+  },
+  {
+    "profile": "mobile",
+    "fixture": "Completion records 0–33 seeded only in an isolated visual profile; no gameplay or learning outcome is claimed.",
+    "initial": {
+      "nodes": 35,
+      "chapters": 7,
+      "disabled": 0,
+      "sheet": {
+        "x": 20,
+        "y": 42.203125,
+        "width": 350,
+        "height": 759.59375,
+        "clientWidth": 350,
+        "scrollWidth": 350,
+        "clientHeight": 755,
+        "scrollHeight": 1317
+      },
+      "viewport": {
+        "width": 390,
+        "height": 844
+      },
+      "horizontalNodeOverflow": [],
+      "hasHorizontalPageOverflow": false
+    },
+    "final": {
+      "lastNode": {
+        "x": 45.015625,
+        "y": 582.78125,
+        "width": 56.796875,
+        "height": 91.671875
+      },
+      "sheetScrollTop": 562,
+      "lastNodeVisible": true,
+      "buttonCount": 35
+    },
+    "errors": []
+  }
+]

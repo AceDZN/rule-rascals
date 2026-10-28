@@ -56,7 +56,7 @@ A minimal event log stays in this browser's `localStorage` under `rule-rascals-l
 - [ASSETS.md](ASSETS.md): actual Tripo provenance, rig/clip inspection, rights and file measurements.
 - [docs/ENGLISH_REVIEW.md](docs/ENGLISH_REVIEW.md): independent semantic/gameplay review.
 
-Current semantic and physics suite: **132 passing tests**. The suite includes all 35 campaign completions through simulation interactions. Historical input-driven browser runs cover both trolley choices, recovery and touch checks; see the verification record for practical limits.
+Current semantic and physics suite: **132 passing tests**. The suite includes all 35 campaign completions through simulation interactions. Ordinary input-driven browser sessions also earned all35 levels, with save/reload/replay verified; an independent fresh run completed1–17 using the trolley. See the verification record for exact scope and outcome marks.
 
 Three.js is MIT; bundled Heebo is OFL. License texts are included under `public/licenses/`. Original game characters, scenario text and procedural geometry are authored for this project; no existing game art is copied.
 
@@ -75,3 +75,5 @@ The game now contains 35 authored levels, unlocked sequentially through ordinary
 |31–35|Festival Night|Eleven-action combined plans with three distinct targets and reversed checkpoint routes|
 
 Press **E at a service point** to repair, clean, scan or deliver the current task. Pick up a tool case to equip it; taking the other tool swaps them. A wrench repairs; a brush cleans. Scans belong to the actual object, and each delivery consumes that object. The helper must bring a held parcel to the service point. Seven procedural chapter themes reuse the tested solid floor plan and the three acquired character models, with different architecture/dressing/palettes. Original five-job evidence is historical; current campaign verification is recorded in PLAYTEST.md.
+
+The full campaign browser run reached the actual level35 festival victory. Reload/replay preserves35 completed levels, and the two-cycle resource check stays bounded at202 GPU geometries. See [actual campaign evidence](docs/evidence/campaign-play/) and the [seven-theme visual review](docs/CAMPAIGN_VISUAL_REVIEW.md).

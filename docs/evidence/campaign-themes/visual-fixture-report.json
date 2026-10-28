@@ -1,0 +1,345 @@
+[
+  {
+    "chapter": 1,
+    "name": "garden",
+    "fixture": "Seeded previous completion records in an isolated browser profile for visual review only; no gameplay-completion claim.",
+    "level": 1,
+    "player": {
+      "x": -1.0021954516977682,
+      "z": 0.05281099693130865,
+      "angle": 3.1,
+      "speed": 0,
+      "radius": 0.42,
+      "sneaking": false
+    },
+    "mode": "play",
+    "assets": {
+      "source": "Tripo local GLB",
+      "loaded": true,
+      "error": "",
+      "rigged": true,
+      "joints": 65,
+      "activeClip": "idle",
+      "playbackRate": 1,
+      "clips": [
+        "run",
+        "walk",
+        "idle",
+        "Walk slowly in place in a seamless loop while carrying a small ",
+        "carry-walk",
+        "carry-idle"
+      ],
+      "mechanical": {
+        "guard": {
+          "loaded": true,
+          "error": "",
+          "source": "guard.glb",
+          "rigged": false
+        },
+        "watering": {
+          "loaded": true,
+          "error": "",
+          "source": "watering-helper.glb",
+          "rigged": false
+        }
+      },
+      "tripoGLBs": 3,
+      "tripoRig": true
+    },
+    "errors": []
+  },
+  {
+    "chapter": 2,
+    "name": "glasshouse",
+    "fixture": "Seeded previous completion records in an isolated browser profile for visual review only; no gameplay-completion claim.",
+    "level": 6,
+    "player": {
+      "x": -1.0021954516977682,
+      "z": 0.05281099693130865,
+      "angle": 3.1,
+      "speed": 0,
+      "radius": 0.42,
+      "sneaking": false
+    },
+    "mode": "play",
+    "assets": {
+      "source": "Tripo local GLB",
+      "loaded": true,
+      "error": "",
+      "rigged": true,
+      "joints": 65,
+      "activeClip": "idle",
+      "playbackRate": 1,
+      "clips": [
+        "run",
+        "walk",
+        "idle",
+        "Walk slowly in place in a seamless loop while carrying a small ",
+        "carry-walk",
+        "carry-idle"
+      ],
+      "mechanical": {
+        "guard": {
+          "loaded": true,
+          "error": "",
+          "source": "guard.glb",
+          "rigged": false
+        },
+        "watering": {
+          "loaded": true,
+          "error": "",
+          "source": "watering-helper.glb",
+          "rigged": false
+        }
+      },
+      "tripoGLBs": 3,
+      "tripoRig": true
+    },
+    "errors": []
+  },
+  {
+    "chapter": 3,
+    "name": "workshop",
+    "fixture": "Seeded previous completion records in an isolated browser profile for visual review only; no gameplay-completion claim.",
+    "level": 11,
+    "player": {
+      "x": -1.0021954516977682,
+      "z": 0.05281099693130865,
+      "angle": 3.1,
+      "speed": 0,
+      "radius": 0.42,
+      "sneaking": false
+    },
+    "mode": "play",
+    "assets": {
+      "source": "Tripo local GLB",
+      "loaded": true,
+      "error": "",
+      "rigged": true,
+      "joints": 65,
+      "activeClip": "idle",
+      "playbackRate": 1,
+      "clips": [
+        "run",
+        "walk",
+        "idle",
+        "Walk slowly in place in a seamless loop while carrying a small ",
+        "carry-walk",
+        "carry-idle"
+      ],
+      "mechanical": {
+        "guard": {
+          "loaded": true,
+          "error": "",
+          "source": "guard.glb",
+          "rigged": false
+        },
+        "watering": {
+          "loaded": true,
+          "error": "",
+          "source": "watering-helper.glb",
+          "rigged": false
+        }
+      },
+      "tripoGLBs": 3,
+      "tripoRig": true
+    },
+    "errors": []
+  },
+  {
+    "chapter": 4,
+    "name": "station",
+    "fixture": "Seeded previous completion records in an isolated browser profile for visual review only; no gameplay-completion claim.",
+    "level": 16,
+    "player": {
+      "x": -1.0021954516977682,
+      "z": 0.05281099693130865,
+      "angle": 3.1,
+      "speed": 0,
+      "radius": 0.42,
+      "sneaking": false
+    },
+    "mode": "play",
+    "assets": {
+      "source": "Tripo local GLB",
+      "loaded": true,
+      "error": "",
+      "rigged": true,
+      "joints": 65,
+      "activeClip": "idle",
+      "playbackRate": 1,
+      "clips": [
+        "run",
+        "walk",
+        "idle",
+        "Walk slowly in place in a seamless loop while carrying a small ",
+        "carry-walk",
+        "carry-idle"
+      ],
+      "mechanical": {
+        "guard": {
+          "loaded": true,
+          "error": "",
+          "source": "guard.glb",
+          "rigged": false
+        },
+        "watering": {
+          "loaded": true,
+          "error": "",
+          "source": "watering-helper.glb",
+          "rigged": false
+        }
+      },
+      "tripoGLBs": 3,
+      "tripoRig": true
+    },
+    "errors": []
+  },
+  {
+    "chapter": 5,
+    "name": "museum",
+    "fixture": "Seeded previous completion records in an isolated browser profile for visual review only; no gameplay-completion claim.",
+    "level": 21,
+    "player": {
+      "x": -1.0021954516977682,
+      "z": 0.05281099693130865,
+      "angle": 3.1,
+      "speed": 0,
+      "radius": 0.42,
+      "sneaking": false
+    },
+    "mode": "play",
+    "assets": {
+      "source": "Tripo local GLB",
+      "loaded": true,
+      "error": "",
+      "rigged": true,
+      "joints": 65,
+      "activeClip": "idle",
+      "playbackRate": 1,
+      "clips": [
+        "run",
+        "walk",
+        "idle",
+        "Walk slowly in place in a seamless loop while carrying a small ",
+        "carry-walk",
+        "carry-idle"
+      ],
+      "mechanical": {
+        "guard": {
+          "loaded": true,
+          "error": "",
+          "source": "guard.glb",
+          "rigged": false
+        },
+        "watering": {
+          "loaded": true,
+          "error": "",
+          "source": "watering-helper.glb",
+          "rigged": false
+        }
+      },
+      "tripoGLBs": 3,
+      "tripoRig": true
+    },
+    "errors": []
+  },
+  {
+    "chapter": 6,
+    "name": "rooftop",
+    "fixture": "Seeded previous completion records in an isolated browser profile for visual review only; no gameplay-completion claim.",
+    "level": 26,
+    "player": {
+      "x": -1.0021954516977682,
+      "z": 0.05281099693130865,
+      "angle": 3.1,
+      "speed": 0,
+      "radius": 0.42,
+      "sneaking": false
+    },
+    "mode": "play",
+    "assets": {
+      "source": "Tripo local GLB",
+      "loaded": true,
+      "error": "",
+      "rigged": true,
+      "joints": 65,
+      "activeClip": "idle",
+      "playbackRate": 1,
+      "clips": [
+        "run",
+        "walk",
+        "idle",
+        "Walk slowly in place in a seamless loop while carrying a small ",
+        "carry-walk",
+        "carry-idle"
+      ],
+      "mechanical": {
+        "guard": {
+          "loaded": true,
+          "error": "",
+          "source": "guard.glb",
+          "rigged": false
+        },
+        "watering": {
+          "loaded": true,
+          "error": "",
+          "source": "watering-helper.glb",
+          "rigged": false
+        }
+      },
+      "tripoGLBs": 3,
+      "tripoRig": true
+    },
+    "errors": []
+  },
+  {
+    "chapter": 7,
+    "name": "festival",
+    "fixture": "Seeded previous completion records in an isolated browser profile for visual review only; no gameplay-completion claim.",
+    "level": 31,
+    "player": {
+      "x": -1.002785491417753,
+      "z": 0.031627335087924195,
+      "angle": 3.05,
+      "speed": 0,
+      "radius": 0.42,
+      "sneaking": false
+    },
+    "mode": "play",
+    "assets": {
+      "source": "Tripo local GLB",
+      "loaded": true,
+      "error": "",
+      "rigged": true,
+      "joints": 65,
+      "activeClip": "idle",
+      "playbackRate": 1,
+      "clips": [
+        "run",
+        "walk",
+        "idle",
+        "Walk slowly in place in a seamless loop while carrying a small ",
+        "carry-walk",
+        "carry-idle"
+      ],
+      "mechanical": {
+        "guard": {
+          "loaded": true,
+          "error": "",
+          "source": "guard.glb",
+          "rigged": false
+        },
+        "watering": {
+          "loaded": true,
+          "error": "",
+          "source": "watering-helper.glb",
+          "rigged": false
+        }
+      },
+      "tripoGLBs": 3,
+      "tripoRig": true
+    },
+    "errors": []
+  }
+]

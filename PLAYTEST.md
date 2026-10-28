@@ -1,5 +1,25 @@
 # Verification record
 
+## 28 October: 35-level campaign expansion
+
+The five-level ceiling is replaced by35 authored levels in seven themed settings. Progression is sequential and independent of grade, assistance, retries or medal count. Completion records and replay choices are saved in this browser. Reload begins the saved level at its entrance.
+
+- **132/132 tests pass**:71 existing semantic/physics cases,59 independent campaign cases and two campaign layout/route checks. The campaign review includes105 golden simulation-interaction completions (all35 in three variants) and all four final-level map/trolley combinations. Unit fixtures reposition actors; they are not browser playthrough evidence.
+- The new physical checks cover every candidate approach from the entrance and the arch and the larger helper’s path to each required service action with its actual cargo picked up. Identical geometry/targets share a cached assertion. A tight four-box aisle was expanded after the L18 click-route failure.
+- An independent fresh production browser earned levels1–17 with the trolley using ordinary pointer/keyboard actions and deterministic stepping:17 action wins,15 lawful/independent-evidence wins, no retries, zero page errors. Levels4 and9 completed without those marks and still unlocked the next job. Its captures precede the final raised station labels, selector keyboard refinement and L18 aisle adjustment.
+- Root input continuation has now earned all35 actual action completions, including real catch/retry, preserved scan identity, three-delivery plans and all11 final tasks. This is a resumed campaign across normal browser sessions, not a single uninterrupted run. Resumes use only genuine saved completion records, with the dev/preview origin adjusted when moving the test profile between ports; no active level, position or win is injected. Final result:35 completed,18 lawful results,17 independent language-evidence results;19/21/23 include1/1/2 retries. All35 unlocked despite lower medal results, as intended. The zero-error final run ended at the actual festival victory sheet.
+- All seven chapter themes and desktop/390×844 maps were visually checked. Those disposable seeded appearance profiles are separate from earned play evidence. See [CAMPAIGN_VISUAL_REVIEW.md](docs/CAMPAIGN_VISUAL_REVIEW.md). Mobile long rules start at scroll0, all11 final tasks and resume remain reachable, and the chapter title clears the rule pin.
+- The installed web-game skill client ran on the updated campaign map, and its actual screenshot/state were inspected. Earlier current-pass skill captures also cover normal movement and a real distraction.
+- Current build/typecheck pass. Vite’s existing Three.js chunk-size advisory remains. Production1280×800 DPR1 continuous RAF sample:601 frames/5003.2ms =**120.12fps**,4,158,025 encoded resourcebytes plus HTML, all three original GLBs loaded, zero page errors. This is one desktop sample rather than a mobile benchmark.
+
+Final saved-profile checks pass on the rebuilt preview:35 earned records restore, all35 nodes unlock, selecting/reloading level1 preserves all completions, native selector arrows do not move the raccoon, Q inspects the actual badge and E equips it. `scripts/qa-campaign-progress.cjs` requires the genuinely earned35-level storage file; it does not create completion records. Zero page errors. Curated actual captures and machine-readable records are in [campaign-play](docs/evidence/campaign-play/).
+
+A rendering-only lifecycle fixture rebuilt0–34 twice. An initial leak grew2678→5138 GPU geometries; owned temporary robot and item buffers now dispose without touching shared GLB resources. Both final cycle endpoints are202 geometries /18 textures /15 programs, peak16 programs, with all acquired actors still visible and no errors. First-four-level+2 geometry warmup is the persistent backpack first uploaded at level5. This fixture is not gameplay proof; see the visual review for scope.
+
+Reproduce the earned campaign input run with `node --import tsx scripts/qa-browser.cjs --campaign`; `--trolley` exercises that optional branch. `--through=17` bounds a prefix; `--resume-campaign` resumes its previously earned `work/campaign-earned-storage.json`. `RULE_RASCALS_QA_PREFIX` isolates another run’s files. Native Metal Chromium was used on this Mac. Local dev5203/preview4203 remain strictPort; production deployment was not performed.
+
+## 26 October checkpoint (historical)
+
 26 October 2026, local desktop. The original procedural baseline is preserved in progress.md and older captures. This is the resumed pass with actual local Tripo assets. Browser actions use ordinary pointer, keyboard and touch input plus the public deterministic time hook; no level, inventory or win state is injected.
 
 ## Player-reported physics and locomotion fixes
@@ -12,7 +32,7 @@ Signs draw above the framing and remain readable while architecture fades. The c
 
 Fresh final five-job runs pass both with and without trolley, all with lawful=true, languageEvidence=true and zero page errors. The bell route uses real cover and a second finite distraction after waiting for the toy cooldown. The independent direct-input browser completes lawful H1 plus the H2 ground-bag pickup/drop loop. Its desktop collision/label/carry scope is distinct from earlier touch/settings checks. Curated follow-up captures use the `fixed-` prefix.
 
-## Current automated checks
+## Earlier five-job automated checks
 
 - `npm test`: **71 / 71** semantic and physics cases pass. The earlier 41 semantic assertions remain (two fixtures now use free floor), plus 15 scenery, 13 bulky-prop/drop and two chase-memory regressions. Earlier coverage includes ten independent H1 cases for stationary watched-token carrying, actual distraction/expiry, physical cover, non-carrying ground objects, lawful no-toy eligibility, action versus language evidence, unchanged H2 optional-map choices and frozen reading pressure.
 - `npm run typecheck` and `npm run build`: pass. Vite reports its normal large-chunk advisory for Three.js; the build succeeds.

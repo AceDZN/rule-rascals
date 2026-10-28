@@ -3,7 +3,7 @@ const { chromium }=require(process.env.RULE_RASCALS_BROWSER_LIB||'playwright');
 const artifact=name=>`work/${process.env.RULE_RASCALS_QA_PREFIX?process.env.RULE_RASCALS_QA_PREFIX+'-':''}${name}`;const evidenceDir=artifact('browser-evidence');fs.mkdirSync(evidenceDir,{recursive:true});
 (async()=>{
  const {findPath,walkableTarget,clearSegment}=await import('../src/navigation.ts');
- const {HEISTS,missionConfig}=await import('../src/content.ts');const {visibleTo}=await import('../src/simulation.ts');const {STATIONS}=await import('../src/missions.ts');
+ const {HEISTS,missionConfig}=await import('../src/content.ts');const {inStore}=await import('../src/simulation.ts');const {STATIONS}=await import('../src/missions.ts');
  const b=await chromium.launch({headless:true,args:['--use-angle=metal','--enable-gpu','--ignore-gpu-blocklist']});
  const viewport={width:1672,height:941};
  const resume=process.argv.includes('--resume-campaign');const saved=resume?JSON.parse(fs.readFileSync(artifact('campaign-earned-storage.json'),'utf8')):undefined;
@@ -20,17 +20,10 @@ const artifact=name=>`work/${process.env.RULE_RASCALS_QA_PREFIX?process.env.RULE
  async function go(x,z){
   for(let n=0;n<80;n++){
    const before=await state();if(before.mode==='win')return;if(before.mode!=='play'){fs.writeFileSync(artifact('qa-failure.json'),JSON.stringify({target:{x,z},state:before,log},null,2));throw Error(`go ended ${before.mode} ${before.message}`);}
-   let routeState=before;
+   const routeState=before;
    if(before.heist>=6&&missionConfig(before.heist-1).watchedCargo&&before.cargo){
-    // Observe actual guard cones and plan around them. The game state remains untouched.
-    const physical={...before,level:before.heist-1},danger=[];
-    if(before.robots.some(r=>r.kind==='guard'&&r.mode!=='distracted'&&visibleTo(physical,r))&&Number(await p.locator('#squeak-btn').evaluate(e=>Number(e.style.opacity)))===1){await key('Space');continue;}
-    for(let xx=-11;xx<=11;xx+=.5)for(let zz=-9;zz<=9;zz+=.5){const q={x:xx,z:zz};if(Math.hypot(q.x-before.player.x,q.z-before.player.z)<.8)continue;if(before.robots.some(r=>r.kind==='guard'&&(r.mode!=='distracted'||r.timer<.9)&&visibleTo(physical,r,q)))danger.push({...q,w:.4,d:.4,h:0,kind:'loose-item'});}
-    routeState={...physical,obstacles:[...before.obstacles,...danger]};
-    if(!findPath(routeState,before.player,{x,z}).length){
-     const ready=Number(await p.locator('#squeak-btn').evaluate(e=>Number(e.style.opacity)))===1;
-     if(ready)await key('Space');else await advance(200);continue;
-    }
+    // Use the same finite toy as a player. Proximity gives a useful reaction margin.
+    if(before.robots.some(r=>r.kind==='guard'&&r.mode!=='distracted'&&Math.hypot(r.x-before.player.x,r.z-before.player.z)<9.5)&&Number(await p.locator('#squeak-btn').evaluate(e=>Number(e.style.opacity)))===1){await key('Space');continue;}
    }
    const goal=walkableTarget(routeState,before.player,{x,z},.42);if(!goal)throw Error(`No approach to ${x},${z}`);
    if(Math.hypot(before.player.x-goal.x,before.player.z-goal.z)<.4)return;
@@ -92,10 +85,16 @@ const artifact=name=>`work/${process.env.RULE_RASCALS_QA_PREFIX?process.env.RULE
      lastRequest=task.request;
     }
     const target=STATIONS[task.station];current=await state();
-    if(current.player.z< -3&&target.z>=-3){await go(3,-4.5);await go(3,-1.5);}
-    if(current.player.z>=-3&&target.z< -3&&target.x>0){await go(3,-1.5);await go(3,-4.5);}
-    if(task.station==='exit')await go(-5,5);
-    await go(target.x,target.z);await advance(800);
+    if(inStore(current.player)&&!inStore(target)){
+     if(config.watchedCargo&&current.cargo){
+      await go(8,-4.5);const stashed=(await state()).cargo;if(stashed)await key('g');for(let wait=0;wait<40&&Number(await p.locator('#squeak-btn').evaluate(e=>Number(e.style.opacity)))<1;wait++)await advance(200);await key('Space');if(stashed){await p.selectOption('#near-target',stashed);await key('e');}
+     }
+     await go(3,-4.5);await go(3,-1.5);
+     if(config.watchedCargo&&current.cargo){await go(-8,-1.5);if(target.z>=-3)await go(-8,4.3);}
+    }
+    if(!inStore(current.player)&&inStore(target)){await go(3,-1.5);await go(3,-4.5);}
+    if(task.station==='exit'&&(await state()).player.x>=-7)await go(-5,5);
+    await go(target.x,target.z);await advance((await state()).cargo?100:800);
     current=await state();if(current.mode!=='win'&&current.taskIndex===count){if(task.station!=='exit')await p.selectOption('#near-target',`station-${task.station}`);await key('e');await advance(100);}
     current=await state();if(current.taskIndex!==count+1)throw Error(`Task failed L${level+1}: ${task.text} ${current.message}`);
     if(task.kind==='deliver')lastRequest='';

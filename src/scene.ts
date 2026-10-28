@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import {missionConfig} from './content';
+import {STATIONS} from './missions';
+import {getChapterTheme,createChapterDressing,disposeChapterDressing} from './campaign-theme';
 import {ENTRY_DESK,NOTICE,ARCH_POSTS,STORE_WALLS,STORE_SHELF,FOUNTAIN,FLOWER_POTS,BOUNDARY_TREES,BELL_PEDESTAL_RADIUS,GROUND_PROP_SIZES,overlapsObstacle} from './world-layout';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { createPlayerActor, createMechanicalActor, mechanicalAssets } from './actors';
@@ -20,10 +23,12 @@ export function createView(canvas:HTMLCanvasElement){
   const can=document.createElement('canvas');can.width=640;can.height=160;const ctx=can.getContext('2d')!;ctx.fillStyle=bg;ctx.fillRect(0,0,640,160);ctx.strokeStyle=fg;ctx.lineWidth=5;ctx.strokeRect(10,10,620,140);ctx.fillStyle=fg;ctx.font='600 42px Georgia';ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,320,84,590);const texture=new THREE.CanvasTexture(can);texture.colorSpace=THREE.SRGBColorSpace;const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:texture,transparent:true,depthTest:false,depthWrite:false}));sp.scale.set(w,w/4,1);sp.renderOrder=100;return sp;
  }
  function flowers(p:THREE.Object3D,x:number,z:number,seed:number){for(let i=0;i<13;i++){const a=i*2.4+seed,r=.15+(i%4)*.24,xx=x+Math.cos(a)*r,zz=z+Math.sin(a)*r;const y=.65+(i%3)*.15;cylinder(p,xx,y/2,zz,.025,.025,y,C.jade);sphere(p,xx,y,zz,.11,i%3?C.cream:C.red);}}
- function planter(x:number,z:number,w:number,d:number,h:number){const p=new THREE.Group();world.add(p);box(p,x,h/2,z,w,h,d,C.jade);box(p,x,h,z,w+.15,.12,d+.15,C.ink);box(p,x,.12,z,w+.18,.18,d+.18,C.edge);box(p,x,h+.03,z,w-.15,.1,d-.15,0x564f3d);for(let i=0;i<18;i++){const xx=x+Math.sin(i*3.41)*w*.4,zz=z+Math.cos(i*1.97)*d*.35;const m=sphere(p,xx,h+.25+(i%3)*.13,zz,.38,i%4===0?C.jade:C.leaf);m.scale.set(1.5,.8,1);}flowers(p,x,z,1);}
+ let foliage=true;
+ function planter(x:number,z:number,w:number,d:number,h:number){const p=new THREE.Group();world.add(p);box(p,x,h/2,z,w,h,d,C.jade);box(p,x,h,z,w+.15,.12,d+.15,C.ink);box(p,x,.12,z,w+.18,.18,d+.18,C.edge);box(p,x,h+.03,z,w-.15,.1,d-.15,0x564f3d);if(foliage)for(let i=0;i<18;i++){const xx=x+Math.sin(i*3.41)*w*.4,zz=z+Math.cos(i*1.97)*d*.35;const m=sphere(p,xx,h+.25+(i%3)*.13,zz,.38,i%4===0?C.jade:C.leaf);m.scale.set(1.5,.8,1);}if(foliage)flowers(p,x,z,1);}
  function tree(x:number,z:number,h=4){const start=world.children.length;cylinder(world,x,h/2,z,.18,.28,h,C.ink);for(let j=0;j<8;j++){const a=j*2.4;const m=sphere(world,x+Math.cos(a)*.8,h+.2+(j%3)*.38,z+Math.sin(a)*.8,.85,j%2?C.leaf:C.jade);m.scale.y=1.2;}cylinder(world,x,.25,z,.7,.6,.5,C.edge);collectOccluders(start,{x,z,y:h});}
  function arch(){for(const o of ARCH_POSTS){box(world,o.x,o.h/2,o.z,o.w,o.h,o.d,C.cream);box(world,o.x,3.55,o.z,.7,.2,.8,C.edge);sphere(world,o.x,3.9,o.z,.22,C.cream);}box(world,3,3.5,-3,4.5,.38,.5,C.cream);}
  function makeItem(i:Item){const g=new THREE.Group();
+  if(i.kind==='tool'){box(g,0,.18,0,.58,.32,.38,C.ink);box(g,0,.35,0,.52,.04,.33,C.cream);if(i.id==='wrench'){box(g,0,.4,0,.4,.07,.07,C.brass);cylinder(g,.2,.4,0,.11,.11,.07,C.brass);}else{box(g,0,.4,0,.35,.06,.07,C.edge);box(g,.2,.4,0,.16,.1,.18,C.brass);}}
   if(i.kind==='token'){cylinder(g,0,.32,0,.32,.32,.12,C.brass);const star=mesh(new THREE.OctahedronGeometry(.18),C.cream,g,0,.45,0);star.rotation.z=.4;}
   if(i.kind==='badge'){box(g,0,.4,0,.42,.6,.06,C.cream);const l=mesh(new THREE.TorusGeometry(.14,.035,6,12),C.brass,g,0,.8,0);l.rotation.y=0;sphere(g,0,.45,.04,.11,C.jade);}
   if(i.kind==='map'){box(g,0,.15,0,.65,.08,.48,C.cream);box(g,0,.2,0,.04,.01,.4,C.jade);box(g,0,.2,0,.6,.01,.03,C.red);}
@@ -50,14 +55,15 @@ export function createView(canvas:HTMLCanvasElement){
   // Keep each tree independently fadeable while batching its same-colour canopy pieces.
   if(tree){group.updateMatrixWorld(true);const batches=new Map<THREE.Material,THREE.BufferGeometry[]>();const meshes:THREE.Mesh[]=[];group.traverse(o=>{if(o instanceof THREE.Mesh&&!Array.isArray(o.material)){const geo=o.geometry.clone().applyMatrix4(o.matrixWorld);const plain=geo.index?geo.toNonIndexed():geo;if(plain!==geo)geo.dispose();if(!batches.has(o.material))batches.set(o.material,[]);batches.get(o.material)!.push(plain);meshes.push(o);}});for(const o of meshes){o.removeFromParent();o.geometry.dispose();}for(const [material,geos]of batches){const merged=mergeGeometries(geos,false);geos.forEach(g=>g.dispose());if(merged){const mesh=new THREE.Mesh(merged,material);mesh.userData.occluder=true;mesh.castShadow=true;mesh.receiveShadow=true;group.add(mesh);}}}
  }
+ let dressing:THREE.Group|undefined;const stationLights=new Map<string,THREE.Mesh>();
  let door:THREE.Group,cloth:THREE.Mesh|undefined,level=-1, viewport={w:0,h:0};let lastFrame=performance.now();let fps=60;
- function disposeWorld(){world.traverse(o=>{if(o instanceof THREE.Mesh)o.geometry.dispose();if(o instanceof THREE.Sprite){const m=o.material as THREE.SpriteMaterial;m.map?.dispose();m.dispose();}});world.clear();for(const g of items.values())g.removeFromParent();for(const g of robots.values())g.removeFromParent();items.clear();robots.clear();}
- function build(s:State){disposeWorld();for(const {material} of fadingMaterials)material.dispose();fadingMaterials.length=0;level=s.level;box(world,0,-.4,0,24,.75,20,C.stone);box(world,0,-.85,0,24.4,.25,20.4,C.edge);
+ function disposeWorld(){if(dressing){disposeChapterDressing(dressing);dressing=undefined;}stationLights.clear();world.traverse(o=>{if(o instanceof THREE.Mesh)o.geometry.dispose();if(o instanceof THREE.Sprite){const m=o.material as THREE.SpriteMaterial;m.map?.dispose();m.dispose();}});world.clear();for(const g of items.values())g.removeFromParent();for(const g of robots.values())g.removeFromParent();items.clear();robots.clear();}
+ function build(s:State){disposeWorld();for(const {material} of fadingMaterials)material.dispose();fadingMaterials.length=0;level=s.level;const theme=getChapterTheme(Math.floor(s.level/5));foliage=theme.showFoliage;Object.assign(C,theme.colors);scene.background=new THREE.Color(theme.background);scene.fog=new THREE.Fog(theme.background,50,100);sun.color.setHex(theme.sunColor);box(world,0,-.4,0,24,.75,20,C.stone);box(world,0,-.85,0,24.4,.25,20.4,C.edge);
   // Jointed stone paving with restrained variation.
-  for(let x=-11.2;x<12;x+=1.4)for(let z=-9.2;z<10;z+=1.4){const c=[0xe8dfcc,0xeee4d1,0xe4dbc8,0xf0e6d3][Math.abs(Math.round(x*11+z*7))%4];box(world,x,.002,z,1.37,.025,1.37,c);}
+  for(let x=-11.2;x<12;x+=1.4)for(let z=-9.2;z<10;z+=1.4){const c=theme.paving[Math.abs(Math.round(x*11+z*7))%4];box(world,x,.002,z,1.37,.025,1.37,c);}
   // Sunken jade lawns soften the paving, paths remain physically navigable.
   for(const o of activeObstacles(s)){if(o.kind==='planter')planter(o.x,o.z,o.w,o.d,o.h);}
-  for(const x of [-11.6,11.6]){box(world,x,.35,0,.35,.7,19.8,C.cream);}for(const t of BOUNDARY_TREES)tree(t.x,t.z,t.h);
+  for(const x of [-11.6,11.6]){box(world,x,.35,0,.35,.7,19.8,C.cream);}if(theme.showBoundaryTrees)for(const t of BOUNDARY_TREES)tree(t.x,t.z,t.h);
   box(world,0,.4,-9.6,23,.8,.4,C.cream);
   // Glass conservatory: actual walls use precise colliders; glazing and ribs remain readable from above.
   const glazingStart=world.children.length;
@@ -69,21 +75,27 @@ export function createView(canvas:HTMLCanvasElement){
   collectOccluders(glazingStart);
   box(world,5,.035,-6,9.6,.045,5.6,0xd7d2b8);
   box(world,STORE_SHELF.x,1.25,STORE_SHELF.z,STORE_SHELF.w,.15,STORE_SHELF.d,C.jade);for(const x of [1.5,8.5])box(world,x,.6,-8.6,.12,1.2,.4,C.jade);
-  for(let i=0;i<6;i++){const x=1.7+i*1.25;cylinder(world,x,1.5,-8.6,.22,.17,.4,C.red);sphere(world,x,1.9,-8.6,.29,i%2?C.jade:C.leaf);}
+  if(foliage)for(let i=0;i<6;i++){const x=1.7+i*1.25;cylinder(world,x,1.5,-8.6,.22,.17,.4,C.red);sphere(world,x,1.9,-8.6,.29,i%2?C.jade:C.leaf);}
   if(s.level===3)for(const i of s.items.filter(i=>i.kind==='bell')){cylinder(world,i.x,.4,i.z,.34,.44,.8,C.cream);cylinder(world,i.x,.83,i.z,BELL_PEDESTAL_RADIUS,BELL_PEDESTAL_RADIUS,.1,C.jade);}
 
   const facadeStart=world.children.length;
   for(const o of STORE_WALLS.filter(o=>o.z===-3))box(world,o.x,o.h/2,o.z,o.w,o.h,o.d,C.cream);arch();
   for(let x=5.4;x<10;x+=1.2){box(world,x,2.75,-3,.07,1,.1,C.jade);}
-  const storeSign=label(s.level===4?'HELPERS ONLY':'THE CONSERVATORY',3.5);storeSign.position.set(6.8,3.8,-3.1);world.add(storeSign);
+  const storeSign=label(missionConfig(s.level).helperCarry?'HELPERS ONLY':s.level<5?'THE CONSERVATORY':theme.storeName,3.5);storeSign.position.set(6.8,3.8,-3.1);world.add(storeSign);
   door=new THREE.Group();world.add(door);for(let x=1.3;x<4.8;x+=.3)box(door,x,1.2,-3,.05,2.4,.08,C.jade);box(door,3,2,-3,3.8,.08,.1,C.jade);
   collectOccluders(facadeStart);
   cylinder(world,FOUNTAIN.x,.35,FOUNTAIN.z,.85,FOUNTAIN.radius,.65,C.edge);cylinder(world,FOUNTAIN.x,.73,FOUNTAIN.z,.77,.77,.05,0x72aba1);cylinder(world,FOUNTAIN.x,1,FOUNTAIN.z,.16,.24,.7,C.cream);sphere(world,FOUNTAIN.x,1.45,FOUNTAIN.z,.15,C.cream);
   // Entry desk and a physical exit mat.
   box(world,ENTRY_DESK.x,.65,ENTRY_DESK.z,ENTRY_DESK.w-.2,1.2,ENTRY_DESK.d-.2,C.jade);box(world,ENTRY_DESK.x,1.3,ENTRY_DESK.z,ENTRY_DESK.w,.12,ENTRY_DESK.d,C.cream);const exit=label('EXIT',1.7,'#386951','#fff4d8');exit.position.set(-10.25,.13,8.7);exit.material.depthTest=false;exit.rotation.x=-Math.PI/2;world.add(exit);
   const notice=label('Wear a badge.',2.2);notice.position.set(NOTICE.x,2.1,NOTICE.z);world.add(notice);box(world,NOTICE.x,NOTICE.h/2,NOTICE.z,NOTICE.w,NOTICE.h,NOTICE.d,C.ink);
-  for(const {x,z} of FLOWER_POTS){cylinder(world,x,.3,z,.42,.3,.6,C.red);flowers(world,x,z,x+z);}
+  for(const {x,z} of FLOWER_POTS){cylinder(world,x,.3,z,.42,.3,.6,C.red);if(foliage)flowers(world,x,z,x+z);}
   for(let i=0;i<12;i++){const g=sphere(world,-10+(i*2.31)%21,.08,-8+(i*3.37)%16,.06,C.red);g.scale.y=.25;}
+  if(s.level>=5)for(const [id,p]of Object.entries(STATIONS)){
+   if(id==='exit')continue;
+   const sign=label(p.label.toUpperCase(),2.1);sign.position.set(p.x,1.45,p.z);world.add(sign);
+   cylinder(world,p.x,.03,p.z,.5,.5,.04,C.jade);const light=cylinder(world,p.x,.065,p.z,.16,.16,.04,C.brass);light.userData.occluder=true;light.material=mat(C.brass);stationLights.set(id,light);
+  }
+  dressing=createChapterDressing(Math.floor(s.level/5));dressing.traverse(o=>{if(o instanceof THREE.Mesh)o.userData.occluder=true;});world.add(dressing);
   for(const item of s.items){const g=makeItem(item);scene.add(g);items.set(item.id,g);}
   for(const r of s.robots){const g=createMechanicalActor(r.kind);scene.add(g);robots.set(r.id,g);}
   cloth=undefined;if(s.level===3){cloth=box(world,0,0,0,.28,.12,.3,C.cream);}
@@ -102,10 +114,11 @@ export function createView(canvas:HTMLCanvasElement){
   const narrow=viewport.w/viewport.h<1.15;const t=new THREE.Vector3(narrow?s.player.x*.82:s.player.x*.76,0,narrow?s.player.z*.82:s.player.z*.76);const desired=t.clone().add(new THREE.Vector3(12,15,24));camera.position.copy(desired);camera.lookAt(t);
   raccoon.position.set(s.player.x,0,s.player.z);raccoon.rotation.y=s.player.angle;playerActor.update(s.time,s.player.speed,!!s.cargo,s.player.sneaking,s.badge,s.bag,reduced);
   for(const i of s.items){let g=items.get(i.id);if(!g){g=makeItem(i);items.set(i.id,g);scene.add(g);}g.visible=i.holder==='ground'||i.holder==='player'&&s.cargo===i.id||i.holder==='helper'&&i.kind==='box'||i.kind==='trolley'&&s.trolley;
-   if(i.holder==='player'&&playerActor.carrySocket&&s.cargo===i.id){playerActor.carrySocket.add(g);g.position.set(0,.06,.08);g.rotation.set(0,0,0);g.scale.setScalar(.7);}else if(i.holder==='player'){scene.add(g);g.position.set(s.player.x+Math.sin(s.player.angle)*.55,.85,s.player.z+Math.cos(s.player.angle)*.55);g.scale.setScalar(.7);}else if(i.holder==='helper'&&i.kind==='box'){scene.add(g);const h=s.robots.find(r=>r.cargo===i.id);if(h)g.position.set(h.x-(s.trolley?Math.sin(h.angle)*.8:0),s.trolley?.3:1,h.z-(s.trolley?Math.cos(h.angle)*.8:0));g.scale.setScalar(.85);}else if(i.kind==='trolley'&&s.trolley){const h=s.robots.find(r=>r.id===s.escort);g.visible=!!h;if(h)g.position.set(h.x-Math.sin(h.angle)*.8,0,h.z-Math.cos(h.angle)*.8);}else{scene.add(g);g.position.set(i.x,i.id==='badge'||i.kind==='map'?1.35:i.kind==='bell'?.9:0,i.z);g.scale.setScalar(1);}
+   if(i.holder==='player'&&playerActor.carrySocket&&s.cargo===i.id){playerActor.carrySocket.add(g);g.position.set(0,.06,.08);g.rotation.set(0,0,0);g.scale.setScalar(.7);}else if(i.holder==='player'){scene.add(g);g.position.set(s.player.x+Math.sin(s.player.angle)*.55,.85,s.player.z+Math.cos(s.player.angle)*.55);g.scale.setScalar(.7);}else if(i.holder==='helper'&&i.kind==='box'){scene.add(g);const h=s.robots.find(r=>r.cargo===i.id);if(h)g.position.set(h.x-(s.trolley?Math.sin(h.angle)*.8:0),s.trolley?.3:1,h.z-(s.trolley?Math.cos(h.angle)*.8:0));g.scale.setScalar(.85);}else if(i.kind==='trolley'&&s.trolley){const h=s.robots.find(r=>r.id===s.escort);g.visible=!!h;if(h)g.position.set(h.x-Math.sin(h.angle)*.8,0,h.z-Math.cos(h.angle)*.8);}else{scene.add(g);g.position.set(i.x,i.id==='badge'||i.kind==='map'?1.35:i.kind==='bell'&&s.level===3?.9:0,i.z);g.scale.setScalar(1);}
   }
   for(const r of s.robots){const g=robots.get(r.id)!;g.position.set(r.x,0,r.z);g.rotation.y=r.angle;g.userData.animate?.(reduced?0:s.time,reduced||r.mode==='distracted'?0:.7,false,false);}
   if(cloth){const h=s.robots.find(r=>r.kind==='watering')!;cloth.position.set(h.x,.7,h.z-.6+Math.sin((reduced?0:s.time)*7)*.12);}
+  for(const [id,light]of stationLights){const done=missionConfig(s.level).tasks.some(t=>t.station===id&&s.completedTasks.includes(t.id));(light.material as THREE.MeshStandardMaterial).color.setHex(done?C.jade:C.brass);}
   const guard=s.robots[0];cone.position.set(guard.x,.04,guard.z);const obs=activeObstacles(s).filter(o=>o.h>1.1);const reach=(angle:number)=>{for(let d=.15;d<7.4;d+=.15){const x=guard.x+Math.sin(angle)*d,z=guard.z+Math.cos(angle)*d;if(obs.some(o=>overlapsObstacle(o,{x,z})))return d;}return 7.4;};for(let i=0;i<42;i++){const a=guard.angle-.72+i/42*1.44,b=a+1.44/42,ra=reach(a),rb=reach(b);conePositions.set([0,0,0,Math.sin(a)*ra,0,Math.cos(a)*ra,Math.sin(b)*rb,0,Math.cos(b)*rb],i*9);}coneGeom.attributes.position.needsUpdate=true;coneGeom.computeBoundingSphere();cone.material.color.setHex(guard.mode==='chase'?0xd64a34:0xb7831e);cone.material.opacity=guard.mode==='chase'?.4:.34;cone.visible=guard.mode!=='distracted'&&(s.mode==='play'||s.mode==='reading');attention.visible=guard.mode!=='distracted'&&(s.suspicion>.05||guard.mode==='chase');attention.position.set(guard.x,2.5,guard.z);distractedMark.visible=guard.mode==='distracted';distractedMark.position.set(guard.x,2.5,guard.z);
   selection.visible=!!nearId;const item=s.items.find(i=>i.id===nearId),r=s.robots.find(r=>r.id===nearId);if(item)selection.position.set(item.x,.07,item.z);else if(r)selection.position.set(r.x,.07,r.z);else selection.visible=false;
   destination.visible=!!pathTarget;if(pathTarget)destination.position.set(pathTarget.x,.05,pathTarget.z);

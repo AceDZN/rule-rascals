@@ -1,5 +1,6 @@
+import {EXTRA_HEISTS, type MissionConfig} from './missions';
 export interface Heist {
-  title: string; subtitle: string; objective: string; rules: string[]; translation: string[]; hint: string;
+  title: string; subtitle: string; objective: string; rules: string[]; translation: string[]; hint: string; chapter?:number; difficulty?:number; setup?:MissionConfig;
 }
 export const HEISTS: Heist[] = [
   {title:'תג כניסה', subtitle:'01 · THE GARDEN TOKEN', objective:'Recover the garden token and bring it to the exit.', rules:['Visitors must wear a badge.','Visitors can use the garden path.',"Visitors mustn't carry the token while a guard is watching them."], translation:['מבקרים חייבים לענוד תג.','מותר למבקרים להשתמש בשביל הגינה.','אסור למבקרים לשאת את האסימון כשהשומר צופה בהם.'], hint:'תג בכיס עדיין אינו תג על הגוף. כשנושאים את האסימון, תזמנו את המעבר לפי מבט השומר או השתמשו במחסה ובצעצוע המסיח.'},
@@ -8,4 +9,9 @@ export const HEISTS: Heist[] = [
   {title:'הפעמון הנכון', subtitle:'04 · THE FESTIVAL BELL', objective:'Take the bell that the gardener polished. Bring it to the exit.', rules:['Visitors must wear a badge.','Use the key that opens the side door.','Take the bell that the gardener polished.',"Visitors mustn't carry a bell while a guard is watching them."], translation:['מבקרים חייבים לענוד תג.','השתמשו במפתח שפותח את הדלת הצדדית.','קחו את הפעמון שהגנן הבריק.','אסור למבקרים לשאת פעמון כשהשומר צופה בהם.'], hint:'קראו את התוויות של המפתחות ואת יומן הגנן. ההיסטוריה של הפעמון קובעת; המיקום שלו עשוי להשתנות. כשנושאים פעמון צריך להימנע ממבט השומר; צעצוע יכול להסיח אותו.'},
   {title:'משלוח אחרון', subtitle:'05 · NEW RULES', objective:'Take the box that the helper placed beside the fountain. Bring it to the exit.', rules:['Visitors must wear a badge.','Only helpers can carry boxes through the arch.','Visitors must leave large bags outside the arch.',"You don't have to use the trolley.",'Take the box that the helper placed beside the fountain.'], translation:['מבקרים חייבים לענוד תג.','רק עוזרים רשאים להעביר ארגזים דרך הקשת.','מבקרים חייבים להשאיר תיקים גדולים מחוץ לקשת.','לא חייבים להשתמש בעגלה. אפשר גם להשתמש בה.','קחו את הארגז שהעוזר הניח ליד המזרקה.'], hint:''}
 ];
-export const WORDS: Record<string,string> = {must:'חייבים',"mustn't":'אסור',"don't have to":'לא חייבים — נתון לבחירה',can:'מותר בהקשר הזה',without:'ללא',helper:'עוזר',badge:'תג',doorway:'פתח דלת',who:'ש־, מתאר דמות',that:'ש־, מזהה דבר במשפט הזה',polished:'הבריק',beside:'ליד',fountain:'מזרקה',arch:'קשת',trolley:'עגלה'};
+HEISTS.push(...EXTRA_HEISTS);
+export function missionConfig(level:number):MissionConfig {
+ const authored=HEISTS[level]?.setup;if(authored)return authored;
+ return {escort:level===2,helperCarry:level===4,bagOutside:level===4,doorwayClear:level===1,watchedCargo:level===0||level===3,locked:level===3,map:level===1,trolley:level===4,tasks:[{id:'deliver-prize',kind:'deliver',station:'exit',text:HEISTS[level].objective,request:'prize'}]};
+}
+export const WORDS: Record<string,string> = {must:'חייבים',"mustn't":'אסור',"don't have to":'לא חייבים — נתון לבחירה',can:'מותר בהקשר הזה',without:'ללא',helper:'עוזר',badge:'תג',doorway:'פתח דלת',who:'ש־, מתאר דמות',that:'ש־, מזהה דבר במשפט הזה',polished:'הבריק',beside:'ליד',fountain:'מזרקה',arch:'קשת',trolley:'עגלה',before:'לפני',after:'אחרי',then:'לאחר מכן',scan:'לסרוק',repair:'לתקן',wrench:'מפתח ברגים',brush:'מברשת',dispatch:'משלוחים',throughout:'במשך כל',instead:'במקום',although:'למרות',borrowed:'שאל לשימוש זמני',lent:'השאיל לאחר',sealed:'אטם'};

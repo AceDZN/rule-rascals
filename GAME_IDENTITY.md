@@ -6,7 +6,7 @@ Core verbs: sneak, sprint, inspect, equip, carry/drop, squeak, ask, follow, esca
 
 First 60 seconds: read the visitor rule with time stopped; take and equip a badge; weave around a raised planter; watch a guard turn; retrieve a token and return to the entrance. Later heists add optional supplies, helper escort, keyed access, object history and a changed delivery rule.
 
-The player chooses a plan from posted English and observed actions. Badges, cargo, helper proximity, actual occlusion and guard attention change the simulation. A visible violation raises suspicion, then a chase. Reaching cover breaks sight; being caught returns cargo and the raccoon to a safe entrance. Each recovered object unlocks the next heist. Five recoveries finish the slice.
+The player chooses a plan from posted English and observed actions. Badges, cargo, helper proximity, actual occlusion and guard attention change the simulation. A visible violation raises suspicion, then a chase. Reaching cover breaks sight; being caught returns cargo and the raccoon to a safe entrance. Each recovered object unlocks the next heist. Thirty-five authored missions form the campaign. Every completion unlocks the next level, independently of grade, medal count, assistance or retries. Later chapters combine tool use, ordered item-bound scans, role-specific transport and multiple deliveries. Seven distinct chapter themes share the proven physical floor plan.
 
 Camera: orthographic oblique garden view, with gentle follow and responsive zoom. Silhouette: ringed tail, separated paws, yellow scarf. Cream plaster, jade leaves, brass props, tomato-red guards and dark outlines. Soft shadows with bright ambient light. Squeaks, bell chimes and short robot warning tones begin only after a gesture.
 

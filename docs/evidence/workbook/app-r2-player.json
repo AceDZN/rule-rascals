@@ -1,0 +1,33 @@
+{
+  "origin": "http://localhost:4318",
+  "release": "2026-10-28",
+  "levelCount": 35,
+  "lessons": true,
+  "desktop35": true,
+  "actualFirstCompletion": [
+    {
+      "source": "workbook-game",
+      "version": 1,
+      "slug": "rule-rascals",
+      "type": "ready"
+    },
+    {
+      "source": "workbook-game",
+      "version": 1,
+      "slug": "rule-rascals",
+      "type": "level-start",
+      "level": 1
+    },
+    {
+      "source": "workbook-game",
+      "version": 1,
+      "slug": "rule-rascals",
+      "type": "level-complete",
+      "level": 1,
+      "durationMs": 14100
+    }
+  ],
+  "mobile26Badge": true,
+  "errors": [],
+  "http": []
+}

@@ -1,8 +1,8 @@
 # Rule Rascals · שובבים לפי הכללים
 
-An original 3D garden heist for Hebrew-speaking grade-8 English learners. A raccoon equips a visitor badge, uses cover and distractions, identifies a helper, unlocks a store, recovers the correct bell and completes a changed box-delivery job.
+An original 3D English heist campaign for Hebrew-speaking learners, with 35 progressively more complex levels and no grade-based limit. A raccoon equips a visitor badge, uses cover and distractions, identifies a helper, unlocks a store, recovers the correct bell and completes a changed box-delivery job.
 
-**Play locally:** [development](http://localhost:5203/) or [production preview](http://localhost:4203/), while the local servers are running. The five-job slice now uses three original local Tripo GLBs: a raccoon with a 65-joint Mixamo skin and real idle/walk/run/carry source clips and two runtime carry composites, a watering helper and a guard. The wheeled robots move as rigid props. See [ASSETS.md](ASSETS.md) for measured files, prompts, credit use and rights. No production deployment has been made.
+**Play locally:** [development](http://localhost:5203/) or [production preview](http://localhost:4203/), while the local servers are running. The campaign uses three original local Tripo GLBs: a raccoon with a 65-joint Mixamo skin and real idle/walk/run/carry source clips and two runtime carry composites, a watering helper and a guard. The wheeled robots move as rigid props. See [ASSETS.md](ASSETS.md) for measured files, prompts, credit use and rights. No production deployment has been made.
 
 ## Run
 
@@ -27,21 +27,21 @@ Vercel-ready static build: import this repository, use Vite, build `npm run buil
 
 - WASD or arrows: move relative to the camera. Shift: run. C: sneak.
 - Click a clear path: navigate around solid obstacles. Touch: drag the movement pad.
-- E / action button: equip, take, unlock or request help from the nearby character.
+- E / action button: equip, take, unlock, request help or use the nearby service point. Choose a specific nearby object in the context selector when several are in reach.
 - Q: inspect the nearby object or robot. M: open an acquired map of visited routes. G: drop cargo, leave the large bag, or ask the helper to put down its box.
 - Space: toss the squeaky distraction. It has a finite cooldown.
 - R: posted rules and reading support. Escape: pause/resume. F: fullscreen.
 - Sound, reduced motion and restart are available in the controls/pause menu.
 
-Time stops during rule reading, inspection, vocabulary and translation. The first four jobs offer planning hints. The transfer job has no solution hint. English text is LTR; the Hebrew shell is RTL. A system English voice can read the visible notice when speech synthesis is available; voice availability depends on the browser/OS.
+Time stops during rule reading, inspection, vocabulary and translation. Planning hints are available between chapter finales. Every fifth level withholds a solution hint. English text is LTR; the Hebrew shell is RTL. A system English voice can read the visible notice when speech synthesis is available; voice availability depends on the browser/OS.
 
-The first token and the later bell must be carried out of attentive guard view. Cover, patrol timing and the squeaky toy create routes. The badge confers visitor status only. The watering robot is the actual helper. A map and trolley are optional. The final arch needs authorized helper transport of the specified box; a visitor wearing a badge is still a visitor.
+The first token and the later bell must be carried out of attentive guard view. Cover, patrol timing and the squeaky toy create routes. The badge confers visitor status only. The watering robot is the actual helper. A map and trolley are optional. Helper-only arch rules require actual helper transport of the specified box; a visitor wearing a badge is still a visitor.
 
 ## Rules and evidence
 
 Pure TypeScript content and simulation live in `src/content.ts` and `src/simulation.ts`. Rendering uses Three.js with real 3D depth, shadows, authored colliders, line-of-sight occlusion and a guard patrol/suspicion/chase/return state machine. A fixed visible inspector observes the transfer arch. Original procedural scenery is batched by material. Foreground trees and conservatory structure fade when they obstruct the player; their authored collisions and sight rules stay intact. Shared scenery footprints and dynamic bulky-prop collision keep movement and click navigation outside solid objects. Drops use free floor beside the carrier. Local GLTFLoader/AnimationMixer playback and bone sockets drive the raccoon, equipment and held cargo.
 
-The five jobs practice must / mustn't / can / don't have to, conditional entry, and defining relative clauses. [CURRICULUM.md](CURRICULUM.md) maps original scenario sentences to the saved Workbook sources. Completion and language evidence are separate; supported or repeated attempts are not first unaided decisions. This game has not established learning gains or productive grammar mastery.
+The opening five jobs practice must / mustn't / can / don't have to, conditional entry, and defining relative clauses. [CURRICULUM.md](CURRICULUM.md) maps original scenario sentences to the saved Workbook sources. Completion and language evidence are separate; supported or repeated attempts are not first unaided decisions. This game has not established learning gains or productive grammar mastery.
 
 A minimal event log stays in this browser's `localStorage` under `rule-rascals-local-events`. It contains game actions, support and retry flags, and results; no student identity and no remote analytics. Clear site storage to remove it. There is no runtime AI, backend, account or API key.
 
@@ -56,6 +56,22 @@ A minimal event log stays in this browser's `localStorage` under `rule-rascals-l
 - [ASSETS.md](ASSETS.md): actual Tripo provenance, rig/clip inspection, rights and file measurements.
 - [docs/ENGLISH_REVIEW.md](docs/ENGLISH_REVIEW.md): independent semantic/gameplay review.
 
-Current semantic and physics suite: **71 passing tests**. Actual input-driven browser runs complete all five jobs, both trolley choices, recovery and touch checks; see the verification record for practical limits.
+Current semantic and physics suite: **132 passing tests**. The suite includes all 35 campaign completions through simulation interactions. Historical input-driven browser runs cover both trolley choices, recovery and touch checks; see the verification record for practical limits.
 
 Three.js is MIT; bundled Heebo is OFL. License texts are included under `public/licenses/`. Original game characters, scenario text and procedural geometry are authored for this project; no existing game art is copied.
+
+## 35-level campaign (28 October expansion)
+
+The game now contains 35 authored levels, unlocked sequentially through ordinary completion. There is no grade selector or grade ceiling. Help, translation, mistakes and retries never block advancement. The chapter map lets players resume their next mission or replay completed ones; progress and best medals are saved locally in this browser (`rule-rascals-campaign-v2`). Reload resumes the chosen level from its beginning.
+
+| Levels | Place | Added demands |
+|---|---|---|
+|1–5|Exhibition Garden|Badge, permission, optional equipment, escort, object history and helper transport|
+|6–10|Glasshouse|Close description matches, indoor running rule, ordered scans and two deliveries|
+|11–15|Robot Workshop|Choose wrench/brush, restore actual service points, repair before entry, combine checks and deliveries|
+|16–20|Exhibition Station|Sender/receiver and before/after contrasts, different routes for different parcels|
+|21–25|Museum Wing|Borrow/lend direction, original/copy, both/only and three exhibits|
+|26–30|Rooftop Run|Longer temporal and ownership records, multiple certifications, three deliveries|
+|31–35|Festival Night|Eleven-action combined plans with three distinct targets and reversed checkpoint routes|
+
+Press **E at a service point** to repair, clean, scan or deliver the current task. Pick up a tool case to equip it; taking the other tool swaps them. A wrench repairs; a brush cleans. Scans belong to the actual object, and each delivery consumes that object. The helper must bring a held parcel to the service point. Seven procedural chapter themes reuse the tested solid floor plan and the three acquired character models, with different architecture/dressing/palettes. Original five-job evidence is historical; current campaign verification is recorded in PLAYTEST.md.

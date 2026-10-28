@@ -92,7 +92,7 @@ export function createView(canvas:HTMLCanvasElement){
   for(let i=0;i<12;i++){const g=sphere(world,-10+(i*2.31)%21,.08,-8+(i*3.37)%16,.06,C.red);g.scale.y=.25;}
   if(s.level>=5)for(const [id,p]of Object.entries(STATIONS)){
    if(id==='exit')continue;
-   const sign=label(p.label.toUpperCase(),2.1);sign.position.set(p.x,1.45,p.z);world.add(sign);
+   const sign=label(p.label.toUpperCase(),2.1);sign.position.set(p.x,2.3,p.z);world.add(sign);
    cylinder(world,p.x,.03,p.z,.5,.5,.04,C.jade);const light=cylinder(world,p.x,.065,p.z,.16,.16,.04,C.brass);light.userData.occluder=true;light.material=mat(C.brass);stationLights.set(id,light);
   }
   dressing=createChapterDressing(Math.floor(s.level/5));dressing.traverse(o=>{if(o instanceof THREE.Mesh)o.userData.occluder=true;});world.add(dressing);

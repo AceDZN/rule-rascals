@@ -1,0 +1,15 @@
+{
+  "failure": [
+    {
+      "source": "workbook-game",
+      "version": 1,
+      "slug": "rule-rascals",
+      "type": "error",
+      "message": "Failed to fetch"
+    }
+  ],
+  "standalone": {
+    "heist": 35,
+    "messages": []
+  }
+}
